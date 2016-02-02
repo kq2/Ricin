@@ -4,6 +4,7 @@ Utility functions.
 import os
 import json
 from HTMLParser import HTMLParser
+from xml.etree import ElementTree
 
 HTML_PARSER = HTMLParser()
 
@@ -46,6 +47,23 @@ def make_folder(folder):
     except OSError:
         pass
     return folder
+
+
+def get_files(path):
+    """
+    :param path: A given directory.
+    :return: A list of files and folders in this directory.
+    """
+    return os.listdir(path)
+
+
+def make_zip(folder):
+    """
+    Make a zip file of given folder in current directory.
+    :param folder: A given folder in current directory.
+    :return: None.
+    """
+    os.system('zip -r {0}.zip {0}'.format(folder))
 
 
 def read_file(path):
@@ -98,6 +116,16 @@ def pretty_json(json_obj):
     :return: A pretty JSON string.
     """
     return json.dumps(json_obj, indent=4)
+
+
+def xml_root(xml_file):
+    """
+    Returns the root of XML tree.
+    :param xml_file: A given XML file.
+    :return: The root of this XML tree.
+    """
+    tree = ElementTree.parse(xml_file)
+    return tree.getroot()
 
 
 def unescape(text):
