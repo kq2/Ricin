@@ -1,5 +1,5 @@
 """
-Download Coursera announcement page.
+Download Coursera peer-grading page.
 """
 import re
 import util
@@ -7,12 +7,12 @@ import util
 
 def download(course_obj, course_item):
     """
-    Download announcement JSON.
+    Download peer-grading JSON.
     :param course_obj: A Course object.
     :param course_item: This JSON item is directly written into saved file.
     :return: None.
     """
-    folder = util.make_folder(course_obj.get_folder() + 'announcement/')
+    folder = util.make_folder(course_obj.get_folder() + 'peergrading/')
     item_id = course_item['item_id']
 
     path = folder + item_id + '.json'

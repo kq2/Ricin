@@ -76,8 +76,28 @@ def read_json(json_file):
     :param json_file: The JSON file to read.
     :return: The dictionary of this JSON object.
     """
-    with open(json_file, 'r') as _file:
-        return json.load(_file)
+    with open(json_file, 'r') as f:
+        return json.load(f)
+
+
+def write_json(json_file, json_obj):
+    """
+    Write pretty JSON to file.
+    :param json_file: The JSON file to write.
+    :param json_obj: The JSON object.
+    :return: None.
+    """
+    with open(json_file, 'w') as f:
+        f.write(pretty_json(json_obj))
+
+
+def pretty_json(json_obj):
+    """
+    Pretty print JSON to console.
+    :param json_obj: A JSON object.
+    :return: A pretty JSON string.
+    """
+    return json.dumps(json_obj, indent=4)
 
 
 def unescape(text):
@@ -97,5 +117,5 @@ def remove_coursera_bad_formats(text):
     """
     text = unescape(text)
     text = text.strip(' \n')
-    text = text.replace('view\?page=', '')
+    text = text.replace('view?page=', '')
     return text

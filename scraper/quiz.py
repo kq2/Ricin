@@ -42,6 +42,6 @@ def download(course_obj, course_item):
     util.download(url, path, course_obj.get_cookie_file())
 
     pattern = r'<textarea.*?>(.*)</textarea>'
-    quiz = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
-    quiz = util.remove_coursera_bad_formats(quiz)
-    util.write_file(path, quiz)
+    content = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
+    content = util.remove_coursera_bad_formats(content)
+    util.write_file(path, content)

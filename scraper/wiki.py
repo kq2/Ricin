@@ -1,5 +1,5 @@
 """
-Download Coursera quiz.
+Download Coursera wiki page.
 """
 
 import util
@@ -40,6 +40,6 @@ def download(course_obj, course_item):
     path = folder + filename + '.html'
     util.download(url, path, course_obj.get_cookie_file())
 
-    wiki = util.read_json(path)['content']
-    wiki = util.remove_coursera_bad_formats(wiki)
-    util.write_file(path, wiki)
+    content = util.read_json(path)['content']
+    content = util.remove_coursera_bad_formats(content)
+    util.write_file(path, content)

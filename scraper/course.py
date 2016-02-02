@@ -7,17 +7,17 @@ import util
 
 import quiz
 import wiki
-import peer
 import video
 import assignment
+import peergrading
 import announcement
 
 COURSE_ITEM = {
     'quiz': quiz,
     'lecture': video,
     'coursepage': wiki,
-    'peergrading': peer,
     'assignment': assignment,
+    'peergrading': peergrading,
     'announcement': announcement
 }
 
@@ -81,5 +81,14 @@ class Course:
     def download_wiki_pages(self):
         self.download('coursepage')
 
+    def download_assignments(self):
+        self.download('assignment')
+
+    def download_peergradings(self):
+        self.download('peergrading')
+
+    def download_announcements(self):
+        self.download('announcement')
+
 course = Course('https://class.coursera.org/interactivepython1-008')
-course.download_quizzes()
+course.download_announcements()
