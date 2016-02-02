@@ -32,7 +32,7 @@ class Course:
         self.session = find.group(2)  # 002
         self.id = self.name + '-' + self.session
 
-        self.folder = util.make_folder(self.id + '/')
+        self.folder = util.make_folder('../' + self.id + '/')
         self.section_file = self.folder + 'section.json'
         self.cookie_file = 'cookie.txt'
 
@@ -91,4 +91,4 @@ class Course:
         self.download('announcement')
 
 course = Course('https://class.coursera.org/interactivepython1-008')
-course.download_announcements()
+course.download_quizzes()
