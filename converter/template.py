@@ -2,8 +2,8 @@
 Canvas format templates.
 """
 
-QUIZ_META = '''<?xml version="1.0" encoding="UTF-8"?>
-<quiz identifier="{canvas_id}" xmlns="http://canvas.instructure.com/xsd/cccv1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 http://canvas.instructure.com/xsd/cccv1p0.xsd">
+QUIZ_META = u'''<?xml version="1.0" encoding="UTF-8"?>
+<quiz identifier="{quiz_id}" xmlns="http://canvas.instructure.com/xsd/cccv1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 http://canvas.instructure.com/xsd/cccv1p0.xsd">
   <title><![CDATA[{title}]]></title>
   <description><![CDATA[{preamble}]]></description>
   <shuffle_answers>{shuffle}</shuffle_answers>
@@ -21,16 +21,16 @@ QUIZ_META = '''<?xml version="1.0" encoding="UTF-8"?>
   <show_correct_answers_last_attempt>false</show_correct_answers_last_attempt>
 </quiz>'''
 
-QUIZ_DATA = '''<?xml version="1.0" encoding="UTF-8"?>
+QUIZ_DATA = u'''<?xml version="1.0" encoding="UTF-8"?>
 <questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
-  <assessment ident="{canvas_id}" title="{title}">
+  <assessment ident="{quiz_id}" title="{title}">
     <qtimetadata></qtimetadata>
     <section ident="root_section">{question_groups}
     </section>
   </assessment>
 </questestinterop>'''
 
-QUESTION_GROUP = '''
+QUESTION_GROUP = u'''
       <section ident="{group_id}" title="{group_title}">
         <selection_ordering>
           <selection>
@@ -42,7 +42,7 @@ QUESTION_GROUP = '''
         </selection_ordering>{questions}
       </section>'''
 
-QUESTION = '''
+QUESTION = u'''
         <item ident="{question_id}" title="{question_title}">
           <itemmetadata>
             <qtimetadata>
@@ -63,9 +63,27 @@ QUESTION = '''
           </presentation>{feedback}
         </item>'''
 
-OPTION = ''''''
+OPTION_GROUP_TEXT = u'''
+            <response_str ident="response1" rcardinality="Single">
+              <render_fib {fibtype}>
+                <response_label ident="answer1" rshuffle="No"/>
+              </render_fib>
+            </response_str>'''
 
-FEEDBACK = '''
+OPTION_GROUP_CHOICE = u'''
+            <response_lid ident="response1" rcardinality="{single}">
+              <render_choice>{options}
+              </render_choice>
+            </response_lid>'''
+
+OPTION = u'''
+                <response_label ident="{option_id}">
+                  <material>
+                    <mattext texttype="text/html"><![CDATA[{option_text}]]></mattext>
+                  </material>
+                </response_label>'''
+
+FEEDBACK = u'''
           <itemfeedback ident="{option_id}_fb">
             <flow_mat>
               <material>
