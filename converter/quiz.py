@@ -89,62 +89,90 @@ def convert_questions(group_id, question_group, group_idx):
     canvas_questions = ''
 
     for idx, question in enumerate(question_group.findall('question')):
-        question_id = '%s_%s' % (group_id, idx+1)
-        question_type = question.find('metadata/parameters')[1].text
-        question_type = QUESTION_TYPE[question_type]
-        option_groups = question.find('data/option_groups')
-        general_feedback = question.findtext('data/explanation')
-        options, feedback = convert_options(question_id, question_type,
-                                            option_groups, general_feedback)
         data = {
-            'question_id': question_id,
+            'question_id': '%s_%s' % (group_id, idx+1),
             'question_title': 'Question %s' % group_idx,
             'question_points': question.findtext('metadata/parameters/rescale_score'),
-            'question_type': question_type,
-            'question_text': question.findtext('data/text'),
-            'options': options,
-            'feedback': feedback
+            'question_type': find_question_type(question),
+            'question_text': question.findtext('data/text')
         }
+        option_groups = question.find('data/option_groups')
+        general_feedback = question.findtext('data/explanation')
+        options, feedback = convert_options(option_groups,
+                                            data['question_id'],
+                                            data['question_type'],
+                                            data['question_points'],
+                                            general_feedback)
+        data.update({'options': options, 'feedback': feedback})
         canvas_questions += template.QUESTION.format(**data)
 
     return canvas_questions
 
 
-def convert_options(question_id, question_type, option_groups, general_feedback):
+def find_question_type(question):
+    question_type = question.find('metadata/parameters')[1].text
+    return QUESTION_TYPE[question_type]
+
+
+def convert_options(option_groups,
+                    question_id,
+                    question_type,
+                    question_points,
+                    general_feedback):
     options = ''
+    processing_feedback = ''
+    processing_answer = ''
     feedback = ''
 
-    if general_feedback:
-        data = {
-            'option_id': 'general',
-            'option_feedback': general_feedback
-        }
-        feedback += template.FEEDBACK.format(**data)
-
     for idx, option in enumerate(option_groups.iter('option')):
+        option_id = '%s_%s' % (question_id, idx+1)
         data = {
-            'option_id': '%s_%s' % (question_id, idx+1),
+            'option_id': option_id,
             'option_text': option.findtext('text'),
             'option_feedback': option.findtext('explanation'),
             'option_selected_score': option.get('selected_score'),
-            'option_unselected_score': option.get('unselected_score')
+            'option_unselected_score': option.get('unselected_score'),
+            'condition': template.CONDITION_EQUAL.format(option_id)
         }
 
         options += template.OPTION.format(**data)
-
+        processing_answer += convert_answer(question_type, question_points, data)
         if data['option_feedback']:
+            processing_feedback += template.PROCESSING_FEEDBACK.format(**data)
             feedback += template.FEEDBACK.format(**data)
 
+    options = wrap_options(question_type, options)
+    if general_feedback:
+        data = {
+            'option_id': 'general',
+            'option_feedback': general_feedback,
+            'condition': template.CONDITION_OTHER
+        }
+        processing_feedback += template.PROCESSING_FEEDBACK.format(**data)
+        feedback += template.FEEDBACK.format(**data)
+
+    return options, processing_feedback + processing_answer + feedback
+
+
+def convert_answer(question_type, question_points, data):
+    option_points = data['option_selected_score']
+    option_id = data['option_id']
+    if question_type is 'multiple_choice_question':
+        # if option is fully correct (it's possible that more than
+        # one option are correct even it's single-answer type.)
+        if question_points == option_points:
+            return template.PROCESSING_ANSWER.format(
+                condition=template.CONDITION_EQUAL.format(option_id)
+            )
+    return ''
+
+
+def wrap_options(question_type, options):
     if question_type is 'numerical_question':
-        options = template.OPTION_GROUP_TEXT.format(fibtype='fibtype="Decimal"')
-    elif question_type is 'short_answer_question':
-        options = template.OPTION_GROUP_TEXT.format(fibtype='')
-    elif question_type is 'multiple_choice_question':
-        options = template.OPTION_GROUP_CHOICE.format(single='Single', options=options)
-    elif question_type is 'multiple_answers_question':
-        options = template.OPTION_GROUP_CHOICE.format(single='Multiple', options=options)
-    else:
-        print "Unknown question type! "
-
-    return options, feedback
-
+        return template.OPTIONS_NUMERICAL
+    if question_type is 'short_answer_question':
+        return template.OPTIONS_SHORT
+    if question_type is 'multiple_choice_question':
+        return template.OPTIONS_SINGLE.format(options=options)
+    if question_type is 'multiple_answers_question':
+        return template.OPTIONS_MULTIPLE.format(options=options)

@@ -63,15 +63,28 @@ QUESTION = u'''
           </presentation>{feedback}
         </item>'''
 
-OPTION_GROUP_TEXT = u'''
+OPTIONS_NUMERICAL = u'''
             <response_str ident="response1" rcardinality="Single">
-              <render_fib {fibtype}>
+              <render_fib fibtype="Decimal">
+                <response_label ident="answer1"/>
+              </render_fib>
+            </response_str>'''
+
+OPTIONS_SHORT = u'''
+            <response_str ident="response1" rcardinality="Single">
+              <render_fib>
                 <response_label ident="answer1" rshuffle="No"/>
               </render_fib>
             </response_str>'''
 
-OPTION_GROUP_CHOICE = u'''
-            <response_lid ident="response1" rcardinality="{single}">
+OPTIONS_SINGLE = u'''
+            <response_lid ident="response1" rcardinality="Single">
+              <render_choice>{options}
+              </render_choice>
+            </response_lid>'''
+
+OPTIONS_MULTIPLE = u'''
+            <response_lid ident="response1" rcardinality="Multiple">
               <render_choice>{options}
               </render_choice>
             </response_lid>'''
@@ -82,6 +95,33 @@ OPTION = u'''
                     <mattext texttype="text/html"><![CDATA[{option_text}]]></mattext>
                   </material>
                 </response_label>'''
+
+PROCESSING = u'''
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>{processing}
+          </resprocessing>'''
+
+PROCESSING_FEEDBACK = u'''
+            <respcondition continue="Yes">
+              <conditionvar>{condition}
+              </conditionvar>
+              <displayfeedback feedbacktype="Response" linkrefid="{option_id}_fb"/>
+            </respcondition>'''
+
+PROCESSING_ANSWER = u'''
+            <respcondition continue="No">
+              <conditionvar>{condition}
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">100</setvar>
+            </respcondition>'''
+
+CONDITION_OTHER = u'''
+                <other/>'''
+
+CONDITION_EQUAL = u'''
+                <varequal respident="response1">{}</varequal>'''
 
 FEEDBACK = u'''
           <itemfeedback ident="{option_id}_fb">

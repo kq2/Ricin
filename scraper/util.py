@@ -130,7 +130,7 @@ def xml_root(xml_file):
 
 def unescape(text):
     """
-    Un-escape all HTML escape characters.
+    Unescape all HTML escape characters.
     :param text: The text with HTML escaped characters.
     :return: The text with escaped characters replaced.
     """
