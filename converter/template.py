@@ -100,7 +100,7 @@ PROCESSING = u'''
           <resprocessing>
             <outcomes>
               <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
-            </outcomes>{processing}
+            </outcomes>{}
           </resprocessing>'''
 
 PROCESSING_FEEDBACK = u'''
@@ -117,11 +117,44 @@ PROCESSING_ANSWER = u'''
               <setvar action="Set" varname="SCORE">100</setvar>
             </respcondition>'''
 
+PROCESSING_ANSWER_NUMERIC = u'''
+            <respcondition continue="No">
+              <conditionvar>{condition}
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">100</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="{option_id}"/>
+            </respcondition>'''
+
 CONDITION_OTHER = u'''
                 <other/>'''
 
 CONDITION_EQUAL = u'''
-                <varequal respident="response1">{}</varequal>'''
+                <varequal respident="response1"><![CDATA[{}]]></varequal>'''
+
+CONDITION_EXACT = u'''
+                <or>
+                  <varequal respident="response1">{0}</varequal>
+                  <and>
+                    <vargte respident="response1">{0}</vargte>
+                    <varlte respident="response1">{0}</varlte>
+                  </and>
+                </or>'''
+
+CONDITION_RANGE = u'''
+                <vargte respident="response1">{0}</vargte>
+                <varlte respident="response1">{1}</varlte>'''
+
+CONDITION_MULTIPLE = u'''
+                <and>{}
+                </and>'''
+
+CONDITION_MULTIPLE_CORRECT = u'''
+                  <varequal respident="response1">{}</varequal>'''
+
+CONDITION_MULTIPLE_INCORRECT = u'''
+                  <not>
+                    <varequal respident="response1">{}</varequal>
+                  </not>'''
 
 FEEDBACK = u'''
           <itemfeedback ident="{option_id}_fb">

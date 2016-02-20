@@ -93,9 +93,18 @@ def convert_questions(group_id, question_group, group_idx):
             'question_id': '%s_%s' % (group_id, idx+1),
             'question_title': 'Question %s' % group_idx,
             'question_points': question.findtext('metadata/parameters/rescale_score'),
-            'question_type': find_question_type(question),
-            'question_text': question.findtext('data/text')
+            'question_type': QUESTION_TYPE[question.find('metadata/parameters')[1].text],
+            'question_text': question.findtext('data/text'),
+            'answer_split': question.findtext('metadata/parameters/split/limit'),
+            'split_order': question.findtext('metadata/parameters/preserve_order')
         }
+
+        # Canvas does not support multiple-text or multiple-numeric type
+        # from Coursera, so use single-text instead. The drawback is
+        # that answer needs to match the exact string.
+        if data['answer_split']:
+            data['question_type'] = 'short_answer_question'
+
         option_groups = question.find('data/option_groups')
         general_feedback = question.findtext('data/explanation')
         options, feedback = convert_options(option_groups,
@@ -109,11 +118,6 @@ def convert_questions(group_id, question_group, group_idx):
     return canvas_questions
 
 
-def find_question_type(question):
-    question_type = question.find('metadata/parameters')[1].text
-    return QUESTION_TYPE[question_type]
-
-
 def convert_options(option_groups,
                     question_id,
                     question_type,
@@ -123,6 +127,7 @@ def convert_options(option_groups,
     processing_feedback = ''
     processing_answer = ''
     feedback = ''
+    split_answer = []
 
     for idx, option in enumerate(option_groups.iter('option')):
         option_id = '%s_%s' % (question_id, idx+1)
@@ -136,12 +141,21 @@ def convert_options(option_groups,
         }
 
         options += template.OPTION.format(**data)
-        processing_answer += convert_answer(question_type, question_points, data)
+        processing_answer += convert_answer(question_type, question_points,
+                                            data, split_answer)
         if data['option_feedback']:
-            processing_feedback += template.PROCESSING_FEEDBACK.format(**data)
+            # Since short-answer condition is option_text not option_id
+            if question_type is 'short_answer_question':
+                # if fully correct (Canvas treats partially correct as correct, while
+                # Coursera uses partially correct option for multiple-text answer. )
+                if question_points == data['option_selected_score']:
+                    data['condition'] = template.CONDITION_EQUAL.format(data['option_text'])
+
+            # numeric processing_feedback is with its processing_answer (line 191, 198)
+            if question_type is not 'numerical_question':
+                processing_feedback += template.PROCESSING_FEEDBACK.format(**data)
             feedback += template.FEEDBACK.format(**data)
 
-    options = wrap_options(question_type, options)
     if general_feedback:
         data = {
             'option_id': 'general',
@@ -151,19 +165,85 @@ def convert_options(option_groups,
         processing_feedback += template.PROCESSING_FEEDBACK.format(**data)
         feedback += template.FEEDBACK.format(**data)
 
-    return options, processing_feedback + processing_answer + feedback
+    processing = wrap_processing(split_answer, question_type,
+                                 processing_answer, processing_feedback)
+    options = wrap_options(question_type, options)
+
+    return options, processing + feedback
 
 
-def convert_answer(question_type, question_points, data):
+def convert_answer(question_type, question_points,
+                   data, split_answer):
     option_points = data['option_selected_score']
+    option_text = data['option_text']
     option_id = data['option_id']
+
+    if question_type is 'numerical_question':
+
+        # if fully correct (more than one is possible)
+        if question_points == option_points:
+            answer = option_text.strip('[]\n').split(',')
+
+            # exact number answer
+            if len(answer) is 1:
+                return template.PROCESSING_ANSWER_NUMERIC.format(
+                    condition=template.CONDITION_EXACT.format(*answer),
+                    option_id=option_id
+                )
+
+            # range number answer
+            elif len(answer) is 2:
+                return template.PROCESSING_ANSWER_NUMERIC.format(
+                    condition=template.CONDITION_RANGE.format(*answer),
+                    option_id=option_id
+                )
+
+            # error
+            else:
+                pass
+
+        # discard possible incorrect/close numeric answer
+        else:
+            pass
+
+    if question_type is 'short_answer_question':
+
+        # if fully correct (more than one is possible)
+        if question_points == option_points:
+            return template.PROCESSING_ANSWER.format(
+                condition=template.CONDITION_EQUAL.format(option_text)
+            )
+
+        # if partially correct (split answer)
+        elif float(option_points) > 0:
+            split_answer.append(option_text)
+
+        # discard possible incorrect text answer
+        else:
+            pass
+
     if question_type is 'multiple_choice_question':
-        # if option is fully correct (it's possible that more than
-        # one option are correct even it's single-answer type.)
+
+        # if fully correct
         if question_points == option_points:
             return template.PROCESSING_ANSWER.format(
                 condition=template.CONDITION_EQUAL.format(option_id)
             )
+
+        # incorrect options are not in answer
+        else:
+            pass
+
+    if question_type is 'multiple_answers_question':
+
+        # if it's one of the correct options
+        if float(option_points) > 0:
+            return template.CONDITION_MULTIPLE_CORRECT.format(option_id)
+
+        # if incorrect
+        else:
+            return template.CONDITION_MULTIPLE_INCORRECT.format(option_id)
+
     return ''
 
 
@@ -176,3 +256,19 @@ def wrap_options(question_type, options):
         return template.OPTIONS_SINGLE.format(options=options)
     if question_type is 'multiple_answers_question':
         return template.OPTIONS_MULTIPLE.format(options=options)
+
+
+def wrap_processing(split_answer, question_type,
+                    processing_answer, processing_feedback):
+    if split_answer:
+        answer = ' '.join(split_answer)
+        processing_answer += template.PROCESSING_ANSWER.format(
+            condition=template.CONDITION_EQUAL.format(answer)
+        )
+
+    if question_type is 'multiple_answers_question':
+        processing_answer = template.PROCESSING_ANSWER.format(
+            condition=template.CONDITION_MULTIPLE.format(processing_answer))
+
+    processing = processing_feedback + processing_answer
+    return template.PROCESSING.format(processing)
