@@ -2,7 +2,7 @@
 Canvas format templates.
 """
 
-QUIZ_META = u'''<?xml version="1.0" encoding="UTF-8"?>
+QUIZ_METADATA = u'''<?xml version="1.0" encoding="UTF-8"?>
 <quiz identifier="{quiz_id}" xmlns="http://canvas.instructure.com/xsd/cccv1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 http://canvas.instructure.com/xsd/cccv1p0.xsd">
   <title><![CDATA[{title}]]></title>
   <description><![CDATA[{preamble}]]></description>
@@ -55,13 +55,15 @@ QUESTION = u'''
                 <fieldentry>{question_points}</fieldentry>
               </qtimetadatafield>
             </qtimetadata>
-          </itemmetadata>
+          </itemmetadata>{presentation}{processing}{feedback}
+        </item>'''
+
+PRESENTATION = u'''
           <presentation>
             <material>
               <mattext texttype="text/html"><![CDATA[{question_text}]]></mattext>
-            </material>{options}
-          </presentation>{feedback}
-        </item>'''
+            </material>{options_text}
+          </presentation>'''
 
 OPTIONS_NUMERICAL = u'''
             <response_str ident="response1" rcardinality="Single">
@@ -100,7 +102,7 @@ PROCESSING = u'''
           <resprocessing>
             <outcomes>
               <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
-            </outcomes>{}
+            </outcomes>{feedback}{answer}
           </resprocessing>'''
 
 PROCESSING_FEEDBACK = u'''
@@ -117,7 +119,7 @@ PROCESSING_ANSWER = u'''
               <setvar action="Set" varname="SCORE">100</setvar>
             </respcondition>'''
 
-PROCESSING_ANSWER_NUMERIC = u'''
+PROCESSING_ANSWER_TEXT = u'''
             <respcondition continue="No">
               <conditionvar>{condition}
               </conditionvar>
