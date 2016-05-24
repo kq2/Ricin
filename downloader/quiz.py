@@ -9,8 +9,7 @@ def download(course_obj, course_item):
     """
     Download quiz XML.
     :param course_obj: A Course object.
-    :param course_item:
-    {
+    :param course_item: {
         "last_updated": 1409275771,
         "authentication_required": 1,
         "proctoring_requirement": "none",
@@ -44,4 +43,5 @@ def download(course_obj, course_item):
     pattern = r'<textarea.*?>(.*)</textarea>'
     content = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
     content = util.remove_coursera_bad_formats(content)
+    content = '<?xml version="1.0" encoding="UTF-8"?>\n' + content
     util.write_file(path, content)

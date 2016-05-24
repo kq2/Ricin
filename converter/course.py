@@ -1,7 +1,7 @@
 """
 Convert a local Coursera course into Canvas course.
 """
-from scraper import util
+from downloader import util
 import quiz
 import wiki
 import video
@@ -36,8 +36,9 @@ class Course:
         course_sections = util.read_json(self.section_file)
         for course_section in course_sections:
             for course_item in course_section['items']:
-                if course_item_type is None or course_item_type == course_item['item_type']:
-                    COURSE_ITEM[course_item['item_type']].convert(self, course_item)
+                item_type = course_item['item_type']
+                if course_item_type is None or course_item_type == item_type:
+                    COURSE_ITEM[item_type].convert(self, course_item)
 
     def convert_quizzes(self):
         self.convert('quiz')

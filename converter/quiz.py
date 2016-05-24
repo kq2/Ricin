@@ -1,7 +1,7 @@
 """
 Convert a Coursera quiz into a Canvas quiz.
 """
-from scraper import util
+from downloader import util
 import template
 
 # Coursera to Canvas question types

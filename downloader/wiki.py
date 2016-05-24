@@ -9,8 +9,7 @@ def download(course_obj, course_item):
     """
     Download wiki page HTML.
     :param course_obj: A Course object.
-    :param course_item:
-    {
+    :param course_item: {
         "uid": "coursepageEYJIs_YAEeKNdCIACugoiw",
         "section_id": "27",
         "order": "1",

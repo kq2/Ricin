@@ -11,6 +11,7 @@ import video
 import assignment
 import peergrading
 import announcement
+import forum
 
 COURSE_ITEM = {
     'quiz': quiz,
@@ -20,6 +21,10 @@ COURSE_ITEM = {
     'peergrading': peergrading,
     'announcement': announcement
 }
+CLASS_URL = 'https://class.coursera.org/'
+IIPP = 'interactivepython'
+POC = 'principlescomputing'
+ALG = 'algorithmicthink'
 
 
 class Course:
@@ -78,6 +83,9 @@ class Course:
     def download_quizzes(self):
         self.download('quiz')
 
+    def download_videos(self):
+        self.download('lecture')
+
     def download_wiki_pages(self):
         self.download('coursepage')
 
@@ -90,5 +98,9 @@ class Course:
     def download_announcements(self):
         self.download('announcement')
 
-course = Course('https://class.coursera.org/interactivepython1-008')
-course.download_quizzes()
+    def download_forum(self):
+        forum.download(self, '1942')
+
+course = Course(CLASS_URL + POC + '1-005')
+# course.download_section_file()
+course.download_videos()

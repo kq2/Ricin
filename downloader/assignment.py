@@ -9,8 +9,7 @@ def download(course_obj, course_item):
     """
     Download assignment HTML.
     :param course_obj: A Course object.
-    :param course_item:
-    {
+    :param course_item: {
         "maximum_submissions": 0,
         "open_time": 1409234400,
         "parent_id": 5,

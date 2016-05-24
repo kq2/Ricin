@@ -2,6 +2,7 @@
 Utility functions.
 """
 import os
+import re
 import json
 from HTMLParser import HTMLParser
 from xml.etree import ElementTree
@@ -146,4 +147,15 @@ def remove_coursera_bad_formats(text):
     text = unescape(text)
     text = text.strip(' \n')
     text = text.replace('view?page=', '')
+    return text
+
+
+def make_coursera_new_formats(text):
+    """
+    Change the text to comply with Coursera's new system.
+    :param text: The content from old system.
+    :return: The content with new format.
+    """
+    text = text.replace('h4>', 'h3>')
+    text = re.sub(r'<code>(.*?)</code>', r'$$\\color{red}{\\verb|\1|}$$', text)
     return text
