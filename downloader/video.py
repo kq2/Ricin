@@ -65,9 +65,10 @@ def download(course_obj, course_item):
 
     video = course_item['source_video']
     if video:
-        # download_in_video_quizzes(course_obj, course_item, folder, item_id)
-        download_published_compressed_video(course_obj, course_item,
-                                            folder, item_id, video)
+        download_in_video_quizzes(course_obj, course_item, folder, item_id)
+        # download_original_video(course_obj, folder, video)
+        # download_published_compressed_video(course_obj, course_item,
+        #                                     folder, item_id, video)
 
 
 def download_in_video_quizzes(course_obj, course_item, folder, item_id):
@@ -145,15 +146,18 @@ def make_folder(path):
     return util.make_folder(folder)
 
 
-def download_original_video(course_obj, course_item):
+def download_original_video(course_obj, folder, video):
     """
     Download original (high-quality) video.
     """
-    course_name = course_obj.get_name()
-    file_name = course_item['source_video']
     src_url = 'https://spark-public.s3.amazonaws.com/{}/source_videos/{}'
-    url = src_url.format(course_name, file_name)
-    print url
+    url = src_url.format(course_obj.get_name(), video)
+
+    path = folder + 'original/' + video
+    make_folder(path)
+
+    util.download(url, path, course_obj.get_cookie_file(),
+                  resume=True, follow_redirect=True)
 
 
 def download_published_compressed_video(course_obj, course_item,
@@ -169,4 +173,4 @@ def download_published_compressed_video(course_obj, course_item,
         make_folder(path)
 
         util.download(url, path, course_obj.get_cookie_file(),
-                      follow_redirect=True)
+                      resume=True)
