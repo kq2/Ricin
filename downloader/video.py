@@ -65,7 +65,8 @@ def download(course_obj, course_item):
 
     video = course_item['source_video']
     if video:
-        download_in_video_quizzes(course_obj, course_item, folder, item_id)
+        download_subtitles(course_obj, folder, item_id)
+        # download_in_video_quizzes(course_obj, course_item, folder, item_id)
         # download_original_video(course_obj, folder, video)
         # download_published_compressed_video(course_obj, course_item,
         #                                     folder, item_id, video)
@@ -156,8 +157,7 @@ def download_original_video(course_obj, folder, video):
     path = folder + 'original/' + video
     make_folder(path)
 
-    util.download(url, path, course_obj.get_cookie_file(),
-                  resume=True, follow_redirect=True)
+    util.download(url, path, course_obj.get_cookie_file())
 
 
 def download_published_compressed_video(course_obj, course_item,
@@ -173,4 +173,27 @@ def download_published_compressed_video(course_obj, course_item,
         make_folder(path)
 
         util.download(url, path, course_obj.get_cookie_file(),
-                      resume=True)
+                      follow_redirect=True)
+
+
+def download_subtitles(course_obj, folder, item_id):
+    """
+    Download all subtitles of this video.
+    """
+    url = '{}/admin/api/lectures/{}/subtitles'
+    url = url.format(course_obj.get_url(), item_id)
+
+    folder = util.make_folder(folder + 'subtitle')
+    path = '{}/info/{}.json'.format(folder, item_id)
+    make_folder(path)
+
+    util.download(url, path, course_obj.get_cookie_file())
+
+    subtitles = util.read_json(path)
+    util.write_json(path, subtitles)
+
+    for subtitle in subtitles:
+        url = subtitle['srt_url']
+        if url:
+            path = '{}/{}.{}.srt'.format(folder, item_id, subtitle['language'])
+            util.download(url, path, course_obj.get_cookie_file())

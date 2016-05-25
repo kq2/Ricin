@@ -10,7 +10,7 @@ from xml.etree import ElementTree
 HTML_PARSER = HTMLParser()
 
 
-def download(url, path='', cookie='', resume=False,
+def download(url, path='', cookie='', resume=True,
              follow_redirect=False, show_progress_bar=True):
     """
     Use cURL to download an URL.
@@ -22,7 +22,7 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
-    print "downloading %s" % url
+    print "    downloading %s" % url
 
     cmd = 'curl "%s"' % url
     cmd += ' -o "%s"' % path if path else ' -O'

@@ -77,7 +77,7 @@ class Course:
 
         num_download = len(download_queue)
         for idx, course_item in enumerate(download_queue):
-            print "%d/%d" % (idx+1, num_download),
+            print "%d/%d" % (idx+1, num_download)
             COURSE_ITEM[course_item['item_type']].download(self, course_item)
 
     def download_quizzes(self):
@@ -101,6 +101,6 @@ class Course:
     def download_forum(self):
         forum.download(self, '1942')
 
-course = Course(CLASS_URL + POC + '1-005')
+course = Course(CLASS_URL + IIPP + '1-008')
 # course.download_section_file()
 course.download_videos()

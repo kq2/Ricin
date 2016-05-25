@@ -17,6 +17,7 @@ COURSE_ITEM = {
     'peergrading': peergrading,
     'announcement': announcement
 }
+IIPP = 'interactivepython'
 
 
 class Course:
@@ -24,7 +25,7 @@ class Course:
         self.id = course_id
         self.coursera_folder = '../' + self.id
         self.section_file = self.coursera_folder + '/section.json'
-        self.canvas_folder = util.make_folder(self.coursera_folder + '-canvas')
+        self.canvas_folder = util.make_folder('../canvas-' + self.id)
 
     def get_coursera_folder(self):
         return self.coursera_folder
@@ -43,5 +44,5 @@ class Course:
     def convert_quizzes(self):
         self.convert('quiz')
 
-course = Course('interactivepython1-008')
+course = Course(IIPP + '1-008')
 course.convert_quizzes()
