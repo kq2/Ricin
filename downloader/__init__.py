@@ -13,7 +13,7 @@ ALG = 'algorithmicthink'
 def run(course_url):
     _course = course.Course(course_url)
     # _course.download_section_file()
-    _course.download_assets()
+    _course.download_grades()
 
 
-run(CLASS_URL + POC + '1-005')
+run(CLASS_URL + IIPP + '-005')

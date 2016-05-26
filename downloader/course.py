@@ -12,6 +12,7 @@ import assignment
 import peergrading
 import announcement
 import assets
+import grades
 import forum
 
 DOWNLOADER = {
@@ -114,6 +115,9 @@ class Course:
 
     def download_assets(self):
         assets.download(self)
+
+    def download_grades(self):
+        grades.download(self)
 
     def download_forum(self):
         forum.download(self, '1942')

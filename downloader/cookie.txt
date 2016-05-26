@@ -1,0 +1,34 @@
+# Cookies for domains related to coursera.org.
+# This content may be pasted into a cookies.txt file and used by wget
+# Example:  wget -x --load-cookies cookies.txt https://www.coursera.org/
+#
+class.coursera.org	FALSE	/interactivepythontas-001	FALSE	1464126667.095367	csrf_token	NvQpxecj5UsuKQexZf40
+class.coursera.org	FALSE	/principlescomputing1-003	FALSE	1466657055.469124	csrf_token	CsV6kCsoRWOebb9Tly2x
+class.coursera.org	FALSE	/principlescomputing1-004	FALSE	1466657069.231426	csrf_token	897Vm5eS299XWiuMKhu3
+class.coursera.org	FALSE	/principlescomputing1-002	FALSE	1466657143.051614	csrf_token	z169RgREAz2Mkptnz6nd
+class.coursera.org	FALSE	/principlescomputing1-005	FALSE	1466657155.175741	csrf_token	2Uw3ugd6DgYYDjlOh7YW
+class.coursera.org	FALSE	/interactivepython-004	FALSE	1466019887.6689	csrf_token	HzDwrbh4gq1QSAIewQWB
+.coursera.org	TRUE	/	FALSE	1478022623.952403	__204u	9457869429-1446486623922
+.coursera.org	TRUE	/	FALSE	1478019024	__204r
+.tech.coursera.org	TRUE	/	FALSE	1510095015	__utma	139766070.1307510819.1446486625.1447022836.1447022836.1
+rice.coursera.org	FALSE	/	FALSE	4602505332	data.coursera.wysihtml5default.mode.wysihtml5	rich
+.class.coursera.org	TRUE	/	FALSE	1517442211	__utma	126444767.1307510819.1446486625.1454370155.1454370155.1
+.class.coursera.org	TRUE	/	FALSE	1470138211	__utmz	126444767.1454370155.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+class.coursera.org	FALSE	/	FALSE	4610981599	data.coursera.wysihtml5default.mode.wiki	html
+class.coursera.org	FALSE	/	FALSE	4611932169	data.coursera.wysihtml5default.mode.forums	rich
+.coursera.org	TRUE	/	FALSE	1464291887.669091	CSRF3-Token	1464291887.r9I2cmLXqrmogxcC
+.coursera.org	TRUE	/	TRUE	1468093413.457265	CAUTH	ppPAuIeqFUgFBvSAy3HPnughcW23jJ-VsiC3OuxWOgPXvyhZkGIk3nCxk9mLKusQneKM1a44NnyxdJ3nyGzaIw.kLBM9MBYDZgwvdhkQmDpgQ.DhlMTFZKWwT6dkfMv92pzHQBoOdk5y6cdnlfZA5XSD1OWVnZ2GC0xI9Q84ElIa0Mtni-xF81V3dYMoVRK4M03hfI1P4SlZp5ZfvD2Fbm_HBM9m99KaxL8Fsy4YyJUFPibWECmUpd-LbTKCT6d2L0NNyD9Gu1GdGE3edCjB9nE7Y
+.coursera.org	TRUE	/	FALSE	1468093413.457378	maestro_login_flag	1
+www.coursera.org	FALSE	/	TRUE	1464134662	ip_origin	US
+www.coursera.org	FALSE	/	TRUE	1464134662	ip_currency	USD
+class.coursera.org	FALSE	/	FALSE	1464150606.749834	serve_netease_976301	0
+class.coursera.org	FALSE	/	FALSE	1464151134.130918	serve_netease_974632	0
+class.coursera.org	FALSE	/	FALSE	1464151453.3232	serve_netease_974688	0
+class.coursera.org	FALSE	/	FALSE	1464151467.045577	serve_netease_975647	0
+.coursera.org	TRUE	/	FALSE	1527137080	__utma	158142248.1307510819.1446486625.1461473076.1464064184.8
+.coursera.org	TRUE	/	FALSE	0	__utmc	158142248
+.coursera.org	TRUE	/	FALSE	1479833080	__utmz	158142248.1461473076.7.2.utmcsr=coursera.org|utmccn=(referral)|utmcmd=referral|utmcct=/teach/algorithmic-thinking-2/author/outline/supplement/i0HYj/content
+.coursera.org	TRUE	/	FALSE	1464118008	__400v	63687977-69f7-4786-b0d7-faa95c584e3c
+.coursera.org	TRUE	/	FALSE	1527188209	_ga	GA1.2.1307510819.1446486625
+.coursera.org	TRUE	/	FALSE	1464116809	_dc_gtm_UA-28377374-1	1
+.coursera.org	TRUE	/	FALSE	1464118013	__400vt	1464116213616
