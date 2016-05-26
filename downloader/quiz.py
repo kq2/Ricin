@@ -33,19 +33,17 @@ def download(course, item):
     }
     :return: None.
     """
-    item_id = item['item_id']
-
     path = '{}/quiz/info/{}.json'
-    path = path.format(course.get_folder(), item_id)
+    path = path.format(course.get_folder(), item['item_id'])
 
     util.make_folder(path, True)
     util.write_json(path, item)
 
     url = '{}/admin/quiz/raw_edit?quiz_id={}'
-    url = url.format(course.get_url(), item_id)
+    url = url.format(course.get_url(), item['item_id'])
 
     path = '{}/quiz/{}.xml'
-    path = path.format(course.get_folder(), item_id)
+    path = path.format(course.get_folder(), item['item_id'])
 
     util.download(url, path, course.get_cookie_file())
 
@@ -53,4 +51,5 @@ def download(course, item):
     xml = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
     xml = util.remove_coursera_bad_formats(xml)
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + xml
+
     util.write_file(path, xml)

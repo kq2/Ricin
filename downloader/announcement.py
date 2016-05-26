@@ -28,14 +28,13 @@ def download(course, item):
     }
     :return: None.
     """
-    item_id = item['item_id']
-
     path = '{}/announcement/{}.json'
-    path = path.format(course.get_folder(), item_id)
+    path = path.format(course.get_folder(), item['item_id'])
 
     util.make_folder(path, True)
     util.write_json(path, item)
 
     content = util.read_file(path)
     content = util.remove_coursera_bad_formats(content)
+
     util.write_file(path, content)

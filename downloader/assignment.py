@@ -29,23 +29,22 @@ def download(course, item):
     }
     :return: None.
     """
-    item_id = item['item_id']
-
     path = '{}/assignment/info/{}.json'
-    path = path.format(course.get_folder(), item_id)
+    path = path.format(course.get_folder(), item['item_id'])
 
     util.make_folder(path, True)
     util.write_json(path, item)
 
     url = '{}/admin/assignment?assignment_id={}'
-    url = url.format(course.get_url(), item_id)
+    url = url.format(course.get_url(), item['item_id'])
 
     path = '{}/assignment/{}.html'
-    path = path.format(course.get_folder(), item_id)
+    path = path.format(course.get_folder(), item['item_id'])
 
     util.download(url, path, course.get_cookie_file())
 
     pattern = r'<textarea.*?>(.*)</textarea>'
     content = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
     content = util.remove_coursera_bad_formats(content)
+
     util.write_file(path, content)

@@ -11,14 +11,13 @@ def download(course, item):
     :param item: This JSON item is directly written into saved file.
     :return: None.
     """
-    item_id = item['item_id']
-
     path = '{}/peergrading/{}.json'
-    path = path.format(course.get_folder(), item_id)
+    path = path.format(course.get_folder(), item['item_id'])
 
     util.make_folder(path, True)
     util.write_json(path, item)
 
     content = util.read_file(path)
     content = util.remove_coursera_bad_formats(content)
+
     util.write_file(path, content)

@@ -31,24 +31,22 @@ def download(course, item):
     }
     :return: None.
     """
-    item_id = item['item_id']
-    item_name = item['metadata']['canonicalName']
-
     path = '{}/wiki/info/{}.json'
-    path = path.format(course.get_folder(), item_name)
+    path = path.format(course.get_folder(), item['metadata']['canonicalName'])
 
     util.make_folder(path, True)
     util.write_json(path, item)
 
     url = '{}/admin/api/pages/{}?fields=content'
-    url = url.format(course.get_url(), item_id)
+    url = url.format(course.get_url(), item['item_id'])
 
     path = '{}/wiki/{}.html'
-    path = path.format(course.get_folder(), item_name)
+    path = path.format(course.get_folder(), item['metadata']['canonicalName'])
 
     util.download(url, path, course.get_cookie_file())
 
     wiki = util.read_json(path)
     content = wiki['content']
     content = util.remove_coursera_bad_formats(content)
+
     util.write_file(path, content)
