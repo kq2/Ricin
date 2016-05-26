@@ -5,11 +5,11 @@ Download Coursera wiki page.
 import util
 
 
-def download(course_obj, course_item):
+def download(course, item):
     """
     Download wiki page HTML.
-    :param course_obj: A Course object.
-    :param course_item: {
+    :param course: A Course object.
+    :param item: {
         "uid": "coursepageEYJIs_YAEeKNdCIACugoiw",
         "section_id": "27",
         "order": "1",
@@ -31,14 +31,24 @@ def download(course_obj, course_item):
     }
     :return: None.
     """
-    folder = util.make_folder(course_obj.get_folder() + 'wiki/')
-    filename = course_item['metadata']['canonicalName']
-    item_id = course_item['item_id']
+    item_id = item['item_id']
+    item_name = item['metadata']['canonicalName']
 
-    url = course_obj.get_url() + '/admin/api/pages/' + item_id + '?fields=content'
-    path = folder + filename + '.html'
-    util.download(url, path, course_obj.get_cookie_file())
+    path = '{}/wiki/info/{}.json'
+    path = path.format(course.get_folder(), item_name)
 
-    content = util.read_json(path)['content']
+    util.make_folder(path, True)
+    util.write_json(path, item)
+
+    url = '{}/admin/api/pages/{}?fields=content'
+    url = url.format(course.get_url(), item_id)
+
+    path = '{}/wiki/{}.html'
+    path = path.format(course.get_folder(), item_name)
+
+    util.download(url, path, course.get_cookie_file())
+
+    wiki = util.read_json(path)
+    content = wiki['content']
     content = util.remove_coursera_bad_formats(content)
     util.write_file(path, content)

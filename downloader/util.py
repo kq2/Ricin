@@ -10,7 +10,7 @@ from xml.etree import ElementTree
 HTML_PARSER = HTMLParser()
 
 
-def download(url, path='', cookie='', resume=True,
+def download(url, path='', cookie='', resume=False,
              follow_redirect=False, show_progress_bar=True):
     """
     Use cURL to download an URL.
@@ -25,29 +25,42 @@ def download(url, path='', cookie='', resume=True,
     print "    downloading %s" % url
 
     cmd = 'curl "%s"' % url
-    cmd += ' -o "%s"' % path if path else ' -O'
+
+    if path:
+        make_folder(path, True)
+        cmd += ' -o "%s"' % path
+    else:
+        cmd += ' -O'
+
     if cookie:
         cmd += ' --cookie "%s"' % cookie
+
     if resume:
         cmd += ' -C -'
+
     if follow_redirect:
         cmd += ' -L'
+
     if show_progress_bar:
         cmd += ' -#'
+
     os.system(cmd)
 
 
-def make_folder(folder):
+def make_folder(path, is_file=False):
     """
-    Try create a folder and return the folder name
-    :param folder: The folder to create.
-    :return: The folder name.
+    Create a folder and return its name.
+    :param path: A path of folder or file.
+    :param is_file: True if path is a file.
+    :return: The name of the created folder.
     """
+    if is_file:
+        path = path.rpartition('/')[0]
     try:
-        os.makedirs(folder)
+        os.makedirs(path)
     except OSError:
         pass
-    return folder
+    return path
 
 
 def get_files(path):

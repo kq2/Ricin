@@ -6,11 +6,11 @@ import re
 import util
 
 
-def download(course_obj, course_item):
+def download(course, item):
     """
     Download quiz XML.
-    :param course_obj: A Course object.
-    :param course_item: {
+    :param course: A Course object.
+    :param item: {
         u'last_updated': 1406213737,
         u'uid': u'lecture3',
         u'maximum_submissions': 100,
@@ -54,60 +54,52 @@ def download(course_obj, course_item):
     }
     :return: None.
     """
-    folder = util.make_folder(course_obj.get_folder() + 'video/')
-    item_id = course_item['item_id']
+    path = '{}/video/info/{}.json'
+    path = path.format(course.get_folder(), item['item_id'])
 
-    path = folder + item_id + '.json'
-    util.write_json(path, course_item)
+    util.make_folder(path, True)
+    util.write_json(path, item)
 
-    content = util.read_file(path)
-    util.write_file(path, content)
-
-    video = course_item['source_video']
-    if video:
-        download_subtitles(course_obj, folder, item_id)
-        # download_in_video_quizzes(course_obj, course_item, folder, item_id)
-        # download_original_video(course_obj, folder, video)
-        # download_published_compressed_video(course_obj, course_item,
-        #                                     folder, item_id, video)
+    if item['source_video']:
+        _download_in_video_quizzes(course, item)
 
 
-def download_in_video_quizzes(course_obj, course_item, folder, item_id):
+def _download_in_video_quizzes(course, item):
     """
     Download in-video quizzes.
     """
-    folder = util.make_folder(folder + 'in_video_quiz/')
-
-    if course_item['__in_video_quiz_v2']:
-        download_new_quizzes(course_obj, course_item, folder, item_id)
+    if item['__in_video_quiz_v2']:
+        _download_new_quizzes(course, item)
     else:
-        download_old_quizzes(course_obj, course_item, folder, item_id)
+        _download_old_quizzes(course, item)
 
 
-def download_old_quizzes(course_obj, course_item, folder, item_id):
+def _download_old_quizzes(course, item):
     """
     Download old version in-video quizzes.
     """
-    quiz_url = '{}/admin/quiz/quiz_load?quiz_id={}'
-    quiz_id = course_item['quiz']['parent_id']
-    url = quiz_url.format(course_obj.get_url(), quiz_id)
+    url = '{}/admin/quiz/quiz_load?quiz_id={}'
+    url = url.format(course.get_url(), item['quiz']['parent_id'])
 
-    path = folder + item_id + '.json'
-    util.download(url, path, course_obj.get_cookie_file())
+    path = '{}/video/quiz/{}.json'
+    path = path.format(course.get_folder(), item['item_id'])
+
+    util.download(url, path, course.get_cookie_file())
     util.write_json(path, util.read_json(path))
 
 
-def download_new_quizzes(course_obj, course_item, folder, item_id):
+def _download_new_quizzes(course, item):
     """
     Download new version in-video quizzes.
     """
     # Step 1, download a HTML that has quiz ID.
-    quiz_url = '{}/lecture/view?quiz_v2_admin=1&lecture_id={}'
-    quiz_id = course_item['parent_id']
-    url = quiz_url.format(course_obj.get_url(), quiz_id)
+    url = '{}/lecture/view?quiz_v2_admin=1&lecture_id={}'
+    url = url.format(course.get_url(), item['parent_id'])
 
-    path = folder + item_id + '.json'
-    util.download(url, path, course_obj.get_cookie_file())
+    path = '{}/video/quiz/{}.json'
+    path = path.format(course.get_folder(), item['item_id'])
+
+    util.download(url, path, course.get_cookie_file())
 
     pattern = r'v2-classId="(.*?)".*?v2-id="(.*?)".*?v2-lecture-id="(.*?)"'
     find = re.search(pattern, util.read_file(path), re.DOTALL)
@@ -121,14 +113,14 @@ def download_new_quizzes(course_obj, course_item, folder, item_id):
     # Step 2, download a JSON that has question ID.
     class_url = 'https://class.coursera.org/api/assess/v1/inVideo/class/' + class_id
     url = '{}/lecture/{}/{}'.format(class_url, lecture_id, v2_id)
-    util.download(url, path, course_obj.get_cookie_file())
+    util.download(url, path, course.get_cookie_file())
 
     # Step 3, download each question.
     quiz = util.read_json(path)
     questions = quiz['assessment']['definition']['questions']
     for question_id, question in questions.items():
         url = '{}/questions/{}'.format(class_url, question_id)
-        util.download(url, path, course_obj.get_cookie_file())
+        util.download(url, path, course.get_cookie_file())
         question_json = util.read_json(path)
 
         # add question content to quiz
@@ -139,55 +131,54 @@ def download_new_quizzes(course_obj, course_item, folder, item_id):
     util.write_json(path, quiz)
 
 
-def make_folder(path):
-    """
-    Make a new folder based on path.
-    """
-    folder = path.rpartition('/')[0]
-    return util.make_folder(folder)
-
-
-def download_original_video(course_obj, folder, video):
+def download_original_video(course, item):
     """
     Download original (high-quality) video.
     """
-    src_url = 'https://spark-public.s3.amazonaws.com/{}/source_videos/{}'
-    url = src_url.format(course_obj.get_name(), video)
+    if item['source_video']:
+        url = 'https://spark-public.s3.amazonaws.com/{}/source_videos/{}'
+        url = url.format(course.get_name(), item['source_video'])
 
-    path = folder + 'original/' + video
-    make_folder(path)
+        path = '{}/video/original/{}'
+        path = path.format(course.get_folder(), item['source_video'])
 
-    util.download(url, path, course_obj.get_cookie_file())
+        util.download(url, path, course.get_cookie_file(), resume=True)
 
 
-def download_published_compressed_video(course_obj, course_item,
-                                        folder, item_id, video):
+def download_compressed_video(course, item):
     """
-    Download published compressed video.
+    Download compressed video.
     """
-    if course_item['__published'] is 1:
-        src_url = '{}/lecture/download.mp4?lecture_id={}'
-        url = src_url.format(course_obj.get_url(), item_id)
+    if item['source_video']:
+        url = '{}/lecture/view?lecture_id={}&preview=1'
+        url = url.format(course.get_url(), item['item_id'])
 
-        path = folder + 'compressed/' + video
-        make_folder(path)
+        path = '{}/video/compressed/{}.txt'
+        path = path.format(course.get_folder(), item['source_video'])
 
-        util.download(url, path, course_obj.get_cookie_file(),
-                      follow_redirect=True)
+        util.download(url, path, course.get_cookie_file())
+
+        pattern = r'type="video/mp4" src="(.*?)"'
+        url = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
+
+        os.remove(path)
+        path = '{}/video/compressed/{}'
+        path = path.format(course.get_folder(), item['source_video'])
+
+        util.download(url, path, course.get_cookie_file(), resume=True)
 
 
-def download_subtitles(course_obj, folder, item_id):
+def download_subtitles(course, item):
     """
     Download all subtitles of this video.
     """
     url = '{}/admin/api/lectures/{}/subtitles'
-    url = url.format(course_obj.get_url(), item_id)
+    url = url.format(course.get_url(), item['item_id'])
 
-    folder = util.make_folder(folder + 'subtitle')
-    path = '{}/info/{}.json'.format(folder, item_id)
-    make_folder(path)
+    path = '{}/video/subtitle/info/{}.json'
+    path = path.format(course.get_folder(), item['item_id'])
 
-    util.download(url, path, course_obj.get_cookie_file())
+    util.download(url, path, course.get_cookie_file())
 
     subtitles = util.read_json(path)
     util.write_json(path, subtitles)
@@ -195,5 +186,7 @@ def download_subtitles(course_obj, folder, item_id):
     for subtitle in subtitles:
         url = subtitle['srt_url']
         if url:
-            path = '{}/{}.{}.srt'.format(folder, item_id, subtitle['language'])
-            util.download(url, path, course_obj.get_cookie_file())
+            path = '{}/video/subtitle/{}.{}.srt'
+            path = path.format(course.get_folder(), item['item_id'],
+                               subtitle['language'])
+            util.download(url, path, course.get_cookie_file())

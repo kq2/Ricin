@@ -13,13 +13,16 @@ import peergrading
 import announcement
 import forum
 
-COURSE_ITEM = {
-    'quiz': quiz,
-    'lecture': video,
-    'coursepage': wiki,
-    'assignment': assignment,
-    'peergrading': peergrading,
-    'announcement': announcement
+DOWNLOADER = {
+    'quiz': quiz.download,
+    'coursepage': wiki.download,
+    'assignment': assignment.download,
+    'peergrading': peergrading.download,
+    'announcement': announcement.download,
+    'lecture': video.download,
+    'subtitle': video.download_subtitles,
+    'original': video.download_original_video,
+    'compressed': video.download_compressed_video,
 }
 CLASS_URL = 'https://class.coursera.org/'
 IIPP = 'interactivepython'
@@ -33,7 +36,7 @@ class Course:
         find = re.search(pattern, url)
 
         self.url = 'https://' + find.group(0)
-        self.name = find.group(1)  # thinkpython
+        self.name = find.group(1)  # algebra
         self.session = find.group(2)  # 002
         self.id = self.name + '-' + self.session
 
@@ -63,28 +66,42 @@ class Course:
         return self.cookie_file
 
     def download_section_file(self):
-        url = self.url + '/admin/api/sections?COURSE_ID=' + self.id + '&full=1&drafts=1'
+        url = '{}/admin/api/sections?COURSE_ID={}&full=1&drafts=1'
+        url = url.format(self.url, self.id)
         util.download(url, self.section_file, self.cookie_file)
 
-    def download(self, course_item_type=None):
-        download_queue = []
+    def download(self, item_type=None):
+        type_filter = item_type
+        if item_type in ('subtitle', 'original', 'compressed'):
+            type_filter = 'lecture'
 
-        course_sections = util.read_json(self.section_file)
-        for course_section in course_sections:
-            for course_item in course_section['items']:
-                if course_item_type is None or course_item_type == course_item['item_type']:
-                    download_queue.append(course_item)
+        download_queue = []
+        for section in util.read_json(self.section_file):
+            for item in section['items']:
+                if type_filter is None or type_filter == item['item_type']:
+                    download_queue.append(item)
 
         num_download = len(download_queue)
-        for idx, course_item in enumerate(download_queue):
-            print "%d/%d" % (idx+1, num_download)
-            COURSE_ITEM[course_item['item_type']].download(self, course_item)
+        for idx, item in enumerate(download_queue):
+            print "%d/%d" % (idx + 1, num_download)
+            if type_filter is None:
+                item_type = item['item_type']
+            DOWNLOADER[item_type](self, item)
 
     def download_quizzes(self):
         self.download('quiz')
 
-    def download_videos(self):
+    def download_videos_info(self):
         self.download('lecture')
+
+    def download_subtitles(self):
+        self.download('subtitle')
+
+    def download_original_videos(self):
+        self.download('original')
+
+    def download_compressed_video(self):
+        self.download('compressed')
 
     def download_wiki_pages(self):
         self.download('coursepage')
@@ -101,6 +118,6 @@ class Course:
     def download_forum(self):
         forum.download(self, '1942')
 
-course = Course(CLASS_URL + IIPP + '1-008')
+course = Course(CLASS_URL + IIPP + '-005')
 # course.download_section_file()
-course.download_videos()
+course.download_peergradings()
