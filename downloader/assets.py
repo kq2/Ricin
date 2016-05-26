@@ -26,11 +26,11 @@ def download(course):
 
 def _find_files(url, folder, cookie):
     """
-    Recursively find all files in current folder.
+    Recursively find all files in current page.
     :param url: A URL to given page.
     :param folder: A destination folder for this page.
     :param cookie: A cookie file used for downloading.
-    :return: A list of files (url, path) in current folder.
+    :return: A list of files (URL, path) in current page.
     """
     files = []
 
@@ -40,7 +40,7 @@ def _find_files(url, folder, cookie):
     page = util.read_file(path)
     os.remove(path)
 
-    # recursively inspect all folders in this page
+    # recursively find all files in sub-folders
     pattern = r'<tr><td colspan="4"><a href="(.*?)">(.*?)</a>'
     for find in re.finditer(pattern, page, re.DOTALL):
         url = find.group(1)
