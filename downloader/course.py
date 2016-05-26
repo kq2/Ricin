@@ -11,6 +11,7 @@ import video
 import assignment
 import peergrading
 import announcement
+import assets
 import forum
 
 DOWNLOADER = {
@@ -24,10 +25,6 @@ DOWNLOADER = {
     'original': video.download_original_video,
     'compressed': video.download_compressed_video,
 }
-CLASS_URL = 'https://class.coursera.org/'
-IIPP = 'interactivepython'
-POC = 'principlescomputing'
-ALG = 'algorithmicthink'
 
 
 class Course:
@@ -40,7 +37,7 @@ class Course:
         self.session = find.group(2)  # 002
         self.id = self.name + '-' + self.session
 
-        self.folder = util.make_folder('../' + self.id + '/')
+        self.folder = util.make_folder('../' + self.id)
         self.section_file = self.folder + 'section.json'
         self.cookie_file = 'cookie.txt'
 
@@ -115,9 +112,8 @@ class Course:
     def download_announcements(self):
         self.download('announcement')
 
+    def download_assets(self):
+        assets.download(self)
+
     def download_forum(self):
         forum.download(self, '1942')
-
-course = Course(CLASS_URL + IIPP + '-005')
-# course.download_section_file()
-course.download_peergradings()

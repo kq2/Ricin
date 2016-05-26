@@ -11,7 +11,7 @@ HTML_PARSER = HTMLParser()
 
 
 def download(url, path='', cookie='', resume=False,
-             follow_redirect=False, show_progress_bar=True):
+             follow_redirect=True, show_progress_bar=True):
     """
     Use cURL to download an URL.
     :param url: URL to download.
