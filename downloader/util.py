@@ -22,7 +22,7 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
-    print "    downloading %s" % url
+    print "downloading %s" % url
 
     cmd = 'curl "%s"' % url
 

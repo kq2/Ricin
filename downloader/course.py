@@ -120,4 +120,4 @@ class Course:
         grades.download(self)
 
     def download_forum(self):
-        forum.download(self, '1942')
+        forum.download(self)
