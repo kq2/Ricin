@@ -45,8 +45,8 @@ def download_forum(forums, forum_id, folder, course):
     info = util.read_json(path)
     util.write_json(path, info)
 
-    for idx, forum in enumerate(info['subforums']):
-        sub_folder = '{}/{}'.format(folder, idx + 1)
+    for forum in info['subforums']:
+        sub_folder = '{}/{}'.format(folder, forum['id'])
         download_forum(forums, forum['id'], sub_folder, course)
 
 
