@@ -1,5 +1,5 @@
 """
-Download Coursera quiz.
+Download Coursera forum.
 """
 import util
 
@@ -21,7 +21,7 @@ def download(course):
         print 'forum {}/{}'.format(idx + 1, total)
 
         # Notice: forum 0 has every thread!
-        download_threads(forum_id, folder, course)
+        download_pages(forum_id, folder, course)
 
 
 def download_forum(forums, forum_id, folder, course):
@@ -50,7 +50,7 @@ def download_forum(forums, forum_id, folder, course):
         download_forum(forums, forum['id'], sub_folder, course)
 
 
-def download_threads(forum_id, folder, course, page=1):
+def download_pages(forum_id, folder, course, page=1):
     """
     Download all threads in current forum.
     :param forum_id:
