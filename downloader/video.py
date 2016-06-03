@@ -8,7 +8,7 @@ import util
 
 def download(course, item):
     """
-    Download quiz XML.
+    Download video info and quizzes.
     :param course: A Course object.
     :param item: {
         u'last_updated': 1406213737,
