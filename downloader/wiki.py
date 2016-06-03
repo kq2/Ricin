@@ -7,7 +7,7 @@ import util
 
 def download(course, item):
     """
-    Download wiki page HTML.
+    Download a wiki page.
     :param course: A Course object.
     :param item: {
         "uid": "coursepageEYJIs_YAEeKNdCIACugoiw",
