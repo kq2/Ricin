@@ -39,7 +39,7 @@ class Course:
         self.id = self.name + '-' + self.session
 
         self.folder = util.make_folder('../' + self.id)
-        self.section_file = self.folder + 'section.json'
+        self.section_file = self.folder + '/section.json'
         self.cookie_file = 'cookie.txt'
 
     def get_url(self):
@@ -66,7 +66,9 @@ class Course:
     def download_section_file(self):
         url = '{}/admin/api/sections?COURSE_ID={}&full=1&drafts=1'
         url = url.format(self.url, self.id)
-        util.download(url, self.section_file, self.cookie_file)
+        path = self.section_file
+        util.download(url, path, self.cookie_file)
+        util.write_json(path, util.read_json(path))
 
     def download(self, item_type=None):
         type_filter = item_type

@@ -16,4 +16,4 @@ def run(course_url):
     _course.download_forum()
 
 
-run(CLASS_URL + ALG + '1-004')
+run(CLASS_URL + IIPP + '-004')

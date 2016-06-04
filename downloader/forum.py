@@ -1,6 +1,7 @@
 """
 Download Coursera forum.
 """
+import re
 import util
 
 
@@ -103,6 +104,8 @@ def download_thread(course, threads_folder, thread_id, page=1, post_id=None):
     util.download(url, path, course.get_cookie_file())
 
     thread = util.read_json(path)
+    download_images(course, threads_folder, thread)
+
     util.write_json(path, thread)
 
     # Download rest pages
@@ -116,6 +119,47 @@ def download_thread(course, threads_folder, thread_id, page=1, post_id=None):
         post_id = get_next_post_id(thread['posts'])
         if post_id:
             download_thread(course, threads_folder, thread_id, page, post_id)
+
+
+def download_images(course, threads_folder, thread):
+    """
+    Download images in given thread.
+    The given thread object will be mutated.
+    """
+    posts = thread['posts']
+    comments = thread['comments']
+
+    thread_id = thread['id']
+    thread_page = thread['start_page']
+
+    image_urls = []
+    last_post_is_full = False
+
+    for post in reversed(posts):
+        if 'post_text' in post:
+            image_urls += find_images(post['post_text'])
+            last_post_is_full = True
+        elif last_post_is_full:
+            break
+
+    for comment in comments:
+        image_urls += find_images(comment['comment_text'])
+
+    images_folder = threads_folder + '/images'
+    for idx, url in enumerate(image_urls):
+        file_name = url.rpartition('/')[-1]
+        path = '{}/{}-{}-{}-{}'.format(
+            images_folder, thread_id, thread_page, idx + 1, file_name
+        )
+        util.download(url, path, course.get_cookie_file())
+
+
+def find_images(text):
+    """
+    Return a list of image URLs in given text.
+    """
+    pattern = r'"(https:\/\/coursera-forum-screenshots.*?)"'
+    return re.findall(pattern, text, re.DOTALL)
 
 
 def get_next_post_id(posts):
