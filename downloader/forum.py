@@ -12,8 +12,8 @@ def download(course):
     forums_folder = course.get_folder() + '/forum/forums'
     threads_folder = course.get_folder() + '/forum/threads'
 
-    forums = find_forums(course, forums_folder, 0)
-    download_forums(course, forums)
+    # forums = find_forums(course, forums_folder, 0)
+    # download_forums(course, forums)
 
     forum_threads_folder = forums_folder + '/threads'
     download_threads(course, forum_threads_folder, threads_folder)
@@ -101,12 +101,12 @@ def download_thread(course, threads_folder, thread_id, page=1, post_id=None):
         url = '{}?post_id={}&position=after'.format(url, post_id)
 
     path = '{}/{}/{}.json'.format(threads_folder, thread_id, page)
-    util.download(url, path, course.get_cookie_file())
+    # util.download(url, path, course.get_cookie_file())
 
     thread = util.read_json(path)
     download_images(course, threads_folder, thread)
 
-    util.write_json(path, thread)
+    # util.write_json(path, thread)
 
     # Download rest pages
     page = thread['start_page']
@@ -132,34 +132,41 @@ def download_images(course, threads_folder, thread):
     thread_id = thread['id']
     thread_page = thread['start_page']
 
-    image_urls = []
+    images = []
     last_post_is_full = False
-
     for post in reversed(posts):
         if 'post_text' in post:
-            image_urls += find_images(post['post_text'])
+            text = post['post_text']
+            text = find_images(text, images, thread_id, thread_page)
+            post['post_text'] = text
             last_post_is_full = True
         elif last_post_is_full:
             break
 
     for comment in comments:
-        image_urls += find_images(comment['comment_text'])
+        text = comment['comment_text']
+        text = find_images(text, images, thread_id, thread_page)
+        comment['comment_text'] = text
 
-    images_folder = threads_folder + '/images'
-    for idx, url in enumerate(image_urls):
-        file_name = url.rpartition('/')[-1]
-        path = '{}/{}-{}-{}-{}'.format(
-            images_folder, thread_id, thread_page, idx + 1, file_name
-        )
+    for url, path in images:
+        path = '{}/{}'.format(threads_folder, path)
         util.download(url, path, course.get_cookie_file())
 
 
-def find_images(text):
+def find_images(text, images, thread_id, thread_page):
     """
-    Return a list of image URLs in given text.
+    Append (image_url, image_path) to images.
+    Return new text with URLs replaced.
     """
     pattern = r'"(https:\/\/coursera-forum-screenshots.*?)"'
-    return re.findall(pattern, text, re.DOTALL)
+    for url in re.findall(pattern, text, re.DOTALL):
+        file_name = url.rpartition('/')[-1]
+        num_image = len(images) + 1
+        path = 'images/{}-{}-{}-{}'.format(thread_id, thread_page,
+                                           num_image, file_name)
+        images.append((url, path))
+        # text = text.replace(url, '../' + path)
+    return text
 
 
 def get_next_post_id(posts):
