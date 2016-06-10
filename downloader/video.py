@@ -54,12 +54,12 @@ def download(course, item):
     }
     :return: None.
     """
-    path = '{}/video/info/{}.json'
-    path = path.format(course.get_folder(), item['item_id'])
-
-    util.make_folder(path, True)
-    util.write_json(path, item)
-
+    # path = '{}/video/info/{}.json'
+    # path = path.format(course.get_folder(), item['item_id'])
+    #
+    # util.make_folder(path, True)
+    # util.write_json(path, item)
+    #
     if item['source_video']:
         _download_in_video_quizzes(course, item)
 
@@ -81,7 +81,7 @@ def _download_old_quizzes(course, item):
     url = '{}/admin/quiz/quiz_load?quiz_id={}'
     url = url.format(course.get_url(), item['quiz']['parent_id'])
 
-    path = '{}/video/quiz/{}.json'
+    path = '{}/video/quizzes/{}.json'
     path = path.format(course.get_folder(), item['item_id'])
 
     util.download(url, path, course.get_cookie_file())
@@ -96,7 +96,7 @@ def _download_new_quizzes(course, item):
     url = '{}/lecture/view?quiz_v2_admin=1&lecture_id={}'
     url = url.format(course.get_url(), item['parent_id'])
 
-    path = '{}/video/quiz/{}.json'
+    path = '{}/video/quizzes/{}.json'
     path = path.format(course.get_folder(), item['item_id'])
 
     util.download(url, path, course.get_cookie_file())
@@ -175,18 +175,16 @@ def download_subtitles(course, item):
     url = '{}/admin/api/lectures/{}/subtitles'
     url = url.format(course.get_url(), item['item_id'])
 
-    path = '{}/video/subtitle/info/{}.json'
-    path = path.format(course.get_folder(), item['item_id'])
-
+    path = course.get_folder() + '/video/subtitles/temp.json'
     util.download(url, path, course.get_cookie_file())
 
     subtitles = util.read_json(path)
-    util.write_json(path, subtitles)
+    os.remove(path)
 
     for subtitle in subtitles:
         url = subtitle['srt_url']
         if url:
-            path = '{}/video/subtitle/{}.{}.srt'
+            path = '{}/video/subtitles/{}.{}.srt'
             path = path.format(course.get_folder(), item['item_id'],
                                subtitle['language'])
             util.download(url, path, course.get_cookie_file())

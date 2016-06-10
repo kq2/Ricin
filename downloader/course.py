@@ -7,9 +7,9 @@ import util
 
 import quiz
 import wiki
+import peer
 import video
 import assignment
-import peergrading
 import announcement
 import assets
 import grades
@@ -19,7 +19,7 @@ DOWNLOADER = {
     'quiz': quiz.download,
     'coursepage': wiki.download,
     'assignment': assignment.download,
-    'peergrading': peergrading.download,
+    'peergrading': peer.download,
     'announcement': announcement.download,
     'lecture': video.download,
     'subtitle': video.download_subtitles,
@@ -39,7 +39,8 @@ class Course:
         self.id = self.name + '-' + self.session
 
         self.folder = util.make_folder('../' + self.id)
-        self.section_file = self.folder + '/section.json'
+        self.info_folder = self.folder + '/session_info'
+        self.section_file = self.info_folder + '/section.json'
         self.cookie_file = 'cookie.txt'
 
     def get_url(self):
@@ -56,6 +57,9 @@ class Course:
 
     def get_folder(self):
         return self.folder
+
+    def get_info_folder(self):
+        return self.info_folder
 
     def get_section_file(self):
         return self.section_file
@@ -123,3 +127,18 @@ class Course:
 
     def download_forum(self):
         forum.download(self)
+
+    def download_stats(self):
+        url = self.url + '/data/stats'
+        path = self.info_folder + '/stats.html'
+        util.download(url, path, self.cookie_file)
+
+        content = util.read_file(path)
+        pattern = r'<h1.*?</table>'
+        content = re.search(pattern, content, re.DOTALL).group(0)
+        util.write_file(path, content)
+
+    def download_personal_info(self):
+        url = self.url + '/data/export/pii'
+        path = self.info_folder + '/temp.html'
+        util.download(url, path, self.cookie_file)

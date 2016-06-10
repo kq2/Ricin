@@ -12,14 +12,15 @@ def download(course):
     :param course: A Coursera course object.
     :return: None.
     """
-    path = course.get_folder() + '/grades/temp.html'
+    path = course.get_info_folder() + '/temp.html'
     url = course.get_url() + '/admin/course_grade/export_grades'
     util.download(url, path, course.get_cookie_file())
 
     pattern = r'graded. <a href="(.*?)">'
-    url = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
-
+    find = re.search(pattern, util.read_file(path), re.DOTALL)
     os.remove(path)
-    path = course.get_folder() + '/grades/grades.csv'
 
-    util.download(url, path, course.get_cookie_file())
+    if find:
+        url = find.group(1)
+        path = course.get_info_folder() + '/grades.csv'
+        util.download(url, path, course.get_cookie_file())

@@ -151,15 +151,28 @@ def unescape(text):
     return HTML_PARSER.unescape(text)
 
 
-def remove_coursera_bad_formats(text):
+def change_asset_url(string, course_name):
+    """
+    Change asset URL to relative URL
+    https://d396qusza40orc.cloudfront.net/thinkpython/images/bfs.png ->
+    ../assets/images/bfs.png
+    """
+    pattern = r'="https://.*?\.cloudfront\.net/%s' % course_name
+    return re.sub(pattern, '="../assets', string, flags=re.DOTALL)
+
+
+def remove_coursera_bad_formats(text, course_name=''):
     """
     Remove Coursera bad formats.
     :param text: The Coursera content string.
+    :param course_name: The name of course.
     :return: The content string with bad formats removed.
     """
     text = unescape(text)
     text = text.strip(' \n')
     text = text.replace('view?page=', '')
+    if course_name:
+        text = change_asset_url(text, course_name)
     return text
 
 

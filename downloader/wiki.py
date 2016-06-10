@@ -31,12 +31,12 @@ def download(course, item):
     }
     :return: None.
     """
-    path = '{}/wiki/info/{}.json'
-    path = path.format(course.get_folder(), item['metadata']['canonicalName'])
-
-    util.make_folder(path, True)
-    util.write_json(path, item)
-
+    # path = '{}/wiki/info/{}.json'
+    # path = path.format(course.get_folder(), item['metadata']['canonicalName'])
+    #
+    # util.make_folder(path, True)
+    # util.write_json(path, item)
+    #
     url = '{}/admin/api/pages/{}?fields=content'
     url = url.format(course.get_url(), item['item_id'])
 
@@ -47,6 +47,6 @@ def download(course, item):
 
     wiki = util.read_json(path)
     content = wiki['content']
-    content = util.remove_coursera_bad_formats(content)
+    content = util.remove_coursera_bad_formats(content, course.get_name())
 
     util.write_file(path, content)

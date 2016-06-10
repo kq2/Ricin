@@ -29,12 +29,12 @@ def download(course, item):
     }
     :return: None.
     """
-    path = '{}/assignment/info/{}.json'
-    path = path.format(course.get_folder(), item['item_id'])
-
-    util.make_folder(path, True)
-    util.write_json(path, item)
-
+    # path = '{}/assignment/info/{}.json'
+    # path = path.format(course.get_folder(), item['item_id'])
+    #
+    # util.make_folder(path, True)
+    # util.write_json(path, item)
+    #
     url = '{}/admin/assignment?assignment_id={}'
     url = url.format(course.get_url(), item['item_id'])
 
@@ -45,6 +45,6 @@ def download(course, item):
 
     pattern = r'<textarea.*?>(.*)</textarea>'
     content = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
-    content = util.remove_coursera_bad_formats(content)
+    content = util.remove_coursera_bad_formats(content, course.get_name())
 
     util.write_file(path, content)

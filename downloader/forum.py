@@ -1,6 +1,7 @@
 """
 Download Coursera forum.
 """
+import os
 import re
 import util
 
@@ -12,19 +13,26 @@ def download(course):
     forums_folder = course.get_folder() + '/forum/forums'
     threads_folder = course.get_folder() + '/forum/threads'
 
-    # forums = find_forums(course, forums_folder, 0)
-    # download_forums(course, forums)
-
-    forum_threads_folder = forums_folder + '/threads'
-    download_threads(course, forum_threads_folder, threads_folder)
+    download_forums(course, forums_folder)
+    download_threads(course, forums_folder, threads_folder)
 
 
-def find_forums(course, forum_folder, forum_id):
+def download_forums(course, folder):
+    """
+    Download info for forum and sub-forums.
+    """
+    forums = find_forums(course, folder)
+    num_forum = len(forums)
+    for idx, (forum_folder, forum_id) in enumerate(forums):
+        print 'forum {}/{}'.format(idx + 1, num_forum)
+        find_threads(course, forum_folder, forum_id)
+
+
+def find_forums(course, forum_folder, forum_id=0):
     """
     Recursively find all sub-forums in current forum.
     Return a list of sub-forums and current forum.
     """
-    forums = [(forum_folder, forum_id)]
     print 'crawling forum', forum_id
 
     url = '{}/api/forum/forums/{}'.format(course.get_url(), forum_id)
@@ -34,61 +42,59 @@ def find_forums(course, forum_folder, forum_id):
     forum = util.read_json(path)
     util.write_json(path, forum)
 
+    forums = [(forum_folder, forum_id)]
     for sub_forum in forum['subforums']:
-        sub_folder = '{}/{}'.format(forum_folder, forum['id'])
+        sub_folder = '{}/{}'.format(forum_folder, sub_forum['id'])
+
+        # recursion
         forums += find_forums(course, sub_folder, sub_forum['id'])
 
     return forums
 
 
-def download_forums(course, forums):
+def find_threads(course, forum_folder, forum_id):
     """
-    Download every forum in forum list.
-    """
-    num_forum = len(forums)
-    for idx, (forum_folder, forum_id) in enumerate(forums):
-        print 'forum {}/{}'.format(idx + 1, num_forum)
-        download_forum(course, forum_folder, forum_id)
-
-
-def download_forum(course, forum_folder, forum_id, page=1):
-    """
-    Download all threads in current forum.
+    Find all threads in current forum.
     Note: forum 0 has every thread!
     """
-    # download 1st page
-    query = 'sort=firstposted&page={}&page_size=100'.format(page)
-    url = '{}/api/forum/forums/{}/threads?{}'.format(course.get_url(), forum_id, query)
-
-    path = '{}/threads/{}.json'.format(forum_folder, page)
+    # download the 1st page of given forum
+    query = 'sort=firstposted&page=1'
+    url = '{}/api/forum/forums/{}/threads?{}'
+    url = url.format(course.get_url(), forum_id, query)
+    path = forum_folder + '/temp.json'
     util.download(url, path, course.get_cookie_file())
 
-    threads = util.read_json(path)
-    util.write_json(path, threads)
+    # download a huge page with all threads
+    forum = util.read_json(path)
+    num_threads = forum['total_threads']
+    url += '&page_size={}'.format(num_threads)
+    util.download(url, path, course.get_cookie_file())
 
-    # download rest pages
-    max_page = threads['max_pages']
-    if page < max_page:
-        page += 1
-        print 'forum page {}/{}'.format(page, max_page)
-        download_forum(course, forum_folder, forum_id, page)
+    # add each thread's id to forum info
+    threads = util.read_json(path)['threads']
+    os.remove(path)
+
+    path = forum_folder + '/info.json'
+    forum = util.read_json(path)
+
+    forum_threads = []
+    for thread in reversed(threads):
+        forum_threads.append({'id': thread['id']})
+
+    forum['num_threads'] = num_threads
+    forum['threads'] = forum_threads
+
+    util.write_json(path, forum)
 
 
-def download_threads(course, forum_threads_folder, threads_folder):
+def download_threads(course, forums_folder, threads_folder):
     """
     Download every thread (in forum 0).
     """
-    thread_count = 0
-    for page_file in util.get_files(forum_threads_folder):
-        path = '{}/{}'.format(forum_threads_folder, page_file)
-        page = util.read_json(path)
-
-        num_thread = page['total_threads']
-        for thread in page['threads']:
-            thread_count += 1
-            print 'thread {}/{}'.format(thread_count, num_thread)
-
-            download_thread(course, threads_folder, thread['id'])
+    forum = util.read_json(forums_folder + '/info.json')
+    for idx, thread in enumerate(forum['threads']):
+        print 'thread {}/{}'.format(idx + 1, forum['num_threads'])
+        download_thread(course, threads_folder, thread['id'])
 
 
 def download_thread(course, threads_folder, thread_id, page=1, post_id=None):
@@ -101,12 +107,12 @@ def download_thread(course, threads_folder, thread_id, page=1, post_id=None):
         url = '{}?post_id={}&position=after'.format(url, post_id)
 
     path = '{}/{}/{}.json'.format(threads_folder, thread_id, page)
-    # util.download(url, path, course.get_cookie_file())
+    util.download(url, path, course.get_cookie_file())
 
     thread = util.read_json(path)
     download_images(course, threads_folder, thread)
 
-    # util.write_json(path, thread)
+    util.write_json(path, thread)
 
     # Download rest pages
     page = thread['start_page']
@@ -165,7 +171,7 @@ def find_images(text, images, thread_id, thread_page):
         path = 'images/{}-{}-{}-{}'.format(thread_id, thread_page,
                                            num_image, file_name)
         images.append((url, path))
-        # text = text.replace(url, '../' + path)
+        text = text.replace(url, '../' + path)
     return text
 
 
