@@ -8,6 +8,7 @@ CLASS_URL = 'https://class.coursera.org/'
 IIPP = 'interactivepython'
 POC = 'principlescomputing'
 ALG = 'algorithmicthink'
+CAP = 'foccapstone2'
 
 RICE_URL = 'https://rice.coursera.org/'
 COMP160 = 'rice-interactivepython'
