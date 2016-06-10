@@ -12,6 +12,7 @@ ALG = 'algorithmicthink'
 RICE_URL = 'https://rice.coursera.org/'
 COMP160 = 'rice-interactivepython'
 COMP140 = 'thinkpython'
+COMP182 = 'algorithmicthinking'
 
 
 def run(course_url):
