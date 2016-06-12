@@ -30,7 +30,7 @@ DOWNLOADER = {
 
 class Course:
     def __init__(self, url):
-        pattern = r'\w+\.coursera\.org/(.*?)-([0-9]{3})'
+        pattern = r'\w+\.coursera\.org/(.*?)-([\d\-]+)'
         find = re.search(pattern, url)
 
         self.url = 'https://' + find.group(0)
@@ -38,7 +38,7 @@ class Course:
         self.session = find.group(2)  # 002
         self.id = self.name + '-' + self.session
 
-        self.folder = util.make_folder('../' + self.id)
+        self.folder = '../{}/{}'.format(self.name, self.session)
         self.info_folder = self.folder + '/session_info'
         self.section_file = self.info_folder + '/section.json'
         self.cookie_file = 'cookie.txt'

@@ -22,29 +22,29 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
-    print "downloading %s" % url
+    print "downloading {}".format(url)
 
-    cmd = 'curl "%s"' % url
+    cmd = u'curl "{}"'.format(url)
 
     if path:
         make_folder(path, True)
-        cmd += ' -o "%s"' % path
+        cmd += u' -o "{}"'.format(path)
     else:
-        cmd += ' -O'
+        cmd += u' -O'
 
     if cookie:
-        cmd += ' --cookie "%s"' % cookie
+        cmd += u' --cookie "{}"'.format(cookie)
 
     if resume:
-        cmd += ' -C -'
+        cmd += u' -C -'
 
     if follow_redirect:
-        cmd += ' -L'
+        cmd += u' -L'
 
     if show_progress_bar:
-        cmd += ' -#'
+        cmd += u' -#'
 
-    os.system(cmd)
+    os.system(cmd.encode('utf-8'))
 
 
 def make_folder(path, is_file=False):
@@ -151,17 +151,18 @@ def unescape(text):
     return HTML_PARSER.unescape(text)
 
 
-def change_asset_url(string, course_name):
+def change_asset_url(text):
     """
     Change asset URL to relative URL
     https://d396qusza40orc.cloudfront.net/thinkpython/images/bfs.png ->
-    ../assets/images/bfs.png
+    ../../../thinkpython/assets/images/bfs.png
     """
-    pattern = r'="https://.*?\.cloudfront\.net/%s' % course_name
-    return re.sub(pattern, '="../assets', string, flags=re.DOTALL)
+    old_url = r'="https://.*?\.cloudfront\.net/(\w+)/'
+    new_url = r'="../../../\1/assets/'
+    return re.sub(old_url, new_url, text, flags=re.DOTALL)
 
 
-def remove_coursera_bad_formats(text, course_name=''):
+def remove_coursera_bad_formats(text):
     """
     Remove Coursera bad formats.
     :param text: The Coursera content string.
@@ -170,9 +171,8 @@ def remove_coursera_bad_formats(text, course_name=''):
     """
     text = unescape(text)
     text = text.strip(' \n')
-    text = text.replace('view?page=', '')
-    if course_name:
-        text = change_asset_url(text, course_name)
+    text = re.sub(r'\w+\?page=', '', text)
+    text = change_asset_url(text)
     return text
 
 

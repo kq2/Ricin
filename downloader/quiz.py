@@ -49,7 +49,7 @@ def download(course, item):
 
     pattern = r'<textarea.*?>(.*)</textarea>'
     xml = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
-    xml = util.remove_coursera_bad_formats(xml, course.get_name())
+    xml = util.remove_coursera_bad_formats(xml)
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + xml
 
     util.write_file(path, xml)

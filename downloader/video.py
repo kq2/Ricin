@@ -68,37 +68,36 @@ def _download_in_video_quizzes(course, item):
     """
     Download in-video quizzes.
     """
+    path = '{}/video/quizzes/{}.json'
+    path = path.format(course.get_folder(), item['item_id'])
+
     if item['__in_video_quiz_v2']:
-        _download_new_quizzes(course, item)
+        _download_new_quizzes(course, item, path)
     else:
-        _download_old_quizzes(course, item)
+        _download_old_quizzes(course, item, path)
+
+    content = util.read_file(path)
+    content = util.remove_coursera_bad_formats(content)
+    util.write_file(path, content)
 
 
-def _download_old_quizzes(course, item):
+def _download_old_quizzes(course, item, path):
     """
     Download old version in-video quizzes.
     """
     url = '{}/admin/quiz/quiz_load?quiz_id={}'
     url = url.format(course.get_url(), item['quiz']['parent_id'])
-
-    path = '{}/video/quizzes/{}.json'
-    path = path.format(course.get_folder(), item['item_id'])
-
     util.download(url, path, course.get_cookie_file())
     util.write_json(path, util.read_json(path))
 
 
-def _download_new_quizzes(course, item):
+def _download_new_quizzes(course, item, path):
     """
     Download new version in-video quizzes.
     """
     # Step 1, download a HTML that has quiz ID.
     url = '{}/lecture/view?quiz_v2_admin=1&lecture_id={}'
     url = url.format(course.get_url(), item['parent_id'])
-
-    path = '{}/video/quizzes/{}.json'
-    path = path.format(course.get_folder(), item['item_id'])
-
     util.download(url, path, course.get_cookie_file())
 
     pattern = r'v2-classId="(.*?)".*?v2-id="(.*?)".*?v2-lecture-id="(.*?)"'
@@ -139,7 +138,7 @@ def download_original_video(course, item):
         url = 'https://spark-public.s3.amazonaws.com/{}/source_videos/{}'
         url = url.format(course.get_name(), item['source_video'])
 
-        path = '{}/video/original/{}'
+        path = '{}/../original_videos/{}'
         path = path.format(course.get_folder(), item['source_video'])
 
         util.download(url, path, course.get_cookie_file(), resume=True)
@@ -153,7 +152,7 @@ def download_compressed_video(course, item):
         url = '{}/lecture/view?lecture_id={}&preview=1'
         url = url.format(course.get_url(), item['item_id'])
 
-        path = '{}/video/compressed/{}.txt'
+        path = '{}/video/compressed_videos/{}.txt'
         path = path.format(course.get_folder(), item['source_video'])
 
         util.download(url, path, course.get_cookie_file())
@@ -162,8 +161,8 @@ def download_compressed_video(course, item):
         url = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
 
         os.remove(path)
-        path = '{}/video/compressed/{}'
-        path = path.format(course.get_folder(), item['source_video'])
+        path = '{}/video/compressed_videos/{}'
+        path = path.format(course.get_folder(), item['item_id'])
 
         util.download(url, path, course.get_cookie_file(), resume=True)
 
@@ -172,19 +171,20 @@ def download_subtitles(course, item):
     """
     Download all subtitles of this video.
     """
-    url = '{}/admin/api/lectures/{}/subtitles'
-    url = url.format(course.get_url(), item['item_id'])
+    if item['source_video']:
+        url = '{}/admin/api/lectures/{}/subtitles'
+        url = url.format(course.get_url(), item['item_id'])
 
-    path = course.get_folder() + '/video/subtitles/temp.json'
-    util.download(url, path, course.get_cookie_file())
+        path = course.get_folder() + '/video/subtitles/temp.json'
+        util.download(url, path, course.get_cookie_file())
 
-    subtitles = util.read_json(path)
-    os.remove(path)
+        subtitles = util.read_json(path)
+        os.remove(path)
 
-    for subtitle in subtitles:
-        url = subtitle['srt_url']
-        if url:
-            path = '{}/video/subtitles/{}.{}.srt'
-            path = path.format(course.get_folder(), item['item_id'],
-                               subtitle['language'])
-            util.download(url, path, course.get_cookie_file())
+        for subtitle in subtitles:
+            url = subtitle['srt_url']
+            if url:
+                path = '{}/video/subtitles/{}.{}.srt'
+                path = path.format(course.get_folder(), item['item_id'],
+                                   subtitle['language'])
+                util.download(url, path, course.get_cookie_file())

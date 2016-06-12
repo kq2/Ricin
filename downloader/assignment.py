@@ -45,6 +45,6 @@ def download(course, item):
 
     pattern = r'<textarea.*?>(.*)</textarea>'
     content = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
-    content = util.remove_coursera_bad_formats(content, course.get_name())
+    content = util.remove_coursera_bad_formats(content)
 
     util.write_file(path, content)

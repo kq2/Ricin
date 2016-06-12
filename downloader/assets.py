@@ -13,7 +13,7 @@ def download(course):
     :return: None
     """
     url = course.get_url() + '/admin/assets'
-    folder = course.get_folder() + '/assets'
+    folder = course.get_folder() + '/../assets'
 
     cookie = course.get_cookie_file()
     files = _find_files(url, folder, cookie)
@@ -51,7 +51,8 @@ def _find_files(url, folder, cookie):
     pattern = r'<tr><td>(.*?)</td>.*?Embed.*?<a href="(.*?)\?.*?">Download</a>'
     for find in re.finditer(pattern, page, re.DOTALL):
         url = find.group(2)
-        path = '{}/{}'.format(folder, find.group(1))
+        file_name = find.group(1)
+        path = u'{}/{}'.format(folder, file_name)
         files.append((url, path))
 
     return files

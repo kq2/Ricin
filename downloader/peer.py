@@ -18,6 +18,6 @@ def download(course, item):
     util.write_json(path, item)
 
     content = util.read_file(path)
-    content = util.remove_coursera_bad_formats(content, course.get_name())
+    content = util.remove_coursera_bad_formats(content)
 
     util.write_file(path, content)
