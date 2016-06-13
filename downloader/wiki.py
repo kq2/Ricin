@@ -47,6 +47,9 @@ def download(course, item):
 
     wiki = util.read_json(path)
     content = wiki['content']
-    content = util.remove_coursera_bad_formats(content)
+    if content:
+        content = util.remove_coursera_bad_formats(content)
+    else:
+        content = ''
 
     util.write_file(path, content)

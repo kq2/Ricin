@@ -1,7 +1,6 @@
 """
 Download student grades.
 """
-import os
 import re
 import util
 
@@ -18,7 +17,7 @@ def download(course):
 
     pattern = r'graded. <a href="(.*?)">'
     find = re.search(pattern, util.read_file(path), re.DOTALL)
-    os.remove(path)
+    util.remove(path)
 
     if find:
         url = find.group(1)

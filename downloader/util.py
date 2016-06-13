@@ -4,6 +4,7 @@ Utility functions.
 import os
 import re
 import json
+import urllib
 from HTMLParser import HTMLParser
 from xml.etree import ElementTree
 
@@ -69,6 +70,24 @@ def get_files(path):
     :return: A list of files and folders in this directory.
     """
     return os.listdir(path)
+
+
+def remove(path):
+    """
+    Remove a path.
+    :param path:
+    :return:
+    """
+    os.remove(path)
+
+
+def exists(path):
+    """
+    Return True if path exist.
+    :param path:
+    :return:
+    """
+    return os.path.exists(path)
 
 
 def make_zip(folder):
@@ -151,25 +170,32 @@ def unescape(text):
     return HTML_PARSER.unescape(text)
 
 
+def unquote(url):
+    """
+    Unquote an URL.
+    """
+    return urllib.unquote(url)
+
+
 def change_asset_url(text):
     """
     Change asset URL to relative URL
     https://d396qusza40orc.cloudfront.net/thinkpython/images/bfs.png ->
     ../../../thinkpython/assets/images/bfs.png
     """
-    old_url = r'="https://.*?\.cloudfront\.net/(\w+)/'
-    new_url = r'="../../../\1/assets/'
-    return re.sub(old_url, new_url, text, flags=re.DOTALL)
+    old_url = r'https://.*?\.cloudfront\.net/(\w+)/'
+    new_url = r'../../../\1/assets/'
+    return re.sub(old_url, new_url, text)
 
 
 def remove_coursera_bad_formats(text):
     """
     Remove Coursera bad formats.
     :param text: The Coursera content string.
-    :param course_name: The name of course.
     :return: The content string with bad formats removed.
     """
     text = unescape(text)
+    text = unquote(text)
     text = text.strip(' \n')
     text = re.sub(r'\w+\?page=', '', text)
     text = change_asset_url(text)

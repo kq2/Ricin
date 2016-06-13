@@ -1,7 +1,6 @@
 """
 Download Coursera course assets.
 """
-import os
 import re
 import util
 
@@ -38,7 +37,7 @@ def _find_files(url, folder, cookie):
     util.download(url, path, cookie)
 
     page = util.read_file(path)
-    os.remove(path)
+    util.remove(path)
 
     # recursively find all files in sub-folders
     pattern = r'<tr><td colspan="4"><a href="(.*?)">(.*?)</a>'

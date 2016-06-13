@@ -1,7 +1,6 @@
 """
 Download Coursera forum.
 """
-import os
 import re
 import util
 
@@ -72,7 +71,7 @@ def find_threads(course, forum_folder, forum_id):
 
     # add each thread's id to forum info
     threads = util.read_json(path)['threads']
-    os.remove(path)
+    util.remove(path)
 
     path = forum_folder + '/info.json'
     forum = util.read_json(path)

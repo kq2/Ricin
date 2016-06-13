@@ -29,15 +29,19 @@ DOWNLOADER = {
 
 
 class Course:
-    def __init__(self, url):
-        pattern = r'\w+\.coursera\.org/(.*?)-([\d\-]+)'
-        find = re.search(pattern, url)
+    def __init__(self, url, name='', session=''):
+        if name and session:
+            self.url = url
+            self.name = name
+            self.session = session
+        else:
+            pattern = r'\w+\.coursera\.org/(.*?)-([\d]{3})'
+            find = re.search(pattern, url)
+            self.url = 'https://' + find.group(0)
+            self.name = find.group(1)  # algebra
+            self.session = find.group(2)  # 002
 
-        self.url = 'https://' + find.group(0)
-        self.name = find.group(1)  # algebra
-        self.session = find.group(2)  # 002
         self.id = self.name + '-' + self.session
-
         self.folder = '../{}/{}'.format(self.name, self.session)
         self.info_folder = self.folder + '/session_info'
         self.section_file = self.info_folder + '/section.json'
@@ -68,7 +72,7 @@ class Course:
         return self.cookie_file
 
     def download_section_file(self):
-        url = '{}/admin/api/sections?COURSE_ID={}&full=1&drafts=1'
+        url = '{}/admin/api/sections?course_id={}&full=1&drafts=1'
         url = url.format(self.url, self.id)
         path = self.section_file
         util.download(url, path, self.cookie_file)

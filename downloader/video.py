@@ -1,7 +1,6 @@
 """
 Download Coursera video.
 """
-import os
 import re
 import util
 
@@ -76,9 +75,10 @@ def _download_in_video_quizzes(course, item):
     else:
         _download_old_quizzes(course, item, path)
 
-    content = util.read_file(path)
-    content = util.remove_coursera_bad_formats(content)
-    util.write_file(path, content)
+    if util.exists(path):
+        content = util.read_file(path)
+        content = util.remove_coursera_bad_formats(content)
+        util.write_file(path, content)
 
 
 def _download_old_quizzes(course, item, path):
@@ -106,7 +106,7 @@ def _download_new_quizzes(course, item, path):
 
     # if no quiz in this video, delete the file
     if not v2_id:
-        os.remove(path)
+        util.remove(path)
         return
 
     # Step 2, download a JSON that has question ID.
@@ -152,16 +152,16 @@ def download_compressed_video(course, item):
         url = '{}/lecture/view?lecture_id={}&preview=1'
         url = url.format(course.get_url(), item['item_id'])
 
-        path = '{}/video/compressed_videos/{}.txt'
-        path = path.format(course.get_folder(), item['source_video'])
+        path = '{}/video/compressed_videos/{}.html'
+        path = path.format(course.get_folder(), item['item_id'])
 
         util.download(url, path, course.get_cookie_file())
 
         pattern = r'type="video/mp4" src="(.*?)"'
         url = re.search(pattern, util.read_file(path), re.DOTALL).group(1)
 
-        os.remove(path)
-        path = '{}/video/compressed_videos/{}'
+        util.remove(path)
+        path = '{}/video/compressed_videos/{}.mp4'
         path = path.format(course.get_folder(), item['item_id'])
 
         util.download(url, path, course.get_cookie_file(), resume=True)
@@ -179,7 +179,7 @@ def download_subtitles(course, item):
         util.download(url, path, course.get_cookie_file())
 
         subtitles = util.read_json(path)
-        os.remove(path)
+        util.remove(path)
 
         for subtitle in subtitles:
             url = subtitle['srt_url']

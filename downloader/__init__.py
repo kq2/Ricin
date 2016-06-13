@@ -3,7 +3,6 @@ Download a Coursera course.
 """
 import course
 
-
 CLASS_URL = 'https://class.coursera.org/'
 IIPP = 'interactivepython'
 POC = 'principlescomputing'
@@ -12,9 +11,11 @@ FOC = 'foccapstone'
 TA = 'interactivepythontas'
 
 RICE_URL = 'https://rice.coursera.org/'
-COMP160 = 'rice-interactivepython'
+COMP130 = 'elementscomputing'
 COMP140 = 'thinkpython'
+COMP160 = 'rice-interactivepython'
 COMP182 = 'algorithmicthinking'
+COMP322 = 'parallelprog'
 
 COURSES = {
     IIPP: [
@@ -51,32 +52,46 @@ COURSES = {
     'scistudentinquiry': ['-001'],
     'teachinghist': ['-001']
 }
+RICE = {
+    COMP130: ['-001', '-002'],
+    COMP140: ['-001', '-002'],
+    COMP160: ['-003', '-004', '-005'],
+    COMP182: ['-001', '-002', '-003'],
+    # COMP322: ['-001'],
+    'analyticalchem2-test': ['-002'],
+    'rice-eefun': [
+        '-001',
+        # '-002'
+    ]
+}
 
 
-def run(course_url):
-    _course = course.Course(course_url)
+def run(course_url, name='', session=''):
+    _course = course.Course(course_url, name, session)
 
     # _course.download_section_file()
     _course.download()
-    # _course.download_grades()
-    # _course.download_stats()
-    # _course.download_subtitles()
+    _course.download_grades()
+    _course.download_stats()
+    _course.download_subtitles()
 
-    # _course.download_forum()
+    _course.download_forum()
     # _course.download_personal_info()
-    # _course.download_compressed_video()
+    _course.download_compressed_video()
 
     # _course.download_assets()
     # _course.download_original_videos()
 
 
 def get_all():
-    for course_name, sessions in COURSES.items():
+    for course_name, sessions in RICE.items():
         for session in sessions:
-            url = CLASS_URL + course_name + session
+            # url = CLASS_URL + course_name + session
+            url = RICE_URL + course_name + session
             run(url)
 
 
+# run(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
+# run(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
 # run(CLASS_URL + TA + '-001')
-# run(RICE_URL + COMP140 + '-002')
 get_all()
