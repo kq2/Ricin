@@ -30,6 +30,8 @@ DOWNLOADER = {
 
 class Course:
     def __init__(self, url, name='', session=''):
+        site = re.search(r'\w+\.coursera\.org', url).group(0)
+
         if name and session:
             self.url = url
             self.name = name
@@ -42,7 +44,7 @@ class Course:
             self.session = find.group(2)  # 002
 
         self.id = self.name + '-' + self.session
-        self.folder = '../{}/{}'.format(self.name, self.session)
+        self.folder = '../{}/{}/{}'.format(site, self.name, self.session)
         self.info_folder = self.folder + '/session_info'
         self.section_file = self.info_folder + '/section.json'
         self.cookie_file = 'cookie.txt'
@@ -143,6 +145,19 @@ class Course:
         util.write_file(path, content)
 
     def download_personal_info(self):
+        url = self.url + '/data/export/pii_download'
+        path = self.info_folder + '/pii.csv'
+        util.download(url, path, self.cookie_file)
+
+    def download_email_blacklist(self):
         url = self.url + '/data/export/pii'
         path = self.info_folder + '/temp.html'
+        util.download(url, path, self.cookie_file)
+
+        content = util.read_file(path)
+        pattern = r'href="(https://coursera-reports.*?)"'
+        url = re.search(pattern, content).group(1)
+
+        util.remove(path)
+        path = self.info_folder + '/email_blacklist.csv'
         util.download(url, path, self.cookie_file)

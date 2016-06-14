@@ -57,12 +57,9 @@ RICE = {
     COMP140: ['-001', '-002'],
     COMP160: ['-003', '-004', '-005'],
     COMP182: ['-001', '-002', '-003'],
-    # COMP322: ['-001'],
+    COMP322: ['-001'],
     'analyticalchem2-test': ['-002'],
-    'rice-eefun': [
-        '-001',
-        # '-002'
-    ]
+    'rice-eefun': ['-001', '-002']
 }
 
 
@@ -70,24 +67,24 @@ def run(course_url, name='', session=''):
     _course = course.Course(course_url, name, session)
 
     # _course.download_section_file()
-    _course.download()
-    _course.download_grades()
-    _course.download_stats()
-    _course.download_subtitles()
+    # _course.download_stats()
+    # _course.download_grades()
+    _course.download_personal_info()
+    _course.download_email_blacklist()
 
-    _course.download_forum()
-    # _course.download_personal_info()
-    _course.download_compressed_video()
+    # _course.download()
+    # _course.download_subtitles()
+    # _course.download_forum()
+    # _course.download_compressed_video()
 
     # _course.download_assets()
     # _course.download_original_videos()
 
 
 def get_all():
-    for course_name, sessions in RICE.items():
+    for course_name, sessions in COURSES.items():
         for session in sessions:
-            # url = CLASS_URL + course_name + session
-            url = RICE_URL + course_name + session
+            url = CLASS_URL + course_name + session
             run(url)
 
 

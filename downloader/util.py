@@ -25,11 +25,11 @@ def download(url, path='', cookie='', resume=False,
     """
     print "downloading {}".format(url)
 
-    cmd = u'curl "{}"'.format(url)
+    cmd = u'curl "{}"'.format(url.replace('"', '\\"'))
 
     if path:
         make_folder(path, True)
-        cmd += u' -o "{}"'.format(path)
+        cmd += u' -o "{}"'.format(path.replace('"', '\\"'))
     else:
         cmd += u' -O'
 
