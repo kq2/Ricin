@@ -42,8 +42,7 @@ COURSES = {
     'eefun': ['-001', '-002'],
     'eefunlab': ['-001'],
     'foreigneyes': ['-001'],
-    'genchem1': ['-001'],
-    'genchem2': ['-001'],
+    'genchem': ['1-001', '2-001'],
     'inquirytechniques': ['-001'],
     'nanotech': ['-001'],
     'scicontentsurvey': ['-001'],
@@ -66,18 +65,18 @@ RICE = {
 def run(course_url, name='', session=''):
     _course = course.Course(course_url, name, session)
 
-    # _course.download_section_file()
-    # _course.download_stats()
-    # _course.download_grades()
+    _course.download_section_file()
+    _course.download_stats()
+    _course.download_grades()
     _course.download_personal_info()
     _course.download_email_blacklist()
 
-    # _course.download()
-    # _course.download_subtitles()
-    # _course.download_forum()
-    # _course.download_compressed_video()
+    _course.download()
+    _course.download_subtitles()
+    _course.download_forum()
+    _course.download_compressed_video()
 
-    # _course.download_assets()
+    _course.download_assets()
     # _course.download_original_videos()
 
 

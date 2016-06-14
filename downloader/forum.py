@@ -155,7 +155,7 @@ def download_images(course, threads_folder, thread):
 
     for url, path in images:
         path = '{}/{}'.format(threads_folder, path)
-        util.download(url, path, course.get_cookie_file())
+        util.download(url, path, course.get_cookie_file(), resume=True)
 
 
 def find_images(text, images, thread_id, thread_page):
