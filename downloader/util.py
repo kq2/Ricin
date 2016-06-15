@@ -11,6 +11,22 @@ from xml.etree import ElementTree
 HTML_PARSER = HTMLParser()
 
 
+def upload(course_folder):
+    """
+    Upload a course folder to Google Storage
+    """
+    bucket = course_folder.partition('/')[2]
+    gs_bucket = 'gs://codeskulptor-archives/{}'.format(bucket)
+
+    # exclude: original_videos folder, pii.csv, email_blacklist.csv, .DS_Store
+    exclude = '.*original_videos/|.*pii\.csv$|.*email_blacklist\.csv$|.*\.DS_Store$'
+
+    cmd = "gsutil -m rsync -r -x '{}' {} {}"
+    cmd = cmd.format(exclude, course_folder, gs_bucket)
+
+    os.system(cmd)
+
+
 def download(url, path='', cookie='', resume=False,
              follow_redirect=True, show_progress_bar=True):
     """
@@ -23,6 +39,7 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
+    url = urllib.quote(url)
     print "downloading {}".format(url)
 
     cmd = u'curl "{}"'.format(url.replace('"', '\\"'))

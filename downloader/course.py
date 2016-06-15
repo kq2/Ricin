@@ -161,3 +161,6 @@ class Course:
         util.remove(path)
         path = self.info_folder + '/email_blacklist.csv'
         util.download(url, path, self.cookie_file)
+
+    def upload(self):
+        util.upload(self.folder)

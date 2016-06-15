@@ -39,7 +39,7 @@ COURSES = {
         '-001', '2-002', '2-003'
     ],
     'analyticalchem': ['-001'],
-    'eefun': ['-001', '-002'],
+    # 'eefun': ['-001', '-002'],
     'eefunlab': ['-001'],
     'foreigneyes': ['-001'],
     'genchem': ['1-001', '2-001'],
@@ -62,32 +62,34 @@ RICE = {
 }
 
 
-def run(course_url, name='', session=''):
+def get(course_url, name='', session=''):
     _course = course.Course(course_url, name, session)
 
-    _course.download_section_file()
-    _course.download_stats()
-    _course.download_grades()
-    _course.download_personal_info()
-    _course.download_email_blacklist()
+    # _course.download_section_file()
+    # _course.download_stats()
+    # _course.download_grades()
+    # _course.download_personal_info()
+    # _course.download_email_blacklist()
 
-    _course.download()
-    _course.download_subtitles()
-    _course.download_forum()
-    _course.download_compressed_video()
+    # _course.download()
+    # _course.download_subtitles()
+    # _course.download_forum()
+    # _course.download_compressed_video()
+    #
+    # _course.download_assets()
+    _course.download_original_videos()
 
-    _course.download_assets()
-    # _course.download_original_videos()
+    # _course.upload()
 
 
 def get_all():
-    for course_name, sessions in COURSES.items():
+    for course_name, sessions in RICE.items():
         for session in sessions:
-            url = CLASS_URL + course_name + session
-            run(url)
+            url = RICE_URL + course_name + session
+            get(url)
 
 
-# run(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
-# run(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
-# run(CLASS_URL + TA + '-001')
+# get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
+# get(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
+# get(CLASS_URL + TA + '-001')
 get_all()
