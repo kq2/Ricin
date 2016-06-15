@@ -39,7 +39,7 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
-    url = urllib.quote(url)
+    url = urllib.quote(url, safe="%/:=&?~#+!$,;'@()*[]")
     print "downloading {}".format(url)
 
     cmd = u'curl "{}"'.format(url.replace('"', '\\"'))
@@ -62,7 +62,8 @@ def download(url, path='', cookie='', resume=False,
     if show_progress_bar:
         cmd += u' -#'
 
-    os.system(cmd.encode('utf-8'))
+    cmd = cmd.encode('utf-8')
+    os.system(cmd)
 
 
 def make_folder(path, is_file=False):

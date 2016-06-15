@@ -39,7 +39,7 @@ COURSES = {
         '-001', '2-002', '2-003'
     ],
     'analyticalchem': ['-001'],
-    # 'eefun': ['-001', '-002'],
+    'eefun': ['-001', '-002'],
     'eefunlab': ['-001'],
     'foreigneyes': ['-001'],
     'genchem': ['1-001', '2-001'],
@@ -77,9 +77,9 @@ def get(course_url, name='', session=''):
     # _course.download_compressed_video()
     #
     # _course.download_assets()
-    _course.download_original_videos()
+    # _course.download_original_videos()
 
-    # _course.upload()
+    _course.upload()
 
 
 def get_all():
@@ -89,7 +89,7 @@ def get_all():
             get(url)
 
 
-# get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
+get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
 # get(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
 # get(CLASS_URL + TA + '-001')
-get_all()
+# get_all()
