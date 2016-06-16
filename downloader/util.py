@@ -39,9 +39,6 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
-    if ' ' in url:
-        write_log(path)
-
     url = urllib.quote(url, safe="%/:=&?~#+!$,;'@()*[]")
     print "downloading {}".format(url)
 
