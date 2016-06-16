@@ -164,3 +164,6 @@ class Course:
 
     def upload(self):
         util.upload(self.folder)
+
+        assets_folder = self.folder.rpartition('/')[0] + '/assets'
+        util.upload(assets_folder)

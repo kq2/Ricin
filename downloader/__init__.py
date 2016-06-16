@@ -26,31 +26,31 @@ COURSES = {
         '2-002', '2-003', '2-007',
         '2-008', '2-009', '2-010'
     ],
-    POC: [
-        '-001',
-        '1-002', '1-003', '1-004', '1-005',
-        '2-002', '2-003', '2-004', '2-005'
-    ],
-    ALG: [
-        '-001',
-        '1-002', '1-003', '1-004',
-        '2-002', '2-003', '2-004'
-    ],
-    FOC: [
-        '-001', '2-002', '2-003'
-    ],
-    'analyticalchem': ['-001'],
-    'eefun': ['-001', '-002'],
-    'eefunlab': ['-001'],
-    'foreigneyes': ['-001'],
-    'genchem': ['1-001', '2-001'],
-    'inquirytechniques': ['-001'],
-    'nanotech': ['-001'],
-    'scicontentsurvey': ['-001'],
-    'sciframework': ['-001'],
-    'scileadership': ['-001'],
-    'scistudentinquiry': ['-001'],
-    'teachinghist': ['-001']
+    # POC: [
+    #     '-001',
+    #     '1-002', '1-003', '1-004', '1-005',
+    #     '2-002', '2-003', '2-004', '2-005'
+    # ],
+    # ALG: [
+    #     '-001',
+    #     '1-002', '1-003', '1-004',
+    #     '2-002', '2-003', '2-004'
+    # ],
+    # FOC: [
+    #     '-001', '2-002', '2-003'
+    # ],
+    # 'analyticalchem': ['-001'],
+    # 'eefun': ['-001', '-002'],
+    # 'eefunlab': ['-001'],
+    # 'foreigneyes': ['-001'],
+    # 'genchem': ['1-001', '2-001'],
+    # 'inquirytechniques': ['-001'],
+    # 'nanotech': ['-001'],
+    # 'scicontentsurvey': ['-001'],
+    # 'sciframework': ['-001'],
+    # 'scileadership': ['-001'],
+    # 'scistudentinquiry': ['-001'],
+    # 'teachinghist': ['-001']
 }
 RICE = {
     COMP130: ['-001', '-002'],
@@ -93,5 +93,5 @@ def get_all():
 util.clear_log()
 # get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
 # get(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
-# get(CLASS_URL + TA + '-001')
-get_all()
+get(CLASS_URL + TA + '-001')
+# get_all()

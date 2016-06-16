@@ -15,7 +15,11 @@ def upload(course_folder):
     """
     Upload a course folder to Google Storage
     """
-    bucket = course_folder.replace('../../', '')
+    if not exists(course_folder):
+        print course_folder, 'does not exist!'
+        return
+
+    bucket = course_folder.replace('../', '')
     gs_bucket = 'gs://codeskulptor-archives/{}'.format(bucket)
 
     # exclude: original_videos folder, pii.csv, email_blacklist.csv, .DS_Store
