@@ -15,7 +15,7 @@ def upload(course_folder):
     """
     Upload a course folder to Google Storage
     """
-    bucket = course_folder.partition('/')[2]
+    bucket = course_folder.replace('../../', '')
     gs_bucket = 'gs://codeskulptor-archives/{}'.format(bucket)
 
     # exclude: original_videos folder, pii.csv, email_blacklist.csv, .DS_Store
@@ -235,7 +235,7 @@ def make_coursera_new_formats(text):
 
 
 def write_log(text):
-    write_file('log.txt', text+'\n', True)
+    write_file('log.txt', text + '\n', True)
 
 
 def clear_log():
