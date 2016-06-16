@@ -39,6 +39,9 @@ def download(url, path='', cookie='', resume=False,
     :param show_progress_bar: Show downloading progress bar or not.
     :return: None.
     """
+    if ' ' in url:
+        write_log(path)
+
     url = urllib.quote(url, safe="%/:=&?~#+!$,;'@()*[]")
     print "downloading {}".format(url)
 
@@ -96,7 +99,10 @@ def remove(path):
     :param path:
     :return:
     """
-    os.remove(path)
+    try:
+        os.remove(path)
+    except OSError:
+        print 'No such file! '
 
 
 def exists(path):
@@ -229,3 +235,11 @@ def make_coursera_new_formats(text):
     text = text.replace('h4>', 'h3>')
     text = re.sub(r'<code>(.*?)</code>', r'$$\\color{red}{\\verb|\1|}$$', text)
     return text
+
+
+def write_log(text):
+    write_file('log.txt', text+'\n', True)
+
+
+def clear_log():
+    write_file('log.txt', '')

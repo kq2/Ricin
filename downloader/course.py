@@ -44,7 +44,7 @@ class Course:
             self.session = find.group(2)  # 002
 
         self.id = self.name + '-' + self.session
-        self.folder = '../{}/{}/{}'.format(site, self.name, self.session)
+        self.folder = '../../{}/{}/{}'.format(site, self.name, self.session)
         self.info_folder = self.folder + '/session_info'
         self.section_file = self.info_folder + '/section.json'
         self.cookie_file = 'cookie.txt'

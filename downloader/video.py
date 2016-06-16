@@ -139,7 +139,11 @@ def download_original_video(course, item):
         url = url.format(course.get_name(), item['source_video'])
 
         path = '{}/../original_videos/{}'
-        path = path.format(course.get_folder(), item['source_video'])
+        file_name = item['source_video'].replace('.mp4.mpg', '.mp4')
+        path = path.format(course.get_folder(), file_name)
+
+        if file_name[-3:] != 'mp4':
+            util.write_log(path)
 
         util.download(url, path, course.get_cookie_file(), resume=True)
 

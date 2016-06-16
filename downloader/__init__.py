@@ -2,6 +2,7 @@
 Download a Coursera course.
 """
 import course
+import util
 
 CLASS_URL = 'https://class.coursera.org/'
 IIPP = 'interactivepython'
@@ -74,21 +75,26 @@ def get(course_url, name='', session=''):
     # _course.download()
     # _course.download_subtitles()
     # _course.download_forum()
-    # _course.download_compressed_video()
-    #
+    _course.download_compressed_video()
+
     # _course.download_assets()
     # _course.download_original_videos()
 
-    _course.upload()
+    # _course.upload()
 
 
 def get_all():
+    for course_name, sessions in COURSES.items():
+        for session in sessions:
+            url = CLASS_URL + course_name + session
+            get(url)
     for course_name, sessions in RICE.items():
         for session in sessions:
             url = RICE_URL + course_name + session
             get(url)
 
 
+util.clear_log()
 get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
 # get(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
 # get(CLASS_URL + TA + '-001')
