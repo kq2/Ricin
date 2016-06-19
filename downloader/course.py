@@ -24,7 +24,7 @@ DOWNLOADER = {
     'lecture': video.download,
     'subtitle': video.download_subtitles,
     'original': video.download_original_video,
-    'compressed': video.download_compressed_video,
+    'compressed': video.download_compressed_video
 }
 
 

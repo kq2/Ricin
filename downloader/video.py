@@ -142,8 +142,10 @@ def download_original_video(course, item):
         file_name = item['source_video'].replace('.mp4.mpg', '.mp4')
         path = path.format(course.get_folder(), file_name)
 
-        if file_name[-3:] != 'mp4':
-            util.write_log(path)
+        # if item['__published'] == 1:
+        #     title = item['title'].replace('"', '\\"')
+        #     text = '    "{}": ["{}", "{}"], '.format(file_name, path, title)
+        #     util.write_log(text)
 
         util.download(url, path, course.get_cookie_file(), resume=True)
 
