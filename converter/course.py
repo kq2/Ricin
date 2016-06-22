@@ -8,7 +8,7 @@ import video
 import assignment
 import announcement
 import resource
-from downloader import util
+import downloader.util
 
 CONVERTER = {
     'quiz': quiz.convert,
@@ -30,6 +30,7 @@ class Course:
         self.canvas_folder = '../../canvas/{}-{}'.format(self.name, self.session)
         self.section_file = (self.coursera_folder + '/session_info/section.json')
         self.manifest = self.canvas_folder + '/imsmanifest.xml'
+        self.wiki_file_name = {}
         self.resources = ''
         self.count = {
             'quiz': 0,
@@ -48,8 +49,9 @@ class Course:
 
     def convert(self, item_type=None):
         convert_queue = []
-        for section in util.read_json(self.section_file):
+        for section in downloader.util.read_json(self.section_file):
             for item in section['items']:
+                self.add_wiki_file_name(item)
                 if item_type is None or item_type == item['item_type']:
                     convert_queue.append(item)
 
@@ -60,6 +62,16 @@ class Course:
 
         self.pack()
 
+    def add_wiki_file_name(self, item):
+        if item['item_type'] == 'coursepage':
+            coursera_title = item['metadata']['title']
+            coursera_file_name = item['metadata']['canonicalName']
+            canvas_file_name = wiki.get_canvas_wiki_filename(coursera_title)
+            self.wiki_file_name[coursera_file_name] = canvas_file_name
+
+    def get_wiki_file_name(self, coursera_name):
+        return self.wiki_file_name[coursera_name]
+
     def convert_item(self, item):
         item_type = item['item_type']
         self.count[item_type] += 1
@@ -68,7 +80,7 @@ class Course:
 
     def pack(self):
         resource.write_manifest(self.manifest, self.resources)
-        util.make_zip(self.canvas_folder)
+        downloader.util.make_zip(self.canvas_folder)
 
     def convert_wiki_pages(self):
         self.convert('coursepage')
