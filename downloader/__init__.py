@@ -72,7 +72,7 @@ def get(course_url, name='', session=''):
     # _course.download_personal_info()
     # _course.download_email_blacklist()
 
-    # _course.download()
+    _course.download()
     # _course.download_subtitles()
     # _course.download_forum()
     # _course.download_compressed_video()
@@ -90,7 +90,7 @@ def get_all():
             get(url)
 
 
-util.clear_log()
+# util.clear_log()
 # get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
 # get(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
 # get(CLASS_URL + TA + '-001')

@@ -115,13 +115,14 @@ def exists(path):
     return os.path.exists(path)
 
 
-def make_zip(folder):
+def make_zip(path):
     """
-    Make a zip file of given folder in current directory.
-    :param folder: A given folder in current directory.
-    :return: None.
+    Make a zip file of given folder.
     """
-    os.system('zip -r {0}.zip {0}'.format(folder))
+    folder = path.rpartition('/')[2]
+    zip_file = folder + '.zip'
+    cmd = 'cd {0}; zip -r {1} .; mv {1} ..'.format(path, zip_file)
+    os.system(cmd)
 
 
 def read_file(path):
@@ -142,6 +143,7 @@ def write_file(path, text, append=False):
     :param append: Append the text to file content or not.
     :return: None.
     """
+    make_folder(path, True)
     with open(path, 'a' if append else 'w') as f:
         f.write(text.encode('utf-8'))
 
@@ -220,7 +222,6 @@ def remove_coursera_bad_formats(text):
     :return: The content string with bad formats removed.
     """
     text = unescape(text)
-    text = unquote(text)
     text = text.strip(' \n')
     text = re.sub(r'\w+\?page=', '', text)
     text = change_asset_url(text)
