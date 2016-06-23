@@ -7,8 +7,9 @@ import peer
 import video
 import assignment
 import announcement
+import assets
 import resource
-import downloader.util
+from downloader import util
 
 CONVERTER = {
     'quiz': quiz.convert,
@@ -30,6 +31,7 @@ class Course:
         self.canvas_folder = '../../canvas/{}-{}'.format(self.name, self.session)
         self.section_file = (self.coursera_folder + '/session_info/section.json')
         self.manifest = self.canvas_folder + '/imsmanifest.xml'
+        self.ensemble_id_map = video.ensemble_id_map()
         self.wiki_file_name = {}
         self.resources = ''
         self.count = {
@@ -49,7 +51,7 @@ class Course:
 
     def convert(self, item_type=None):
         convert_queue = []
-        for section in downloader.util.read_json(self.section_file):
+        for section in util.read_json(self.section_file):
             for item in section['items']:
                 self.add_wiki_file_name(item)
                 if item_type is None or item_type == item['item_type']:
@@ -60,30 +62,42 @@ class Course:
             print "{}/{}".format(idx + 1, total)
             self.convert_item(item)
 
-        self.pack()
-
     def add_wiki_file_name(self, item):
         if item['item_type'] == 'coursepage':
-            coursera_title = item['metadata']['title']
+            title = item['metadata']['title']
             coursera_file_name = item['metadata']['canonicalName']
-            canvas_file_name = wiki.get_canvas_wiki_filename(coursera_title)
+            canvas_file_name = wiki.get_canvas_wiki_filename(title)
             self.wiki_file_name[coursera_file_name] = canvas_file_name
+        elif item['item_type'] == 'lecture':
+            title = item['title']
+            coursera_id = item['item_id']
+            canvas_file_name = '>-' + wiki.get_canvas_wiki_filename(title)
+            self.wiki_file_name[coursera_id] = canvas_file_name
 
     def get_wiki_file_name(self, coursera_name):
         return self.wiki_file_name[coursera_name]
 
+    def get_ensemble_id(self, video_title):
+        return self.ensemble_id_map[video_title]
+
     def convert_item(self, item):
         item_type = item['item_type']
         self.count[item_type] += 1
-        item['id'] = '{}_{}'.format(item_type, self.count[item_type])
+        item['canvas_id'] = '{}_{}'.format(item_type, self.count[item_type])
         self.resources += CONVERTER[item_type](self, item)
 
     def pack(self):
         resource.write_manifest(self.manifest, self.resources)
-        downloader.util.make_zip(self.canvas_folder)
+        util.make_zip(self.canvas_folder)
+
+    def convert_assets(self):
+        self.resources += assets.convert(self)
 
     def convert_wiki_pages(self):
         self.convert('coursepage')
+
+    def convert_videos(self):
+        self.convert('lecture')
 
     def convert_quizzes(self):
         self.convert('quiz')

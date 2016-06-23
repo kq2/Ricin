@@ -4,7 +4,7 @@ Download Coursera wiki page.
 
 import re
 import resource
-import downloader.util
+from downloader import util
 
 TEMPLATE = u'''<html>
 <head>
@@ -22,7 +22,7 @@ TEMPLATE = u'''<html>
 
 def convert(course, item):
     coursera_title = item['metadata']['title']
-    canvas_id = item['id']
+    canvas_id = item['canvas_id']
 
     coursera_file_name = item['metadata']['canonicalName']
     canvas_file_name = course.get_wiki_file_name(coursera_file_name)
@@ -33,19 +33,19 @@ def convert(course, item):
     coursera_wiki_file = course.get_coursera_folder() + '/' + coursera_path
     canvas_wiki_file = course.get_canvas_folder() + '/' + canvas_path
 
-    convert_wiki_file(coursera_wiki_file, coursera_title,
-                      canvas_wiki_file, canvas_id, course)
+    make_canvas_wiki(coursera_wiki_file, coursera_title,
+                     canvas_wiki_file, canvas_id, course)
 
     args = {'id': canvas_id, 'type': 'webcontent', 'path': canvas_path}
     return resource.TEMPLATE.format(**args)
 
 
-def convert_wiki_file(coursera_wiki_file, coursera_title,
-                      canvas_wiki_file, canvas_id, course):
-    coursera_wiki_content = downloader.util.read_file(coursera_wiki_file)
+def make_canvas_wiki(coursera_wiki_file, coursera_title,
+                     canvas_wiki_file, canvas_id, course):
+    coursera_wiki_content = util.read_file(coursera_wiki_file)
     canvas_wiki_content = convert_content(coursera_wiki_content, course)
     canvas_wiki = TEMPLATE.format(coursera_title, canvas_id, canvas_wiki_content)
-    downloader.util.write_file(canvas_wiki_file, canvas_wiki)
+    util.write_file(canvas_wiki_file, canvas_wiki)
 
 
 def get_canvas_wiki_filename(coursera_wiki_title):
@@ -56,20 +56,40 @@ def get_canvas_wiki_filename(coursera_wiki_title):
 
 
 def convert_content(coursera_content, course):
-    ans = replace_wiki_links(coursera_content, course)
+    ans = remove_link_title(coursera_content)
+    ans = replace_video_links(ans, course)
+    ans = replace_wiki_links(ans, course)
     ans = replace_assets_links(ans)
     return ans
 
 
+def remove_link_title(coursera_content):
+    return re.sub(r'title=[ \s]*".*?"', '', coursera_content)
+
+
 def replace_wiki_links(coursera_content, course):
-    coursera_link = r'href="(\w+)"'
+    coursera_link = r'href=[ \s]*"([\w-]+)(#[\w-]+)?"'
+
+    def canvas_link(match):
+        page = course.get_wiki_file_name(match.group(1))
+        pos = match.group(2)
+        if pos:
+            page += pos
+        return 'href="$WIKI_REFERENCE$/pages/{}"'.format(page)
+
+    return re.sub(coursera_link, canvas_link, coursera_content)
+
+
+def replace_video_links(coursera_content, course):
+    coursera_link = r'href=[ \s]*"\.\./lecture/(\d+)"'
     canvas_link = 'href="$WIKI_REFERENCE$/pages/{}"'
     return re.sub(coursera_link,
-                  lambda m: canvas_link.format(course.get_wiki_file_name(m.group(1))),
+                  lambda m: canvas_link.format(
+                      course.get_wiki_file_name(m.group(1))),
                   coursera_content)
 
 
 def replace_assets_links(coursera_content):
-    coursera_link = r'src="\.\./\.\./\.\./.*?/assets/(.*?)"'
-    canvas_link = r'src="$IMS-CC-FILEBASE$/\1"'
+    coursera_link = r'="\.\./\.\./\.\./.*?/assets/(.*?)"'
+    canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
     return re.sub(coursera_link, canvas_link, coursera_content)

@@ -1,0 +1,1641 @@
+{
+  "Data": [
+    {
+      "ID": "c1e2589a-3850-487b-8212-a8b3b4ee1899",
+      "AddedOn": "2016-06-18T20:24:32",
+      "Description": "",
+      "Title": "&quot;We want... a shrubbery!&quot; (15:46)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/bbd2512a-6814-47db-8040-c948a6d22f3d.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "98225e72-d29f-45de-8409-9bf55419a43c",
+      "AddedOn": "2016-06-18T20:12:32",
+      "Description": "",
+      "Title": "Introduction (14:29)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/96d5e5f2-c101-4e21-9ab7-83b0711ea350.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "2986f822-b2f7-4de8-9004-2fef0442a0ca",
+      "AddedOn": "2016-06-18T20:10:58",
+      "Description": "",
+      "Title": "Illustration of Trees (7:17)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cf564722-2a21-4f9a-9b78-648ea7bf7099.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "65df2624-ed85-40f8-ae9f-18b8dab419a4",
+      "AddedOn": "2016-06-18T20:09:21",
+      "Description": "",
+      "Title": "The sorting problem (11:45)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/98986b2e-2c8a-49e6-9f4a-0bf705574b8e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "5a0a26d3-ebb5-4e62-bd85-5d55fc3b327f",
+      "AddedOn": "2016-06-18T20:06:45",
+      "Description": "",
+      "Title": "Required Python Knowledge (12:43)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/3502b324-468a-40ae-8c70-ef9e9cd22a93.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "abc5ca6c-ea1a-47e8-a892-8dbdf65de49f",
+      "AddedOn": "2016-06-18T20:05:46",
+      "Description": "",
+      "Title": "The Importance of Probability (4:31)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b985ca11-81c3-4068-b868-c4a54cd8a420.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "28a894ff-edc7-4786-a0ae-1ebf96432be3",
+      "AddedOn": "2016-06-18T20:04:43",
+      "Description": "",
+      "Title": "Programming tips - 3 (7:10)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fce00ba2-98d5-4ff3-ac42-4e156f7e9504.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c669e171-d6f1-4d50-b3ff-f36e11ff7910",
+      "AddedOn": "2016-06-18T20:04:11",
+      "Description": "",
+      "Title": "Expected Value (13:27)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fb74b1fc-a7bf-439d-9cd8-934e3105ac3c.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8f9adac8-44e8-40f5-869b-401763480cac",
+      "AddedOn": "2016-06-18T20:01:11",
+      "Description": "",
+      "Title": "Functions: Finding the Max (9:51)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ee239ab8-cd5c-4145-a643-2016684eb66a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "f6cd9d94-5875-4b8c-a31b-76f387e7d630",
+      "AddedOn": "2016-06-18T20:00:11",
+      "Description": "",
+      "Title": "Keyboard input (9:25)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ae91b9d3-acff-43df-9711-884ce5f62d97.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "6ad4a0bd-8618-4802-8f62-16ecbc9aecf3",
+      "AddedOn": "2016-06-18T19:59:19",
+      "Description": "",
+      "Title": "Assertions (7:22)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/08ccdc66-d779-40cd-a5a1-810ab49b71c0.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8f38033e-14b2-408f-94cb-80439386b610",
+      "AddedOn": "2016-06-18T19:58:31",
+      "Description": "",
+      "Title": "Assignments (5:18)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/67449c1f-faef-49d6-9b23-c1b25fa71ef5.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "7e04fae7-8101-423f-84a1-9fff6883848f",
+      "AddedOn": "2016-06-18T19:57:57",
+      "Description": "",
+      "Title": "Local vs. global variables (11:23)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/32652ded-96b4-4a6d-b37f-ef6ccc7c7301.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c345f759-1f88-4f82-81b9-fef782fa02d1",
+      "AddedOn": "2016-06-18T19:56:59",
+      "Description": "",
+      "Title": "Asymptotics (12:33)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2f68b6e1-4c62-42d7-a6d3-fb4309ee58fb.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "bd7f91cf-7493-46cb-8570-b39a19c92b87",
+      "AddedOn": "2016-06-18T19:54:01",
+      "Description": "",
+      "Title": "Yahtzee (5:20)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c599f572-5738-4522-ae68-538f6157a115.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "08b7992a-6445-4d2c-9e67-13b58728568d",
+      "AddedOn": "2016-06-18T19:53:28",
+      "Description": "",
+      "Title": "BFS-based distance distribution (12:27)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/48711a83-dab3-4b52-a118-11adb38e3a23.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8eef591e-7826-4397-a500-c38f1ed86fe2",
+      "AddedOn": "2016-06-18T19:50:41",
+      "Description": "",
+      "Title": "The Importance of Trees (2:21)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fdcdd480-02aa-466a-ba2a-25781da54831.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "46580d74-2f0d-4b3e-bfc3-cc58b424e65b",
+      "AddedOn": "2016-06-18T19:50:06",
+      "Description": "",
+      "Title": "Visualizing drawing and timers (6:19)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/f310dddd-3931-4c2b-89ea-1e484c9cd3f4.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e3754800-02b8-4f5e-a445-e2672c72c268",
+      "AddedOn": "2016-06-18T19:50:01",
+      "Description": "",
+      "Title": "Beyond CodeSkulptor (15:12)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/d75119b3-e1da-4f94-b00a-9808b43ea8b7.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "7083866a-efca-4911-b5e9-d540b29d486e",
+      "AddedOn": "2016-06-18T19:48:36",
+      "Description": "",
+      "Title": "Mouse input (12:23)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b6cfd66f-6523-477d-b8f6-4f3dc2d15a49.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "a605b082-b2e4-4e17-b304-05852dc9e15f",
+      "AddedOn": "2016-06-18T19:47:50",
+      "Description": "",
+      "Title": "Spaceship (13:09)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ea544ca6-46a0-48ce-8f76-4a266909b554.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e8f69f08-ecde-48c8-83d3-435e1aa5876a",
+      "AddedOn": "2016-06-18T19:46:47",
+      "Description": "",
+      "Title": "Generators (7:37)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2870f85d-a52f-4362-a6bb-1ea9cf1c9c13.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c0dd9181-4692-412b-8aa2-0b6b02387b78",
+      "AddedOn": "2016-06-18T19:45:55",
+      "Description": "",
+      "Title": "Guess the number! (6:56)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/3bf79c11-0f6d-48f8-906e-78beaf1da9df.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d7989117-a03c-4914-980f-9e88447717a8",
+      "AddedOn": "2016-06-18T19:45:26",
+      "Description": "",
+      "Title": "Input fields (9:34)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/160280c9-05fa-45d8-a856-53fea3d5f981.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "7ffb7bb2-3bc2-4041-91dc-6ad8a3fb8c0d",
+      "AddedOn": "2016-06-18T19:44:51",
+      "Description": "",
+      "Title": "Machine Grading (9:58)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/f7471804-722c-40dd-87d5-1205aace3075.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "03fc1a63-d98a-49ff-b3a0-6dc6c992fbb1",
+      "AddedOn": "2016-06-18T19:43:47",
+      "Description": "",
+      "Title": "Paths and distances (8:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/4fc07314-bd9b-497a-84fa-81471bf7aa9d.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "f13c88f1-9bff-44db-a77c-84bb41fb9cce",
+      "AddedOn": "2016-06-18T19:41:47",
+      "Description": "",
+      "Title": "Working with objects (13:24)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/00c3f170-60d7-4904-b82a-a455f793b9e3.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "7630f223-53f4-4b6e-b129-4d206d19600c",
+      "AddedOn": "2016-06-18T19:40:34",
+      "Description": "",
+      "Title": "Sprite animation (12:01)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/62dc5640-b1d8-4d80-9dde-673cdd8ca953.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "cd8898ad-f5ae-4fab-b8db-b6280051a012",
+      "AddedOn": "2016-06-18T19:39:41",
+      "Description": "",
+      "Title": "Counting and Sums (14:15)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2a50f49a-64f3-4cc6-a92b-780b9e87ebdb.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "1bae2c25-3169-48c8-8c11-530548425235",
+      "AddedOn": "2016-06-18T19:38:41",
+      "Description": "",
+      "Title": "Programming tips - 6 (13:55)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fa02def6-2d5c-4678-b929-190402d6f3e6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c92fa8ea-2839-48a0-a153-b825c15f24da",
+      "AddedOn": "2016-06-18T19:38:33",
+      "Description": "",
+      "Title": "Plotting Statement Counts (13:57)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/5ce586cb-5f3e-41a3-b875-6cd04900c857.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "6fbd9d27-e167-4389-98ee-da4bc4550d2a",
+      "AddedOn": "2016-06-18T19:37:27",
+      "Description": "",
+      "Title": "The RNA secondary structure problem (16:15)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b7067e83-4dbc-4a8d-af7d-76d9d9f42e16.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "af05d373-77cd-40df-9bf6-08231c20b59d",
+      "AddedOn": "2016-06-18T19:33:29",
+      "Description": "",
+      "Title": "Recursion (14:49)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/88f2fe9e-9547-4d1b-a22b-0f88bc484cb0.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "44034fd3-1fab-400c-8d3f-296bfffa054d",
+      "AddedOn": "2016-06-18T19:31:56",
+      "Description": "",
+      "Title": "Variables (11:03)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cd4cca52-bd80-43a0-aa2d-804f609d5131.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "ad649723-9c42-4a0d-af1e-79c800d72974",
+      "AddedOn": "2016-06-18T19:31:06",
+      "Description": "",
+      "Title": "Python Modules (7:28)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/33e3057f-c15a-49f9-9f11-3b368ae1bf7a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d6183be1-f318-4dd3-95ca-5512563ed691",
+      "AddedOn": "2016-06-18T19:30:13",
+      "Description": "",
+      "Title": "Efficiency of brute force distance (14:50)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/5307870c-4555-4ecd-88c1-804595044c79.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d3b0050e-e37a-4cb0-8729-2067ffcd6d2d",
+      "AddedOn": "2016-06-18T19:26:24",
+      "Description": "",
+      "Title": "Basics of Probabilty (10:20)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/5fb376e2-a6dc-488b-a871-2cb0a2af0600.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "93bf77ba-b848-4a76-9e50-d5425a6a6b32",
+      "AddedOn": "2016-06-18T19:25:26",
+      "Description": "",
+      "Title": "Lambda (6:04)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/8a7b9a34-c96b-4511-bc5c-5edd68a736d6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "9780e07a-cbb9-4299-857e-7854576229ec",
+      "AddedOn": "2016-06-18T19:24:46",
+      "Description": "",
+      "Title": "More operations (17:10)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/a5070315-a04b-49c3-9eb7-f91247d3c9ad.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "a137bb4b-35a5-4711-ab20-44f8f4aed727",
+      "AddedOn": "2016-06-18T19:23:23",
+      "Description": "",
+      "Title": "Spaceship class (7:54)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/92f7be2a-e7a3-4489-90ea-268bfe346773.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "20adc818-cc49-48f6-bb56-ad88ebae8ddf",
+      "AddedOn": "2016-06-18T19:22:39",
+      "Description": "",
+      "Title": "The Importance of Recursion (3:55)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/28922733-a1dc-448d-bff5-ce068435f48e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "086066e0-582f-47c2-8d9e-9f8fed8ce8c3",
+      "AddedOn": "2016-06-18T19:21:06",
+      "Description": "",
+      "Title": "A dynamic programming algorithm (14:05)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fb7d1bb4-b6b2-420b-bece-625f20523ed6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c613f8b0-39f9-4aa9-aad6-7d439bbc390a",
+      "AddedOn": "2016-06-18T19:17:59",
+      "Description": "",
+      "Title": "Blackjack (14:38)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/37abb374-a210-43ec-9a13-357fa20c8ef9.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "93cb3db7-8f3b-4809-8889-9086bafc778b",
+      "AddedOn": "2016-06-18T19:16:19",
+      "Description": "",
+      "Title": "Programming tips - 4 (3:44)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cf52d6f1-f8d1-44fd-a1f9-1fb0d6c25683.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c0e0c045-aa0c-4f76-a5f1-9dea2026f6bc",
+      "AddedOn": "2016-06-18T19:16:15",
+      "Description": "",
+      "Title": "The Fifteen Puzzle (13:40)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/94f3ef4a-f6f6-4ad5-9062-7ed11650d171.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "f41d247b-c3a1-4e44-9f0f-b1d50e42cf81",
+      "AddedOn": "2016-06-18T19:14:58",
+      "Description": "",
+      "Title": "Orders of growth (13:00)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c6298cd7-2cbc-4e78-9d06-09533724a325.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8b946a87-c4dd-4105-a4e1-b5c722eb087a",
+      "AddedOn": "2016-06-18T19:12:01",
+      "Description": "",
+      "Title": "Number of steps of brute force distance (12:01)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/52a42dcd-4666-4c70-aa24-5eeb530e25da.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "73e3baa4-f9a1-48a3-8661-9bc39be030df",
+      "AddedOn": "2016-06-18T19:09:19",
+      "Description": "",
+      "Title": "The Importance of Modeling (3:04)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/14eb10c7-d8f3-415c-9b57-b50d571f5783.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "9c779d7e-796f-492b-b12f-2a27fd9df9d5",
+      "AddedOn": "2016-06-18T19:08:19",
+      "Description": "",
+      "Title": "Arithmetic expressions (13:24)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ec6aeb47-aabb-45a1-8bff-c2dfc4250e2b.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "975923ff-7e82-4b89-9d73-585ffd6495ce",
+      "AddedOn": "2016-06-18T19:07:23",
+      "Description": "",
+      "Title": "Programming tips - 1 (16.03)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/3df85a5b-031a-435c-b7fe-35a16f73f105.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d29d2dbf-9181-4948-be51-98a547851557",
+      "AddedOn": "2016-06-18T19:06:17",
+      "Description": "",
+      "Title": "Introduction (2:37)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c2354e77-7c2a-4d4b-ab42-7b561ed5ee71.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "0dcf57a1-6f58-4d31-a7a5-121ab539916a",
+      "AddedOn": "2016-06-18T19:06:00",
+      "Description": "",
+      "Title": "Recurrences (12:23)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/caa79782-ef79-48f9-aa70-25dd35dfbb49.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "524cf48c-109e-42f9-9843-92259fb91336",
+      "AddedOn": "2016-06-18T19:04:53",
+      "Description": "",
+      "Title": "Illustrating the DP algorithm (11:39)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/dca8d55c-ac3e-427d-876e-eafaa6cd8d31.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "cc06b90e-dc7e-4e6d-91b8-e67b881318d6",
+      "AddedOn": "2016-06-18T19:02:18",
+      "Description": "",
+      "Title": "Local pairwise sequence alignment (8:09)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/332ca523-35d4-4c27-9476-6d775a75d6d5.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c2a085db-0c45-4a2f-9d80-f81e2bede844",
+      "AddedOn": "2016-06-18T19:00:31",
+      "Description": "",
+      "Title": "String processing (11:46)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2eec39fb-213f-42bd-8544-274ffab394e3.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "89813e94-cba8-4701-a1e3-21b1c3726adf",
+      "AddedOn": "2016-06-18T18:59:32",
+      "Description": "",
+      "Title": "Illustrating BFS (16:53)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/49ddb813-92f3-4f3b-bfe6-513de155f4f8.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "52c7578c-cea7-473f-83f4-4218c52b9667",
+      "AddedOn": "2016-06-18T18:55:24",
+      "Description": "",
+      "Title": "Measuring efficiency (12:48)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b36ffd35-0e2a-4944-9352-27f383faa58c.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8db6db97-5646-43b6-b2fe-2111bd4deda5",
+      "AddedOn": "2016-06-18T18:52:30",
+      "Description": "",
+      "Title": "The Importance of Searching (2:04)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/1ecf241d-94e7-4629-8a43-d3d008e22b63.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "75400c24-63ff-46d4-a7f8-33728d623095",
+      "AddedOn": "2016-06-18T18:52:01",
+      "Description": "",
+      "Title": "The Importance of Combinatorics (4:32)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ad938301-ea23-47e2-ae5b-7c93c2e96935.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "7ac3927c-43b9-4170-8a79-ed88f1b8a07f",
+      "AddedOn": "2016-06-18T18:50:58",
+      "Description": "",
+      "Title": "Functions (15:47)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/0b18b2cb-288e-451c-8ec1-48be03cfdd93.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "3fa7a86e-8c77-4fa2-a738-a8eb592997a5",
+      "AddedOn": "2016-06-18T18:49:20",
+      "Description": "",
+      "Title": "DP vs. recursive implementation (13:58)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/d996b33e-680b-4c2d-8d2f-b4415e1263f1.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "ac6ee648-c918-4be6-9e18-9cfabec55643",
+      "AddedOn": "2016-06-18T18:46:10",
+      "Description": "",
+      "Title": "Testing and machine grading (9:53) -  PoC",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/381b5092-1cab-488b-ba80-a6abcb59fda8.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "cba9df44-fa08-4063-8f62-5de395b37d11",
+      "AddedOn": "2016-06-18T18:45:08",
+      "Description": "",
+      "Title": "SimpleGUI (11:27)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/4ece2a99-b9d1-450c-8011-e21508747d7a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "3f680597-e6a4-46d7-a6e0-9fed274d713f",
+      "AddedOn": "2016-06-18T18:43:56",
+      "Description": "",
+      "Title": "Global pairwise sequence alignment (14:33)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/4ae23c58-591f-4e03-a8a9-f5fc247c43bd.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "853815fd-3a9b-41aa-b646-c4683746c600",
+      "AddedOn": "2016-06-18T18:40:32",
+      "Description": "",
+      "Title": "Saving in CodeSkulptor (9:35) (optional video from our previous class)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/5835adfe-a304-4be3-9862-8f52e2bd6991.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e5756a30-7a1e-4a92-82df-2e3dd4daad0a",
+      "AddedOn": "2016-06-18T18:40:26",
+      "Description": "",
+      "Title": "Inheritance (13:52)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/203341d0-56cf-4d33-900e-84b41e2043ab.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "39f84d4a-5da5-4a91-abaa-528fc667293d",
+      "AddedOn": "2016-06-18T18:39:06",
+      "Description": "",
+      "Title": "Class wrap-up (6:21)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/031d4435-71e9-4c10-8ab8-2fb49242dc46.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "a8730ad0-7f54-43ea-a0f4-efe64d91e01d",
+      "AddedOn": "2016-06-18T18:37:14",
+      "Description": "",
+      "Title": "Tiled images (15:06)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/4089a6c3-211b-4d59-859f-9572d0c06bf6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "77bc6c2b-0b20-4895-b678-3a6441d765c9",
+      "AddedOn": "2016-06-18T18:36:06",
+      "Description": "",
+      "Title": "The Importance of Counting (4:29)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/be5e7ec4-9e27-4738-9b62-2f1b32ee0aa0.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "525670d5-9485-4fdb-82ab-753170b2eff6",
+      "AddedOn": "2016-06-18T18:35:06",
+      "Description": "",
+      "Title": "Introduction (6:44)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/500073bd-480e-45c8-b866-a769d0ee634e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "012f8eff-1c55-464b-9d75-c285d7c5b914",
+      "AddedOn": "2016-06-18T18:34:23",
+      "Description": "",
+      "Title": "Visualizing functions (12:11)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/78aff6e1-8b56-4a7b-8c26-df1a3aeeaf42.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "a4ec1d8f-ca95-4fc3-9ff5-a57135bdd1fa",
+      "AddedOn": "2016-06-18T18:34:13",
+      "Description": "",
+      "Title": "Principles of Computing (13:26)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/34adebeb-11ea-45d4-8771-e384f5a33cf6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e5e99f14-555d-4914-8b2a-c971688388fc",
+      "AddedOn": "2016-06-18T18:31:05",
+      "Description": "",
+      "Title": "Grids (8:22)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/dcaa4749-f6ac-4673-b0e2-058c21b9756f.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "3e06eca3-f4ca-4e4d-889c-306a4d979d81",
+      "AddedOn": "2016-06-18T18:30:24",
+      "Description": "",
+      "Title": "Classes for Blackjack (11:28)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/29768b1c-8f38-4056-9d14-b8c03a609a43.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "02080f01-605d-4974-a4f3-28da224523be",
+      "AddedOn": "2016-06-18T18:29:18",
+      "Description": "",
+      "Title": "RiceRocks (8:43)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/61d17962-d49f-4740-bb74-8d103fd4f50e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e416503f-bb9f-4732-b75b-2ac7ed6d2ca4",
+      "AddedOn": "2016-06-18T18:28:37",
+      "Description": "",
+      "Title": "Trees (12:45)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/0f0b462c-31fb-46d3-84e4-91a4e7e6ab70.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c5e7df8c-205d-4105-8a48-16b0fe684764",
+      "AddedOn": "2016-06-18T18:27:26",
+      "Description": "",
+      "Title": "2048 (8:58)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/8d293f17-1d76-486e-b88c-635aa732476d.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "93f2f696-6d63-4510-94a4-a2a5a38555a7",
+      "AddedOn": "2016-06-18T18:26:21",
+      "Description": "",
+      "Title": "Binary Search (14:28)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/8ecc93a3-0624-49c8-af53-795e1d3b1558.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "b913e842-4706-428f-a508-16268e33c204",
+      "AddedOn": "2016-06-18T18:23:04",
+      "Description": "",
+      "Title": "Lists (11:04)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c2c678cb-d0cd-42ce-8495-7f5526edab88.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "ebb9f286-0f33-475a-80bc-0bc9b88f5cbe",
+      "AddedOn": "2016-06-18T18:22:55",
+      "Description": "",
+      "Title": "Visualizing iteration (13:33)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b192bb5b-46e8-4ac0-ac81-9d28fb062bb0.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c8e770a0-1d9e-47d0-860a-7903f025e14d",
+      "AddedOn": "2016-06-18T18:22:45",
+      "Description": "",
+      "Title": "BFS running time - loose analysis (9:32)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/9b479724-addc-4f2b-928b-19ca5ffb733f.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "2a1e8e25-b436-403d-a24d-800682968ac0",
+      "AddedOn": "2016-06-18T18:20:33",
+      "Description": "",
+      "Title": "Buttons (10:48)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/d8f33c09-760a-469e-a33c-7de78282d601.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "cb0953b9-4219-4c30-8b3a-76dd6195f527",
+      "AddedOn": "2016-06-18T18:19:50",
+      "Description": "",
+      "Title": "Monte Carlo Methods (6:34)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/743bf064-ed2f-47f9-b1f2-e8262f1650f4.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d4c81086-44c4-418d-a39d-da7b323ef265",
+      "AddedOn": "2016-06-18T18:19:04",
+      "Description": "",
+      "Title": "Debugging (18:40)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cb3f821b-f3d2-4362-a29f-1c5ab78d4dee.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "adf0d386-9b49-4b39-9503-b5d15a10dbad",
+      "AddedOn": "2016-06-18T18:17:11",
+      "Description": "",
+      "Title": "Conditionals (10:39)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2f50ca80-7f49-4dbf-a461-5d8826b449a6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "38195d17-df8a-4c16-91f1-05fe13b8d5f8",
+      "AddedOn": "2016-06-18T18:16:15",
+      "Description": "",
+      "Title": "Visualizing Recursion (11:05)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/0d906d1e-6fb5-4726-b430-9bc1cc77354f.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e8a8f6c7-c4b8-4d9f-8b61-51ccb71332b5",
+      "AddedOn": "2016-06-18T18:15:18",
+      "Description": "",
+      "Title": "Modeling (11:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/f2980530-3574-46fd-848e-e1dfa88d6773.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "66b23547-12f5-43e2-a080-de6731c5af36",
+      "AddedOn": "2016-06-18T18:12:36",
+      "Description": "",
+      "Title": "Linear vs. binary search (12:07)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fa96a0bb-9d2a-4ccc-98e0-08cbf0c9ed68.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "60a231b3-bec6-4b8a-abd1-f528796319f4",
+      "AddedOn": "2016-06-18T18:09:47",
+      "Description": "",
+      "Title": "Queues and boundary cases (8:53)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b9272d0e-3dcc-4461-b705-70cd7f7bfcc6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "5ed7c6d0-635b-4665-b13e-9e6038801c9f",
+      "AddedOn": "2016-06-18T18:07:49",
+      "Description": "",
+      "Title": "Programming tips - 5 (10:30)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/fbff9f6f-5c4c-4a4f-a03b-c2bdf3b80a8e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "908cb677-798f-4abd-aa3e-872affc3babf",
+      "AddedOn": "2016-06-18T18:07:43",
+      "Description": "",
+      "Title": "CodeSkulptor (11:22)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c7ddf956-984a-40e4-b396-ffa4e9918c6a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "bea7c0f1-5dae-4bd2-a161-b509ee2a4c79",
+      "AddedOn": "2016-06-18T18:06:14",
+      "Description": "",
+      "Title": "Testing (4:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2544a331-fbcc-4620-ac1a-bb9a720b7285.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "73b1fb5e-e879-402f-a710-ac79034dfb16",
+      "AddedOn": "2016-06-18T18:05:42",
+      "Description": "",
+      "Title": "Brute force (11:57)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2c9fbfe5-acdd-47ce-9d27-16cc9c592ce9.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "ef7a5a52-2562-4642-89d4-0d3e5568be7f",
+      "AddedOn": "2016-06-18T18:02:47",
+      "Description": "",
+      "Title": "The Importance of Testing (4:03)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/a92b3bf7-8842-4f4d-a7c9-04bd7d57c367.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "eb2f2621-e84e-4d7b-aaa8-a0e3b57dba98",
+      "AddedOn": "2016-06-18T18:01:38",
+      "Description": "",
+      "Title": "Introduction (3:21)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/10612096-7da6-4415-93dd-d8b6baa14924.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "23cc77d1-ded0-42e5-9a92-33b8c08d0744",
+      "AddedOn": "2016-06-18T18:01:15",
+      "Description": "",
+      "Title": "BFS running time - tighter analysis (11:52)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ead551b6-e52b-4549-8aa4-2f9a0e6b4341.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c625c95e-963b-47a8-9812-04c47f4d7284",
+      "AddedOn": "2016-06-18T17:58:33",
+      "Description": "",
+      "Title": "Object-oriented programming - 2 (8:43)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cec5d952-fbe5-4df0-b472-c4b316c8cd93.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "1559b4d4-405b-4f8e-9445-abc5207dc69a",
+      "AddedOn": "2016-06-18T17:57:46",
+      "Description": "",
+      "Title": "Collisions and reflections (12:49)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/1c15cdd0-6d92-4c9f-a534-775e23fafa80.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8f6c5677-c185-4f04-816b-ae7ae70d2539",
+      "AddedOn": "2016-06-18T17:56:59",
+      "Description": "",
+      "Title": "Wrapup for Part 1",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/6f6b277d-9b10-4c95-99be-d677c0052629.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "f2f00849-3142-431a-be88-280410dd6054",
+      "AddedOn": "2016-06-18T17:56:46",
+      "Description": "",
+      "Title": "Combinatorics and Password Breaking (15:32)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ba91a732-51fd-4814-a105-909676b65da1.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "1f388977-0e23-4343-86e8-2f727dbb0507",
+      "AddedOn": "2016-06-18T17:53:15",
+      "Description": "",
+      "Title": "CodeSkulptor (11:22) (optional video from our previous class)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cef4ef38-bd1b-46bf-9b5e-1a0d2b000e62.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "78168046-dea8-4258-aa12-f32acdaa5863",
+      "AddedOn": "2016-06-18T17:53:08",
+      "Description": "",
+      "Title": "Rock-paper-scissors-lizard-Spock (15:55)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/04003c1f-20ff-4d3f-8da5-8dd332e08b27.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "63f599e6-988c-443f-a400-c3d1cddd4ac6",
+      "AddedOn": "2016-06-18T17:51:53",
+      "Description": "",
+      "Title": "The Master Theorem and MergeSort efficiency (12:21)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/90411cb5-2350-4a3f-a4ee-227bbb95324d.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e87b2e62-d609-4b47-8e69-ce50c0e83d89",
+      "AddedOn": "2016-06-18T17:49:10",
+      "Description": "",
+      "Title": "Programming tips - 2 (13:32)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/d2a2d8b4-2708-4bd4-a724-d61909699868.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "6a97a1e2-adfd-4bd4-89b5-7d2d03d8896e",
+      "AddedOn": "2016-06-18T17:48:15",
+      "Description": "",
+      "Title": "Saving in CodeSkulptor (9:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/93eb9886-ddc5-45b8-a1cd-d0214d46153f.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "bed4ab49-8573-47cc-bf97-496eb6f07bba",
+      "AddedOn": "2016-06-18T17:47:17",
+      "Description": "",
+      "Title": "Grid Class (12:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ac9de3f0-35fb-4cff-9dd4-d0356659e3c0.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "55cedcef-96b4-43d7-87d1-171af04177aa",
+      "AddedOn": "2016-06-18T17:45:57",
+      "Description": "",
+      "Title": "Visualizing objects (8:02)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/f8044285-53b6-47c4-88aa-a9eeeb6e52ff.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "2a4746ff-8af8-4c8b-8a63-4c11efba280d",
+      "AddedOn": "2016-06-18T17:45:51",
+      "Description": "",
+      "Title": "Illustrating &quot;Big O&quot; (11:12)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/8e0ecceb-16ef-4e65-89c1-80d823c21979.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "db4d1b21-86b6-463c-9f7e-3dc8d1fe95c6",
+      "AddedOn": "2016-06-18T17:42:40",
+      "Description": "",
+      "Title": "Running time of the DP algorithm (8:20)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2faf229c-84e8-4bc6-a15b-dd6c51b84d9a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "cdfb165b-86f3-44fa-96a9-f41fb243fc54",
+      "AddedOn": "2016-06-18T17:40:30",
+      "Description": "",
+      "Title": "Plotting (6:33)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/3baab35e-925f-4d62-9d98-6c07a2812664.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "89a58f73-d841-44db-89e2-a9779e64ecc9",
+      "AddedOn": "2016-06-18T17:39:42",
+      "Description": "",
+      "Title": "Class structure (4:46)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ad39b418-ba7e-47bd-b183-3d91e0fbe5cf.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "eb448d88-fc51-49e7-a204-333e1e65d301",
+      "AddedOn": "2016-06-18T17:38:30",
+      "Description": "",
+      "Title": "The recurrence for MergeSort (9:55)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/f3cf9ade-9be3-4fc7-b19c-c6b03818423a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "9312cb2f-7aab-4287-9dc3-c0e8f212cbf6",
+      "AddedOn": "2016-06-18T17:35:57",
+      "Description": "",
+      "Title": "Canvas and drawing (12:53)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/64b229f9-fa59-4c5f-9880-da29c11abf4a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "2083d2e0-8fb8-456b-b2b8-a81e41b14c7f",
+      "AddedOn": "2016-06-18T17:35:02",
+      "Description": "",
+      "Title": "Object-oriented programming - 1 (9:34)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/7d7c2c04-c0f7-4fa2-a064-d112908d8a54.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "104bd32e-a5fb-4f94-a6c6-d46ddb4f8354",
+      "AddedOn": "2016-06-18T17:34:12",
+      "Description": "",
+      "Title": "What Is algorithm efficiency? (9:29)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/696aa239-8691-4937-a652-815cfd4613c0.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e4afa245-f049-41ea-b895-d4e878b01065",
+      "AddedOn": "2016-06-18T17:31:56",
+      "Description": "",
+      "Title": "Timers (9:58)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/b3ec88b0-09a1-48fc-bdf6-c694f64c5878.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "94717e0c-b6cf-42c8-b868-958eb3f068f9",
+      "AddedOn": "2016-06-18T17:30:53",
+      "Description": "",
+      "Title": "Iteration (12:34)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/9e61dd01-9458-4134-825d-5645c1905a0e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c1301c27-bc29-4cdc-be6a-127ff4b59f44",
+      "AddedOn": "2016-06-18T17:29:36",
+      "Description": "",
+      "Title": "Pong (11:51)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/dfe3247e-1b9c-41c4-a997-4e5329ebe9ef.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "89cef4dc-f803-48a0-98de-61c190638849",
+      "AddedOn": "2016-06-18T17:28:38",
+      "Description": "",
+      "Title": "Sound (5:22)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2ad83295-550b-49aa-b088-7899be915a0d.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "89d4c500-bcd2-481a-85fc-9762d5c7fa58",
+      "AddedOn": "2016-06-18T17:27:59",
+      "Description": "",
+      "Title": "Sets (11:44)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/ff7f3d50-3ada-4300-b5a6-41d5936be516.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "bc37ed9d-b8d7-4d98-aebd-23c5717c7a77",
+      "AddedOn": "2016-06-18T17:26:44",
+      "Description": "",
+      "Title": "Images (11:00)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/65dea206-d5f1-4687-882b-ea51d89683a4.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "1e7f4676-6f9b-491e-a6b6-8912a16f1054",
+      "AddedOn": "2016-06-18T17:25:56",
+      "Description": "",
+      "Title": "Programming tips - 7 (20:25)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/870f5535-bc4f-433c-8cef-5a1bd41543c8.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e9824e25-aa7f-4a28-b46e-121180d53696",
+      "AddedOn": "2016-06-18T17:24:33",
+      "Description": "",
+      "Title": "Velocity control (9:22)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/6787d95f-4f61-4f0c-a7fe-f0e0a1785b53.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "50ba3cef-7d66-44a9-9a5f-67bf74c2587f",
+      "AddedOn": "2016-06-18T17:23:55",
+      "Description": "",
+      "Title": "Event-driven programming (13:13)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/4da5a838-cb99-423b-919b-f5a6ee385e81.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "8c5bc29c-6203-41ea-a61a-b481b174fccc",
+      "AddedOn": "2016-06-18T17:22:34",
+      "Description": "",
+      "Title": "Stacks and Queues (9:12)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/6e9401db-664d-4d35-acd9-84f7690c2327.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "5992267f-9c30-49cc-9eab-669a4f700902",
+      "AddedOn": "2016-06-18T17:21:25",
+      "Description": "",
+      "Title": "Tic-Tac-Toe - Minimax (11:40)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/379a0578-de26-4455-8085-594e9591649b.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "f5302fd7-1b46-4641-86ee-68e68212a050",
+      "AddedOn": "2016-06-18T17:20:09",
+      "Description": "",
+      "Title": "What is Algorithmic Thinking? (9:24)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/26809026-ae69-42fb-b1f3-959a15fe6164.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "528b017d-a088-40fb-9e56-890d9cd7a6db",
+      "AddedOn": "2016-06-18T17:17:46",
+      "Description": "",
+      "Title": "Beyond CodeSkulptor (15:12) (optional video from our previous class)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/cb5705e6-497e-46e1-99ae-b111060b2561.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "74312789-e335-4a4a-8bbf-a0606e6b419b",
+      "AddedOn": "2016-06-18T17:17:36",
+      "Description": "",
+      "Title": "Reading Files (8:57)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/8f2f3ff7-bdc5-4793-b16e-f26e551f2eef.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "531bfd9c-c105-476f-a480-1eaa988a36c2",
+      "AddedOn": "2016-06-18T17:16:36",
+      "Description": "",
+      "Title": "Invariants (13:22)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/8ada1dd4-1dbc-432a-b897-5275cfa42baa.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "dd78912c-6f8e-4de9-bfbe-a43a90c330a3",
+      "AddedOn": "2016-06-18T17:15:28",
+      "Description": "",
+      "Title": "Collisions for sprites (13:38)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/0626e800-4154-4be2-89d4-45d99674c550.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "b77a4c4a-3436-42d0-ba6a-2a4617024aa8",
+      "AddedOn": "2016-06-18T17:14:01",
+      "Description": "",
+      "Title": "Motion (14:01)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/d05c6484-6973-405d-8947-39da824c4b8a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "77c868ba-a960-40ee-8a02-33602929f61d",
+      "AddedOn": "2016-06-18T17:12:39",
+      "Description": "",
+      "Title": "Minimax (10:26)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/6477b13f-58c6-4ccb-a6d2-e19b20d68c02.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "a2a2520e-44d9-42d0-bac6-2010f28d335d",
+      "AddedOn": "2016-06-18T17:11:23",
+      "Description": "",
+      "Title": "Sprite class (14:21)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/346d0b2d-acf3-4fd5-b2fd-aed43359c918.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d55ba26c-0a8d-4a27-8c72-faedb928717c",
+      "AddedOn": "2016-06-18T17:10:30",
+      "Description": "",
+      "Title": "Tic-Tac-Toe - Monte Carlo (9:39)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/4d62b548-e943-4886-bd81-7779ba37b85a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "24f88ac5-ea77-4197-98c4-267bb4ae1aa6",
+      "AddedOn": "2016-06-18T17:09:23",
+      "Description": "",
+      "Title": "Acceleration and friction (14:40)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/134f55f3-3573-48f2-add1-d6588360285c.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "17e9c2a5-e687-4983-a55d-0faf893c3d25",
+      "AddedOn": "2016-06-18T17:08:20",
+      "Description": "",
+      "Title": "Pseudo-code (11:05)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/39dfc5ba-8caf-49d2-a8e7-2d8594118498.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c974838d-0f84-4034-bdf9-893a6dabb85b",
+      "AddedOn": "2016-06-18T17:05:47",
+      "Description": "",
+      "Title": "List methods (11:32)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/aaf2418e-4485-4cda-bc85-449177e4a667.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "c00093ac-96c1-41ef-a590-d8ada5106848",
+      "AddedOn": "2016-06-18T17:05:38",
+      "Description": "",
+      "Title": "Dictionaries (12:18)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/af36a147-7846-4c93-87df-6f88c93be323.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "356884ab-7ace-4173-b8b4-5535ae078cc7",
+      "AddedOn": "2016-06-18T17:05:29",
+      "Description": "",
+      "Title": "Visualizing events (5:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/a23c9501-5548-4008-bf92-03f15fa608c1.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "99184dc3-467f-4e54-9a16-fc3d34fae05f",
+      "AddedOn": "2016-06-18T17:05:24",
+      "Description": "",
+      "Title": "Memory (12:48)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c7f912e6-744e-4ccd-8f5d-d7486adf37f5.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "74b6c2d5-9a20-4949-85cc-25c0fc7225f3",
+      "AddedOn": "2016-06-18T17:04:13",
+      "Description": "",
+      "Title": "Zombie Apocalypse (9:43)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/258e9c86-b399-4f05-a0dd-f523c489864b.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e11abaa9-0677-41fc-ba4c-08df60814cb8",
+      "AddedOn": "2016-06-18T17:02:56",
+      "Description": "",
+      "Title": "Class wrap up (4:51)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/7be32e5f-4969-48e8-8df6-118b95406114.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "b6dd2342-86f4-4e6e-adef-5ff12c152391",
+      "AddedOn": "2016-06-18T17:02:21",
+      "Description": "",
+      "Title": "Illustrating MergeSort (13:17)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/baef2f60-10d9-4c7a-9b7e-3b12b946084f.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "49bdf72d-037c-44cc-ad1c-a3e11f075724",
+      "AddedOn": "2016-06-18T16:58:58",
+      "Description": "",
+      "Title": "Coding Style and Standards (11:53)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/6eefc2d7-eaea-436e-9543-6cb8250808e3.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "d4ef3205-1fbf-4d18-b692-10a581680baa",
+      "AddedOn": "2016-06-18T16:57:41",
+      "Description": "",
+      "Title": "The small-world problem (11:56)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/c15da9b1-1f2c-474c-93aa-7f936808893b.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "46d73ede-f510-4dab-a715-a957c677206c",
+      "AddedOn": "2016-06-18T16:54:40",
+      "Description": "",
+      "Title": "Stopwatch: The game (9:52)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/f2ec1441-5b79-4414-b896-0da454b42b93.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "5200e795-a819-4e5c-8095-68bab31b75ab",
+      "AddedOn": "2016-06-18T16:53:55",
+      "Description": "",
+      "Title": "Pseudocode (12:29)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/043ce343-62f3-40f5-a8fd-96e0da9a991c.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "0fec8399-645f-466b-a404-0318e13de47b",
+      "AddedOn": "2016-06-18T16:50:55",
+      "Description": "",
+      "Title": "Cookie Clicker (7:59)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/55c04c52-ef06-44d8-bc10-d32f29c21557.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "2212d091-cb16-4102-8102-3aa7429b73ba",
+      "AddedOn": "2016-06-18T16:50:01",
+      "Description": "",
+      "Title": "Graphs and representation (15:20)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/6b2bd179-a8f3-4a5e-ab84-c3a2a5f816e5.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "f48e60e5-b902-435b-a63a-66dde62c9b61",
+      "AddedOn": "2016-06-18T16:46:17",
+      "Description": "",
+      "Title": "Grid search (9:51)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/9c883bfd-2e8e-4af5-bfde-c0f252537e96.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "3ebfba4f-e517-4aaa-8e9b-4e09eae136ad",
+      "AddedOn": "2016-06-18T16:45:17",
+      "Description": "",
+      "Title": "Logic and comparisons (10:05)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/eec5a477-9834-49bb-b93a-0d6f2f41f07b.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "4006e8de-3179-4666-ac15-c55c8fcd8e5e",
+      "AddedOn": "2016-06-18T16:44:15",
+      "Description": "",
+      "Title": "Objects and References (11:53)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/df5090b8-7d38-4415-a8dd-0d7ac548ea28.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "a6a94c41-4618-473c-a37b-e7eeacdb4657",
+      "AddedOn": "2016-06-18T16:42:59",
+      "Description": "",
+      "Title": "Visualizing lists and mutation",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/74429494-c031-45f8-a8a9-7f1ff77740fc.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "e2d186ab-39ee-4f09-9956-2eb2eb0664e9",
+      "AddedOn": "2016-06-18T16:42:54",
+      "Description": "",
+      "Title": "A simple quadratic algorithm (10:26)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/1a663ed0-d1c5-4a5f-9b49-ef4c64e33393.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "5afeab12-73a8-44f5-b950-2087e10c1c61",
+      "AddedOn": "2016-06-18T16:40:16",
+      "Description": "",
+      "Title": "Enumeration (10:27)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/d2d62b59-f97c-44ce-ae87-3decff53ec20.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "728796da-491b-4e04-9c20-80b12cb0c635",
+      "AddedOn": "2016-06-18T16:39:18",
+      "Description": "",
+      "Title": "Software Development (14:52)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/02e55598-f562-4747-a16b-43150f5768a6.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "19b00c56-3a66-403a-8e0a-648cdd5c3f16",
+      "AddedOn": "2016-06-18T16:37:31",
+      "Description": "",
+      "Title": "Efficiency of binary search (10:44)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/1e1beb25-32fe-49fe-baac-51c62f5d405e.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "386f924b-bd7b-42a0-a116-3e558cf20090",
+      "AddedOn": "2016-06-18T16:35:00",
+      "Description": "",
+      "Title": "Permutations and Combinations (13:35)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/e7708703-d9ef-4dbd-85a8-7a346481a6ab.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "bc0bc28a-c101-45b2-863d-ce2ee2c0c6ca",
+      "AddedOn": "2016-06-18T16:33:28",
+      "Description": "",
+      "Title": "Interactive drawing (12:32)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/a614fb86-706d-44c2-b52d-0177b2027b0a.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "9cfcccf2-b9c0-4cfa-bae1-93e032ebc0cc",
+      "AddedOn": "2016-06-18T16:32:34",
+      "Description": "",
+      "Title": "Programming tips - 8 (4:23)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/2183c90f-a662-459c-80b6-e0cf6e46b839.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "daab5d5f-f51a-4a08-8276-7d66c2794a49",
+      "AddedOn": "2016-06-18T16:32:15",
+      "Description": "",
+      "Title": "List examples (11:34)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/a2b41e40-e4d7-431c-890d-798364439d7f.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
+      "ID": "7789c498-02c4-4358-b5f3-b437dd828670",
+      "AddedOn": "2016-06-18T16:32:03",
+      "Description": "",
+      "Title": "Word Wrangler (13:02)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/21f09b73-546f-4443-a83b-89d669ec86f5.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    }
+  ],
+  "Pager": {
+    "TotalRecords": 163,
+    "PageIndex": 1,
+    "PageSize": 9999,
+    "NumberOfPages": 1
+  },
+  "Settings": null
+}

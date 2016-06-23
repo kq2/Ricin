@@ -57,6 +57,3 @@ def run(library_id):
     for idx, (path, title) in enumerate(videos.values()):
         print '{}/{}'.format(idx + 1, num_videos), path
         upload(path, title, upload_access)
-
-
-# run('457006af-2dd9-4f5a-a310-8fcef3d02eeb')
