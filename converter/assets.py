@@ -18,7 +18,12 @@ def add_resources(assets_folder):
     for idx, path in enumerate(all_files(assets_folder)):
         canvas_id = '{}_{}'.format('asset', idx + 1)
         canvas_path = 'web_resources/' + path
-        args = {'id': canvas_id, 'type': 'webcontent', 'path': canvas_path}
+        args = {
+            'id': canvas_id,
+            'type': 'webcontent',
+            'path': canvas_path,
+            'files': resource.FILE.format(canvas_path)
+        }
         ans += resource.TEMPLATE.format(**args)
     return ans
 

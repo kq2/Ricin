@@ -41,7 +41,12 @@ def convert(course, item):
         make_canvas_video_page(course, coursera_file, canvas_file,
                                canvas_title, canvas_id, ensemble_id)
 
-        args = {'id': canvas_id, 'type': 'webcontent', 'path': canvas_path}
+        args = {
+            'id': canvas_id,
+            'type': 'webcontent',
+            'path': canvas_path,
+            'files': resource.FILE.format(canvas_path)
+        }
         return resource.TEMPLATE.format(**args)
 
     return ''

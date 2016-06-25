@@ -17,9 +17,11 @@ MANIFEST = u'''<?xml version="1.0" encoding="UTF-8"?>
 </manifest>'''
 
 TEMPLATE = u'''
-    <resource identifier="{id}" type="{type}" href="{path}">
-      <file href="{path}" />
+    <resource identifier="{id}" type="{type}" href="{path}">{files}
     </resource>'''
+
+FILE = u'''
+      <file href="{}"/>'''
 
 
 def write_manifest(manifest_file, resources):
