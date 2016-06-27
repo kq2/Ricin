@@ -53,6 +53,7 @@ def make_canvas_wiki(coursera_wiki_file, coursera_title,
     util.write_file(canvas_wiki_file, canvas_wiki)
 
 
+# helper functions
 def get_canvas_wiki_filename(coursera_wiki_title):
     ans = coursera_wiki_title.lower()
     ans = ans.replace('*', 'star')
@@ -61,11 +62,17 @@ def get_canvas_wiki_filename(coursera_wiki_title):
 
 
 def convert_content(coursera_content, course):
-    ans = remove_link_title(coursera_content)
+    ans = remove_extra_spaces(coursera_content)
     ans = replace_video_links(ans, course)
     ans = replace_wiki_links(ans, course)
     ans = replace_assets_links(ans)
+    ans = remove_link_title(ans)
     return ans
+
+
+def remove_extra_spaces(text):
+    pattern = r'((href)|(title)|(target)|(src))[ \s]+=[ \s]+"'
+    return re.sub(pattern, r'\1="', text)
 
 
 def remove_link_title(coursera_content):

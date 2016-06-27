@@ -158,14 +158,16 @@ def make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
     """
     Create a Canvas quiz (2 XML files).
     """
-    quiz = util.read_xml(coursera_file)
+    xml = util.read_file(coursera_file)
+    xml = wiki.convert_content(xml, course)
+    quiz = util.read_xml(xml, is_string=True)
 
     metadata = quiz.find('metadata')
     preamble = quiz.findtext('preamble')
     data = quiz.find('data')
 
     file1 = make_canvas_metadata(metadata, preamble, is_survey, canvas_id, canvas_folder)
-    file2 = make_canvas_data(data, metadata, canvas_id, canvas_folder, course)
+    file2 = make_canvas_data(data, metadata, canvas_id, canvas_folder)
     files = resource.FILE.format(file1) + resource.FILE.format(file2)
 
     args = {
@@ -198,7 +200,7 @@ def make_canvas_metadata(metadata, preamble, is_survey, canvas_id, canvas_folder
     return file_name
 
 
-def make_canvas_data(data, metadata, canvas_id, canvas_folder, course):
+def make_canvas_data(data, metadata, canvas_id, canvas_folder):
     """
     Create an XML file for data.
     """
@@ -206,7 +208,7 @@ def make_canvas_data(data, metadata, canvas_id, canvas_folder, course):
     args = {
         'quiz_id': canvas_id,
         'title': metadata.findtext('title'),
-        'question_groups': canvas_question_groups(question_groups, canvas_id, course)
+        'question_groups': canvas_question_groups(question_groups, canvas_id)
     }
     content = DATA.format(**args)
     file_name = 'non_cc_assessments/{}.xml.qti'.format(canvas_id)
@@ -215,7 +217,7 @@ def make_canvas_data(data, metadata, canvas_id, canvas_folder, course):
     return file_name
 
 
-def canvas_question_groups(question_groups, canvas_id, course):
+def canvas_question_groups(question_groups, canvas_id):
     """
     Return a string of Canvas question groups.
     """
@@ -226,11 +228,11 @@ def canvas_question_groups(question_groups, canvas_id, course):
         group_title = '{}/{}'.format(idx + 1, num_group)
         question_group.set('id', group_id)
         question_group.set('title', group_title)
-        ans += canvas_question_group(question_group, course)
+        ans += canvas_question_group(question_group)
     return ans
 
 
-def canvas_question_group(question_group, course):
+def canvas_question_group(question_group):
     """
     Return a string of a Canvas question group.
     """
@@ -242,13 +244,13 @@ def canvas_question_group(question_group, course):
     args = {
         'group_id': question_group.get('id'),
         'num_select': num_select,
-        'questions': canvas_questions(question_group, questions, course)
+        'questions': canvas_questions(question_group, questions)
     }
 
     return QUESTION_GROUP.format(**args)
 
 
-def canvas_questions(question_group, questions, course):
+def canvas_questions(question_group, questions):
     """
     Return a string of Canvas questions.
     """
@@ -264,11 +266,11 @@ def canvas_questions(question_group, questions, course):
         question_title = question_group.get('title')
         question.set('title', question_title)
 
-        ans += canvas_question(question, course)
+        ans += canvas_question(question)
     return ans
 
 
-def canvas_question(question, course):
+def canvas_question(question):
     """
     Return a string of a Canvas question.
     """
@@ -278,26 +280,25 @@ def canvas_question(question, course):
         'question_type': question.get('type'),
         'question_title': question.get('title'),
         'question_points': question.findtext('metadata/parameters/rescale_score'),
-        'presentation': canvas_presentation(question, options, course),
+        'presentation': canvas_presentation(question, options),
         'processing': canvas_processing(question, options),
         'feedback': canvas_feedback(question, options)
     }
     return QUESTION.format(**args)
 
 
-def canvas_presentation(question, options, course):
+def canvas_presentation(question, options):
     """
     Return a string of a Canvas presentation.
     """
-    question_text = question.findtext('data/text')
     args = {
-        'question': wiki.convert_content(question_text, course),
-        'options': canvas_present_options(question, options, course)
+        'question': question.findtext('data/text'),
+        'options': canvas_present_options(question, options)
     }
     return PRESENTATION.format(**args)
 
 
-def canvas_present_options(question, options, course):
+def canvas_present_options(question, options):
     """
     Return a string of Canvas options.
     """
@@ -309,7 +310,7 @@ def canvas_present_options(question, options, course):
         fib_type = 'fibtype="Decimal"'
     elif question_type in ('multiple_choice_question', 'multiple_answers_question'):
         for option in options:
-            present_options += canvas_present_option(option, course)
+            present_options += canvas_present_option(option)
 
     args = {
         'fib_type': fib_type,
@@ -318,14 +319,13 @@ def canvas_present_options(question, options, course):
     return OPTIONS[question_type].format(**args)
 
 
-def canvas_present_option(option, course):
+def canvas_present_option(option):
     """
     Return a string of a Canvas option.
     """
-    option_text = option.findtext('text')
     args = {
         'option_id': option.get('id'),
-        'option_text': wiki.convert_content(option_text, course)
+        'option_text': option.findtext('text')
     }
     return OPTION.format(**args)
 
@@ -381,6 +381,9 @@ def canvas_process_answer(question, options):
 
 
 def canvas_feedback(question, options):
+    """
+    Return a string of Canvas feedback.
+    """
     ans = ''
 
     general_feedback = question.findtext('data/explanation')
@@ -404,8 +407,10 @@ def canvas_feedback(question, options):
 
 
 # helper functions
-
 def canvas_question_type(question):
+    """
+    Return a Canvas question type from a Coursera type.
+    """
     ans = question.find('metadata/parameters')[1].text
     ans = QUESTION_TYPE[ans]
 
@@ -417,7 +422,10 @@ def canvas_question_type(question):
 
 
 def canvas_options(question):
-    # Canvas does no support option group
+    """
+    Since Canvas does no support option group, this function
+    returns a list of all option nodes in all groups.
+    """
     ans = []
     question_id = question.get('id')
     option_groups = question.find('data/option_groups')
@@ -429,10 +437,16 @@ def canvas_options(question):
 
 
 def answer_split(question):
+    """
+    Return '' if no answer split.
+    """
     return question.findtext('metadata/parameters/split/limit')
 
 
 def option_correct(option, question, fully=False):
+    """
+    Return True if option is correct.
+    """
     question_points = question.findtext('metadata/parameters/rescale_score')
     option_points = option.get('selected_score')
     if fully:
@@ -441,6 +455,9 @@ def option_correct(option, question, fully=False):
 
 
 def text_condition(question, option):
+    """
+    Return the match condition of a text option.
+    """
     question_type = question.get('type')
     option_text = option.findtext('text')
 
@@ -461,6 +478,9 @@ def text_condition(question, option):
 
 
 def feedback_condition(question, option):
+    """
+    Return the match condition of a feedback.
+    """
     question_type = question.get('type')
     if question_type in ('multiple_choice_question', 'multiple_answers_question'):
         return CONDITION_EQUAL.format(option.get('id'))
@@ -471,6 +491,9 @@ def feedback_condition(question, option):
 
 
 def answer_condition(question, options):
+    """
+    Return the match condition of a question's answer.
+    """
     if answer_split(question):
         ans = []
         for option in options:
@@ -479,9 +502,9 @@ def answer_condition(question, options):
         return CONDITION_EQUAL.format(' '.join(ans))
 
     question_type = question.get('type')
+    ans = ''
 
     if question_type is 'short_answer_question':
-        ans = ''
         for option in options:
             if option_correct(option, question, True):
                 option_text = option.findtext('text')
@@ -489,7 +512,6 @@ def answer_condition(question, options):
         return OR.format(ans)
 
     if question_type is 'numerical_question':
-        ans = ''
         for option in options:
             if option_correct(option, question, True):
                 option_text = option.findtext('text')
@@ -501,7 +523,6 @@ def answer_condition(question, options):
         return OR.format(ans)
 
     if question_type is 'multiple_choice_question':
-        ans = ''
         for option in options:
             if option_correct(option, question, True):
                 option_id = option.get('id')
@@ -509,7 +530,6 @@ def answer_condition(question, options):
         return OR.format(ans)
 
     if question_type is 'multiple_answers_question':
-        ans = ''
         for option in options:
             option_id = option.get('id')
             if option_correct(option, question):
@@ -518,5 +538,4 @@ def answer_condition(question, options):
                 ans += NOT.format(option_id)
         return AND.format(ans)
 
-
-# print make_canvas_quiz('test.xml', False, 'quiz_1', 'canvas')
+    return ans

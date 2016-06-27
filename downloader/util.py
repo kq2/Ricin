@@ -178,14 +178,14 @@ def pretty_json(json_obj):
     return json.dumps(json_obj, indent=4)
 
 
-def xml_root(xml_file):
+def read_xml(xml, is_string=False):
     """
-    Returns the root of XML tree.
-    :param xml_file: A given XML file.
-    :return: The root of this XML tree.
+    Return the root of an XML tree.
     """
-    tree = ElementTree.parse(xml_file)
-    return tree.getroot()
+    if is_string:
+        return ElementTree.fromstring(xml)
+    else:
+        return ElementTree.parse(xml).getroot()
 
 
 def unescape(text):
