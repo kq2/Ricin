@@ -17,13 +17,14 @@ QUESTION_TYPE = {
 }
 
 METADATA = u'''<?xml version="1.0" encoding="UTF-8"?>
-<quiz>
+<quiz identifier="{quiz_id}">
   <title><![CDATA[{title}]]></title>
   <description><![CDATA[{preamble}]]></description>
   <shuffle_answers>{shuffle}</shuffle_answers>
   <scoring_policy>keep_highest</scoring_policy>
   <quiz_type>{quiz_type}</quiz_type>
   <points_possible>{points}</points_possible>
+  <lockdown_browser_monitor_data/>
   <show_correct_answers>{show_answer}</show_correct_answers>
   <anonymous_submissions>false</anonymous_submissions>
   <allowed_attempts>{attempts}</allowed_attempts>
@@ -31,7 +32,25 @@ METADATA = u'''<?xml version="1.0" encoding="UTF-8"?>
   <cant_go_back>false</cant_go_back>
   <available>false</available>
   <one_time_results>false</one_time_results>
-  <show_correct_answers_last_attempt>false</show_correct_answers_last_attempt>
+  <show_correct_answers_last_attempt>true</show_correct_answers_last_attempt>
+  <module_locked>false</module_locked>
+  <assignment identifier="{assignment_id}">
+    <title><![CDATA[{title}]]></title>
+    <module_locked>false</module_locked>
+    <assignment_group_identifierref>quizzes</assignment_group_identifierref>
+    <workflow_state>unpublished</workflow_state>
+    <quiz_identifierref>{quiz_id}</quiz_identifierref>
+    <has_group_category>false</has_group_category>
+    <points_possible>{points}</points_possible>
+    <grading_type>points</grading_type>
+    <all_day>false</all_day>
+    <submission_types>online_quiz</submission_types>
+    <position>{position}</position>
+    <peer_review_count>0</peer_review_count>
+    <peer_reviews>false</peer_reviews>
+    <automatic_peer_reviews>false</automatic_peer_reviews>
+    <muted>false</muted>
+  </assignment>
 </quiz>'''
 DATA = u'''<?xml version="1.0" encoding="UTF-8"?>
 <questestinterop>
@@ -45,6 +64,9 @@ QUESTION_GROUP = u'''
         <selection_ordering>
           <selection>
             <selection_number>{num_select}</selection_number>
+            <selection_extension>
+              <points_per_item>{points}</points_per_item>
+            </selection_extension>
           </selection>
         </selection_ordering>{questions}
       </section>'''
@@ -143,6 +165,9 @@ def convert(course, item):
     """
     Create a Canvas quiz from a Coursera quiz.
     """
+    if item['__published'] is -1:
+        return ''
+
     coursera_id = item['item_id']
     coursera_folder = course.get_coursera_folder()
     coursera_file = '{}/quiz/{}.xml'.format(coursera_folder, coursera_id)
@@ -166,23 +191,27 @@ def make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
     preamble = quiz.findtext('preamble')
     data = quiz.find('data')
 
-    file1 = make_canvas_metadata(metadata, preamble, is_survey, canvas_id, canvas_folder)
-    file2 = make_canvas_data(data, metadata, canvas_id, canvas_folder)
-    files = resource.FILE.format(file1) + resource.FILE.format(file2)
+    metadata.set('canvas_id', canvas_id)
+    metadata.set('is_survey', is_survey)
+
+    metadata_file = make_canvas_metadata(metadata, preamble, canvas_folder)
+    data_file = make_canvas_data(data, metadata, canvas_folder)
 
     args = {
         'id': canvas_id,
         'type': 'associatedcontent/imscc_xmlv1p1/learning-application-resource',
-        'path': file1,
-        'files': files
+        'path': metadata_file,
+        'files': resource.FILE.format(metadata_file) + resource.FILE.format(data_file)
     }
     return resource.TEMPLATE.format(**args)
 
 
-def make_canvas_metadata(metadata, preamble, is_survey, canvas_id, canvas_folder):
+def make_canvas_metadata(metadata, preamble, canvas_folder):
     """
     Create an XML file for metadata.
     """
+    canvas_id = metadata.get('canvas_id')
+    is_survey = metadata.get('is_survey')
     args = {
         'title': metadata.findtext('title'),
         'points': metadata.findtext('maximum_score'),
@@ -191,7 +220,9 @@ def make_canvas_metadata(metadata, preamble, is_survey, canvas_id, canvas_folder
         'show_answer': 'false' if is_survey else 'true',
         'shuffle': 'false' if is_survey else 'true',
         'preamble': preamble,
-        'quiz_id': canvas_id
+        'quiz_id': canvas_id,
+        'assignment_id': 'a_' + canvas_id,
+        'position': canvas_id.rpartition('_')[2]
     }
     content = METADATA.format(**args)
     file_name = '{}/assessment_meta.xml'.format(canvas_id)
@@ -200,10 +231,11 @@ def make_canvas_metadata(metadata, preamble, is_survey, canvas_id, canvas_folder
     return file_name
 
 
-def make_canvas_data(data, metadata, canvas_id, canvas_folder):
+def make_canvas_data(data, metadata, canvas_folder):
     """
     Create an XML file for data.
     """
+    canvas_id = metadata.get('canvas_id')
     question_groups = data.find('question_groups')
     args = {
         'quiz_id': canvas_id,
@@ -244,6 +276,7 @@ def canvas_question_group(question_group):
     args = {
         'group_id': question_group.get('id'),
         'num_select': num_select,
+        'points': question_points(questions[0]),
         'questions': canvas_questions(question_group, questions)
     }
 
@@ -279,7 +312,7 @@ def canvas_question(question):
         'question_id': question.get('id'),
         'question_type': question.get('type'),
         'question_title': question.get('title'),
-        'question_points': question.findtext('metadata/parameters/rescale_score'),
+        'question_points': question_points(question),
         'presentation': canvas_presentation(question, options),
         'processing': canvas_processing(question, options),
         'feedback': canvas_feedback(question, options)
@@ -407,6 +440,10 @@ def canvas_feedback(question, options):
 
 
 # helper functions
+def question_points(question):
+    return question.findtext('metadata/parameters/rescale_score')
+
+
 def canvas_question_type(question):
     """
     Return a Canvas question type from a Coursera type.
@@ -447,10 +484,9 @@ def option_correct(option, question, fully=False):
     """
     Return True if option is correct.
     """
-    question_points = question.findtext('metadata/parameters/rescale_score')
     option_points = option.get('selected_score')
     if fully:
-        return option_points == question_points
+        return option_points == question_points(question)
     return float(option_points) > 0
 
 

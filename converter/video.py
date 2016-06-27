@@ -22,34 +22,34 @@ LINK = u'''
 
 
 def convert(course, item):
-    if item['__published'] is 1:
-        coursera_title = item['title']
-        canvas_title = u'\u25B6 ' + coursera_title
+    if item['__published'] is -1:
+        return ''
 
-        coursera_id = item['item_id']
-        canvas_id = item['canvas_id']
+    coursera_title = item['title']
+    canvas_title = u'\u25B6 ' + coursera_title
 
-        ensemble_id = course.get_ensemble_id(coursera_title)
-        canvas_file_name = course.get_wiki_file_name(coursera_id)
+    coursera_id = item['item_id']
+    canvas_id = item['canvas_id']
 
-        coursera_path = 'video/quizzes/{}.json'.format(coursera_id)
-        canvas_path = 'wiki_content/{}.html'.format(canvas_file_name)
+    ensemble_id = course.get_ensemble_id(coursera_title)
+    canvas_file_name = course.get_wiki_file_name(coursera_id)
 
-        coursera_file = course.get_coursera_folder() + '/' + coursera_path
-        canvas_file = course.get_canvas_folder() + '/' + canvas_path
+    coursera_path = 'video/quizzes/{}.json'.format(coursera_id)
+    canvas_path = 'wiki_content/{}.html'.format(canvas_file_name)
 
-        make_canvas_video_page(course, coursera_file, canvas_file,
-                               canvas_title, canvas_id, ensemble_id)
+    coursera_file = course.get_coursera_folder() + '/' + coursera_path
+    canvas_file = course.get_canvas_folder() + '/' + canvas_path
 
-        args = {
-            'id': canvas_id,
-            'type': 'webcontent',
-            'path': canvas_path,
-            'files': resource.FILE.format(canvas_path)
-        }
-        return resource.TEMPLATE.format(**args)
+    make_canvas_video_page(course, coursera_file, canvas_file,
+                           canvas_title, canvas_id, ensemble_id)
 
-    return ''
+    args = {
+        'id': canvas_id,
+        'type': 'webcontent',
+        'path': canvas_path,
+        'files': resource.FILE.format(canvas_path)
+    }
+    return resource.TEMPLATE.format(**args)
 
 
 def make_canvas_video_page(course, coursera_file, canvas_file,

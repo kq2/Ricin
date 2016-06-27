@@ -183,7 +183,7 @@ def read_xml(xml, is_string=False):
     Return the root of an XML tree.
     """
     if is_string:
-        return ElementTree.fromstring(xml)
+        return ElementTree.fromstring(xml.encode('utf-8'))
     else:
         return ElementTree.parse(xml).getroot()
 

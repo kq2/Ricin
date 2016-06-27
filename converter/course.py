@@ -31,6 +31,7 @@ class Course:
         self.canvas_folder = '../../canvas/{}-{}'.format(self.name, self.session)
         self.section_file = (self.coursera_folder + '/session_info/section.json')
         self.manifest = self.canvas_folder + '/imsmanifest.xml'
+        self.assignment_groups = self.canvas_folder + '/course_settings/assignment_groups.xml'
         self.ensemble_id_map = video.ensemble_id_map()
         self.wiki_file_name = {}
         self.resources = ''
@@ -88,6 +89,7 @@ class Course:
 
     def pack(self):
         resource.write_manifest(self.manifest, self.resources)
+        assignment.write_groups(self.assignment_groups)
         util.make_zip(self.canvas_folder)
 
     def convert_assets(self):

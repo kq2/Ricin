@@ -21,6 +21,9 @@ TEMPLATE = u'''<html>
 
 
 def convert(course, item):
+    if item['__published'] is -1:
+        return ''
+
     coursera_title = item['metadata']['title']
     canvas_id = item['canvas_id']
 
