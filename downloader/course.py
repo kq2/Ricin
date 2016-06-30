@@ -162,6 +162,9 @@ class Course:
         path = self.info_folder + '/email_blacklist.csv'
         util.download(url, path, self.cookie_file)
 
+    def download_peer_assessment(self):
+        peer.download_assessment(self)
+
     def upload(self):
         util.upload(self.folder)
 

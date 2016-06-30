@@ -71,8 +71,9 @@ def get(course_url, name='', session=''):
     # _course.download_grades()
     # _course.download_personal_info()
     # _course.download_email_blacklist()
+    # _course.download_peer_assessment()
 
-    _course.download()
+    # _course.download()
     # _course.download_subtitles()
     # _course.download_forum()
     # _course.download_compressed_video()

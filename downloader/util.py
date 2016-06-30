@@ -25,7 +25,7 @@ def upload(course_folder):
     # exclude: original_videos folder, pii.csv, email_blacklist.csv, .DS_Store
     exclude = '.*original_videos/|.*pii\.csv$|.*email_blacklist\.csv$|.*\.DS_Store$'
 
-    cmd = "gsutil -m rsync -r -x '{}' {} {}"
+    cmd = "gsutil -m rsync -r -d -x '{}' {} {}"
     cmd = cmd.format(exclude, course_folder, gs_bucket)
 
     os.system(cmd)
