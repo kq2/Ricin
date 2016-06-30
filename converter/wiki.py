@@ -21,6 +21,9 @@ TEMPLATE = u'''<html>
 
 
 def convert(course, item):
+    if item['__published'] is -1:
+        return ''
+
     coursera_title = item['metadata']['title']
     canvas_id = item['canvas_id']
 
@@ -36,7 +39,12 @@ def convert(course, item):
     make_canvas_wiki(coursera_wiki_file, coursera_title,
                      canvas_wiki_file, canvas_id, course)
 
-    args = {'id': canvas_id, 'type': 'webcontent', 'path': canvas_path}
+    args = {
+        'id': canvas_id,
+        'type': 'webcontent',
+        'path': canvas_path,
+        'files': resource.FILE.format(canvas_path)
+    }
     return resource.TEMPLATE.format(**args)
 
 
@@ -48,6 +56,7 @@ def make_canvas_wiki(coursera_wiki_file, coursera_title,
     util.write_file(canvas_wiki_file, canvas_wiki)
 
 
+# helper functions
 def get_canvas_wiki_filename(coursera_wiki_title):
     ans = coursera_wiki_title.lower()
     ans = ans.replace('*', 'star')
@@ -56,23 +65,29 @@ def get_canvas_wiki_filename(coursera_wiki_title):
 
 
 def convert_content(coursera_content, course):
-    ans = remove_link_title(coursera_content)
+    ans = remove_extra_spaces(coursera_content)
     ans = replace_video_links(ans, course)
     ans = replace_wiki_links(ans, course)
     ans = replace_assets_links(ans)
+    ans = remove_link_title(ans)
     return ans
 
 
+def remove_extra_spaces(text):
+    pattern = r'((href)|(title)|(target)|(src))[ \s]+=[ \s]+"'
+    return re.sub(pattern, r'\1="', text)
+
+
 def remove_link_title(coursera_content):
-    return re.sub(r'title=[ \s]*".*?"', '', coursera_content)
+    return re.sub(r'title=".*?"', '', coursera_content)
 
 
 def replace_wiki_links(coursera_content, course):
-    coursera_link = r'href=[ \s]*"([\w-]+)(#[\w-]+)?"'
+    coursera_link = r'href="(\.\./wiki/)?([\w-]+)(#[\w-]+)?"'
 
     def canvas_link(match):
-        page = course.get_wiki_file_name(match.group(1))
-        pos = match.group(2)
+        page = course.get_wiki_file_name(match.group(2))
+        pos = match.group(3)
         if pos:
             page += pos
         return 'href="$WIKI_REFERENCE$/pages/{}"'.format(page)
@@ -81,7 +96,7 @@ def replace_wiki_links(coursera_content, course):
 
 
 def replace_video_links(coursera_content, course):
-    coursera_link = r'href=[ \s]*"\.\./lecture/(\d+)"'
+    coursera_link = r'href=\.\./lecture/(\d+)"'
     canvas_link = 'href="$WIKI_REFERENCE$/pages/{}"'
     return re.sub(coursera_link,
                   lambda m: canvas_link.format(
