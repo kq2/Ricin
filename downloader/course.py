@@ -165,6 +165,17 @@ class Course:
     def download_peer_assessment(self):
         peer.download_assessment(self)
 
+    def download_stories(self):
+        url = self.url + '/data/api/reports/end_of_course_stories.json'
+        path = self.info_folder + '/end_of_course_stories.json'
+        util.download(url, path, self.cookie_file)
+        util.write_json(path, util.read_json(path))
+
+    def download_instructors(self):
+        url = self.url + '/admin'
+        path = self.info_folder + '/info.html'
+        util.download(url, path)
+
     def upload(self):
         util.upload(self.folder)
 

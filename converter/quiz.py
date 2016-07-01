@@ -165,9 +165,6 @@ def convert(course, item):
     """
     Create a Canvas quiz from a Coursera quiz.
     """
-    if item['__published'] is -1:
-        return ''
-
     coursera_id = item['item_id']
     coursera_folder = course.get_coursera_folder()
     coursera_file = '{}/quiz/{}.xml'.format(coursera_folder, coursera_id)
@@ -176,7 +173,7 @@ def convert(course, item):
     canvas_id = item['canvas_id']
     is_survey = item['quiz_type'] == 'survey'
 
-    return make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
+    make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
 
 
 def make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course):
@@ -203,7 +200,7 @@ def make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
         'path': metadata_file,
         'files': resource.FILE.format(metadata_file) + resource.FILE.format(data_file)
     }
-    return resource.TEMPLATE.format(**args)
+    course.add_resources(args)
 
 
 def make_canvas_metadata(metadata, preamble, canvas_folder):

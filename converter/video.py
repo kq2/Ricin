@@ -22,9 +22,6 @@ LINK = u'''
 
 
 def convert(course, item):
-    if item['__published'] is -1:
-        return ''
-
     coursera_title = item['title']
     canvas_title = u'\u25B6 ' + coursera_title
 
@@ -49,7 +46,7 @@ def convert(course, item):
         'path': canvas_path,
         'files': resource.FILE.format(canvas_path)
     }
-    return resource.TEMPLATE.format(**args)
+    course.add_resources(args)
 
 
 def make_canvas_video_page(course, coursera_file, canvas_file,

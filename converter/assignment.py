@@ -7,8 +7,8 @@ ASSIGNMENT = u'''<?xml version="1.0" encoding="UTF-8"?>
     <position>1</position>
     <group_weight>50.0</group_weight>
   </assignmentGroup>
-  <assignmentGroup identifier="assignments">
-    <title>Assignments</title>
+  <assignmentGroup identifier="projects">
+    <title>Mini-projects</title>
     <position>2</position>
     <group_weight>50.0</group_weight>
   </assignmentGroup>
@@ -16,8 +16,9 @@ ASSIGNMENT = u'''<?xml version="1.0" encoding="UTF-8"?>
 
 
 def convert(course, item):
-    print course, item
+    return ''
 
 
-def write_groups(assignment_groups_file):
-    util.write_file(assignment_groups_file, ASSIGNMENT)
+def make_groups(course):
+    path = course.get_canvas_folder() + '/course_settings/assignment_groups.xml'
+    util.write_file(path, ASSIGNMENT)

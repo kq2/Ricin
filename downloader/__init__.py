@@ -80,8 +80,10 @@ def get(course_url, name='', session=''):
 
     # _course.download_assets()
     # _course.download_original_videos()
+    # _course.download_stories()
+    _course.download_instructors()
 
-    _course.upload()
+    # _course.upload()
 
 
 def get_all():
@@ -94,5 +96,6 @@ def get_all():
 # util.clear_log()
 # get(RICE_URL + IIPP + '-2012-fall', IIPP, '2012-fall')
 # get(CLASS_URL + IIPP + '-2012-001', IIPP, '2012-001')
+get(CLASS_URL + IIPP + '-005')
 # get(CLASS_URL + TA + '-001')
 # get_all()

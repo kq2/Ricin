@@ -14,6 +14,7 @@ MANIFEST = u'''<?xml version="1.0" encoding="UTF-8"?>
     <resource identifier="syllabus" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="course_settings/syllabus.html" intendeduse="syllabus"/>
     <resource identifier="settings" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="course_settings/canvas_export.txt"/>
       <file href="course_settings/assignment_groups.xml"/>
+      <file href="course_settings/module_meta.xml"/>
     </resource>{}
   </resources>
 </manifest>'''
@@ -25,9 +26,7 @@ TEMPLATE = u'''
 FILE = u'''
       <file href="{}"/>'''
 
-DEPENDENCY = u'''
-      <dependency identifierref="{}"/>'''
 
-
-def write_manifest(manifest_file, resources):
-    util.write_file(manifest_file, MANIFEST.format(resources))
+def make_manifest(course, resources):
+    path = course.get_canvas_folder() + '/imsmanifest.xml'
+    util.write_file(path, MANIFEST.format(resources))

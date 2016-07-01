@@ -10,11 +10,10 @@ def convert(course):
     coursera_assets_folder = course.get_coursera_folder().rpartition('/')[0] + '/assets'
     canvas_assets_folder = course.get_canvas_folder() + '/web_resources'
     copy_folder(coursera_assets_folder, canvas_assets_folder)
-    return add_resources(coursera_assets_folder)
+    add_resources(course, coursera_assets_folder)
 
 
-def add_resources(assets_folder):
-    ans = ''
+def add_resources(course, assets_folder):
     for idx, path in enumerate(all_files(assets_folder)):
         canvas_id = '{}_{}'.format('asset', idx + 1)
         canvas_path = 'web_resources/' + path
@@ -24,8 +23,7 @@ def add_resources(assets_folder):
             'path': canvas_path,
             'files': resource.FILE.format(canvas_path)
         }
-        ans += resource.TEMPLATE.format(**args)
-    return ans
+        course.add_resources(args)
 
 
 def copy_folder(src_folder, dst_folder):
