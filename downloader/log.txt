@@ -1,0 +1,13 @@
+curl "https://api.coursera.org/api/courses.v1/Gtv4Xb1-EeS-ViIACwYKVQ"
+curl "https://api.coursera.org/api/courses.v1/Gtv4Xb1-EeS-ViIACwYKVQ?includes=instructorIds,partnerIds&fields=instructorIds,partnerIds"
+curl "https://api.coursera.org/api/courses.v1/Gtv4Xb1-EeS-ViIACwYKVQ?includes=partnerIds,instructorIds&fields=instructors.v1(firstName,lastName,suffix)"
+
+curl "https://api.coursera.org/api/courses.v1?start=300&limit=10"
+
+curl "https://api.coursera.org/api/courses.v1?ids=v1-3,Gtv4Xb1-EeS-ViIACwYKVQ"
+curl "https://api.coursera.org/api/courses.v1?ids=v1-3,Gtv4Xb1-EeS-ViIACwYKVQ&fields=language,shortDescription"
+curl "https://api.coursera.org/api/courses.v1?ids=v1-3,Gtv4Xb1-EeS-ViIACwYKVQ&includes=instructorIds,partnerIds&fields=instructorIds,partnerIds"
+
+curl "https://api.coursera.org/api/courses.v1?q=search&query=malware+underground"
+curl "https://api.coursera.org/api/courses.v1?q=search&query=malware+underground&includes=instructorIds,partnerIds&fields=instructorIds,partnerIds"
+curl "https://api.coursera.org/api/courses.v1?q=slug&slug=machine-learning"
