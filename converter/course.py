@@ -5,6 +5,7 @@ import wiki
 import quiz
 import peer
 import video
+import rubrics
 import assignment
 import announcement
 import assets
@@ -87,6 +88,14 @@ class Course:
 
     def convert_peer(self):
         self.convert('peergrading')
+
+    def convert_rubrics(self):
+        peer_items = []
+        for section in self.sections:
+            for item in section['items']:
+                if item['item_type'] == 'peergrading' and item['published']:
+                    peer_items.append(item)
+        rubrics.make_rubrics(self, peer_items)
 
     def convert_modules(self):
         published_sections = []

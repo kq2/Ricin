@@ -116,7 +116,7 @@ def make_settings_file(assignment, canvas_folder, canvas_id, title):
     args = {
         'canvas_id': canvas_id,
         'title': title,
-        'rubric_id': '',
+        'rubric_id': '{}_rubric'.format(canvas_id),
         'points': assignment['maxGrade'],
         'submit_type': 'online_url',
         'position': canvas_id.rpartition('_')[2],
