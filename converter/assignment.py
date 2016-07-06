@@ -2,6 +2,7 @@
 Convert a Coursera assignment
 """
 import wiki
+import peer
 import resource
 from downloader import util
 
@@ -19,6 +20,35 @@ ASSIGNMENT = u'''<?xml version="1.0" encoding="UTF-8"?>
   </assignmentGroup>
 </assignmentGroups>'''
 
+SETTINGS = u'''<?xml version="1.0" encoding="UTF-8"?>
+<assignment identifier="{canvas_id}">
+  <title><![CDATA[{title}]]></title>
+  <due_at/>
+  <lock_at/>
+  <unlock_at/>
+  <module_locked>false</module_locked>
+  <all_day_date/>
+  <peer_reviews_due_at/>
+  <assignment_group_identifierref>projects</assignment_group_identifierref>
+  <workflow_state>unpublished</workflow_state>
+  <rubric_identifierref/>
+  <rubric_use_for_grading>false</rubric_use_for_grading>
+  <rubric_hide_score_total>false</rubric_hide_score_total>
+  <has_group_category>false</has_group_category>
+  <points_possible>{points}</points_possible>
+  <grading_type>points</grading_type>
+  <all_day>true</all_day>
+  <submission_types>{submit_type}</submission_types>
+  <position>{position}</position>
+  <peer_review_count>0</peer_review_count>
+  <peer_reviews>false</peer_reviews>
+  <automatic_peer_reviews>false</automatic_peer_reviews>
+  <moderated_grading>false</moderated_grading>
+  <anonymous_peer_reviews>false</anonymous_peer_reviews>
+  <grade_group_students_individually>false</grade_group_students_individually>
+  <muted>false</muted>
+</assignment>'''
+
 
 def convert(course, item):
     coursera_id = item['item_id']
@@ -31,8 +61,8 @@ def convert(course, item):
     title = item['title']
     assignment = util.read_file(coursera_file)
 
-    main_file = make_main_file(course, assignment, canvas_folder, canvas_id, title)
-    settings_file = make_settings_file(assignment, canvas_folder, canvas_id, title)
+    main_file = make_main_file(assignment, canvas_folder, canvas_id, title)
+    settings_file = make_settings_file(canvas_folder, canvas_id, title)
 
     args = {
         'id': canvas_id,
@@ -43,15 +73,31 @@ def convert(course, item):
     course.add_resources(args)
 
 
-def make_main_file(course, assignment, canvas_folder, canvas_id, title):
+def make_main_file(assignment, canvas_folder, canvas_id, title):
     file_name = wiki.get_canvas_wiki_filename(title)
     file_path = '{}/{}.html'.format(canvas_id, file_name)
     path = '{}/{}'.format(canvas_folder, file_path)
-    return ''
+    args = {
+        'title': title,
+        'description': assignment
+    }
+    util.write_file(path, peer.ASSIGNMENT.format(**args))
+    return file_path
 
 
-def make_settings_file(assignment, canvas_folder, canvas_id, title):
-    return ''
+def make_settings_file(canvas_folder, canvas_id, title):
+    file_name = '{}/assignment_settings.xml'.format(canvas_id)
+    path = '{}/{}'.format(canvas_folder, file_name)
+
+    args = {
+        'canvas_id': canvas_id,
+        'title': title,
+        'points': 100,
+        'submit_type': 'online_url',
+        'position': canvas_id.rpartition('_')[2],
+    }
+    util.write_file(path, SETTINGS.format(**args))
+    return file_name
 
 
 def make_groups(course):
