@@ -128,7 +128,7 @@ def make_settings_file(assignment, canvas_folder, canvas_id, title):
 
 def make_description_page(course, assignment, canvas_id, title, file_name):
     content = assignment['form'][0]['children'][0]['html']
-    canvas_id = 'coursepage_{}'.format(canvas_id)
+    canvas_id = 'page_{}'.format(canvas_id)
     canvas_path = 'wiki_content/{}.html'.format(file_name)
     canvas_file = course.get_canvas_folder() + '/' + canvas_path
 

@@ -77,22 +77,21 @@ def make_criteria(rubric):
 
 
 def make_criterion(criterion):
-    ans = ''
-
     criterion_id = criterion['id']
+    op_type = criterion['children'][0]['type']
     options = criterion['children'][0]['parameters']['options']
-    ratings, points = make_ratings(options, criterion_id)
 
-    if ratings:
+    if op_type == 'gradingNumber':
+        ratings, points = make_ratings(options, criterion_id)
         args = {
             'criterion_id': criterion_id,
             'points': points,
             'description': criterion['html'],
             'ratings': ratings
         }
-        ans = CRITERION.format(**args)
+        return CRITERION.format(**args)
 
-    return ans
+    return ''
 
 
 def make_ratings(options, criterion_id):
@@ -100,11 +99,10 @@ def make_ratings(options, criterion_id):
     max_points = 0
 
     for option in options:
-        if option['label']:
-            rating, points = make_rating(option, criterion_id)
-            ans += rating
-            if points > max_points:
-                max_points = points
+        rating, points = make_rating(option, criterion_id)
+        ans += rating
+        if points > max_points:
+            max_points = points
 
     return ans, max_points
 
@@ -117,4 +115,4 @@ def make_rating(option, criterion_id):
         'criterion_id': criterion_id,
         'rating_id': option['id']
     }
-    return RATING.format(**args), int(points)
+    return RATING.format(**args), points

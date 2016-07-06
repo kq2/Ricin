@@ -37,5 +37,7 @@ def all_files(folder, rel_path=True):
             path = root
             if rel_path:
                 path = os.path.relpath(root, folder)
-            ans.append(os.path.join(path, filename))
+            full_path = os.path.join(path, filename)
+            full_path = full_path.replace('./', '')
+            ans.append(full_path)
     return ans

@@ -61,7 +61,7 @@ class Course:
 
         total = len(convert_queue)
         for idx, item in enumerate(convert_queue):
-            print "{}/{}".format(idx + 1, total)
+            print "{}/{}".format(idx + 1, total), item['title']
             CONVERTER[item_type](self, item)
 
     def add_resources(self, args):

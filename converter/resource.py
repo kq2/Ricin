@@ -12,7 +12,7 @@ MANIFEST = u'''<?xml version="1.0" encoding="UTF-8"?>
   </metadata>
   <resources>
     <resource identifier="syllabus" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="course_settings/syllabus.html" intendeduse="syllabus"/>
-    <resource identifier="settings" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="course_settings/canvas_export.txt"/>
+    <resource identifier="settings" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="course_settings/canvas_export.txt">
       <file href="course_settings/assignment_groups.xml"/>
       <file href="course_settings/module_meta.xml"/>
       <file href="course_settings/rubrics.xml"/>
