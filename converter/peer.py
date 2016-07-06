@@ -6,13 +6,16 @@ import wiki
 import resource
 from downloader import util
 
-DESCRIPTION = u'''<html>
+ASSIGNMENT = u'''<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>{title}</title>
 </head>
+<body>{description}
+</body>
+</html>'''
 
-<body>
+DESCRIPTION = u'''
 <p><strong>Instructions: </strong>Read/review the items below and implement the week's programming assignment.
 When you have finished your implementation, copy and paste the CodeSkulptor URL for your cloud-saved program into
 the URL submission field. Note that you may re-submit as many times as you wish before the deadline so feel free
@@ -22,7 +25,7 @@ that you submitted a working CodeSkulptor URL for the final version of your prog
 
 <ul>
     <li><a href="$WIKI_REFERENCE$/pages/" target="_blank">Mini-project Video</a></li>
-    <li><a href="$WIKI_REFERENCE$/pages/{description}" target="_blank">Mini-project Description</a></li>
+    <li><a href="$WIKI_REFERENCE$/pages/{}" target="_blank">Mini-project Description</a></li>
     <li><a href="$WIKI_REFERENCE$/pages/" target="_blank">Code Clinic Tips</a></li>
 </ul>
 
@@ -37,9 +40,7 @@ program demonstrates partial, inconsistent, or incorrect functionality, assign t
 based on your testing and our comments. <strong>When assigning partial or no credit, please add a short written
 comment that describes the issues you observed.</strong> While this takes extra effort, please remember how
 frustrating it would be to receive partial or no credit on part of your mini-project with no accompanying
-explanation.</p>
-</body>
-</html>'''
+explanation.</p>'''
 
 SETTINGS = u'''<?xml version="1.0" encoding="UTF-8"?>
 <assignment identifier="{canvas_id}">
@@ -103,9 +104,9 @@ def make_main_file(course, assignment, canvas_folder, canvas_id, title):
 
     args = {
         'title': title,
-        'description': file_name
+        'description': DESCRIPTION.format(file_name)
     }
-    util.write_file(path, DESCRIPTION.format(**args))
+    util.write_file(path, ASSIGNMENT.format(**args))
     return file_path
 
 

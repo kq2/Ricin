@@ -86,6 +86,9 @@ class Course:
     def convert_quizzes(self):
         self.convert('quiz')
 
+    def convert_assignments(self):
+        self.convert('assignment')
+
     def convert_peer(self):
         self.convert('peergrading')
 

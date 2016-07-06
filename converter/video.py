@@ -6,7 +6,7 @@ import wiki
 import resource
 from downloader import util
 
-EMBED = u'''
+VIDEO = u'''
 <p>
   <iframe src="https://mediacosmos.rice.edu/app/plugin/embed.aspx?ID={}&amp;displayTitle=false"
     width="640" height="380"
@@ -37,7 +37,11 @@ def convert(course, item):
     coursera_file = course.get_coursera_folder() + '/' + coursera_path
     canvas_file = course.get_canvas_folder() + '/' + canvas_path
 
-    make_canvas_video_page(course, coursera_file, canvas_file,
+    is_v2 = False
+    if item['__in_video_quiz_v2']:
+        is_v2 = True
+
+    make_canvas_video_page(course, coursera_file, is_v2, canvas_file,
                            canvas_title, canvas_id, ensemble_id)
 
     args = {
@@ -49,24 +53,29 @@ def convert(course, item):
     course.add_resources(args)
 
 
-def make_canvas_video_page(course, coursera_file, canvas_file,
+def make_canvas_video_page(course, coursera_file, is_v2, canvas_file,
                            canvas_title, canvas_id, ensemble_id):
-    content = EMBED.format(ensemble_id,
-                           get_in_video_links(coursera_file, course))
-    content = wiki.TEMPLATE.format(canvas_title, canvas_id, content)
-    util.write_file(canvas_file, content)
+    if util.exists(coursera_file):
+        content = VIDEO.format(ensemble_id, get_in_video_links(coursera_file, is_v2, course))
+        content = wiki.TEMPLATE.format(canvas_title, canvas_id, content)
+        util.write_file(canvas_file, content)
 
 
-def get_in_video_links(in_video_quiz_file, course):
-    ans = ''
+def get_in_video_links(in_video_quiz_file, is_v2, course):
     quiz = util.read_json(in_video_quiz_file)
-    for group in quiz['questionGroups']:
-        for question in group['questions']:
-            for link in find_links(question['text'], course):
-                ans += LINK.format(link)
-    if ans:
-        return u'<h4>References</h4>' + ans
 
+    links = ''
+    if is_v2:
+        for question in quiz['assessment']['definition']['questions'].values():
+            for link in find_links(question['data']['definition']['prompt'], course):
+                links += LINK.format(link)
+    else:
+        for group in quiz['questionGroups']:
+            for question in group['questions']:
+                for link in find_links(question['text'], course):
+                    links += LINK.format(link)
+    if links:
+        return u'<h4>References</h4>' + links
     return ''
 
 
