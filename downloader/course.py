@@ -171,10 +171,19 @@ class Course:
         util.download(url, path, self.cookie_file)
         util.write_json(path, util.read_json(path))
 
-    def download_instructors(self):
-        url = self.url + '/admin'
-        path = self.info_folder + '/info.html'
-        util.download(url, path)
+    def download_info(self):
+        url = self.url
+        temp = self.info_folder + '/temp.html'
+        util.download(url, temp, self.cookie_file)
+        page_html = util.read_file(temp)
+        util.remove(temp)
+
+        info_files = ['user.json', 'course.json', 'sidebar.json']
+        matches = re.findall(r'JSON\.parse\("(.*?)"\);', page_html)
+        for match, info_file in zip(matches, info_files)[1:]:
+            info = util.unicode_unescape(match).replace('\\\\', '')
+            path = '{}/{}'.format(self.info_folder, info_file)
+            util.write_json(path, util.read_json(info, True))
 
     def upload(self):
         util.upload(self.folder)

@@ -4,6 +4,7 @@ Utility functions.
 import os
 import re
 import json
+import codecs
 import urllib
 from HTMLParser import HTMLParser
 from xml.etree import ElementTree
@@ -148,13 +149,13 @@ def write_file(path, text, append=False):
         f.write(text.encode('utf-8'))
 
 
-def read_json(json_file):
+def read_json(src, is_string=False):
     """
     Return the dictionary read from a JSON file.
-    :param json_file: The JSON file to read.
-    :return: The dictionary of this JSON object.
     """
-    with open(json_file, 'r') as f:
+    if is_string:
+        return json.loads(src)
+    with open(src, 'r') as f:
         return json.load(f)
 
 
@@ -191,10 +192,15 @@ def read_xml(xml, is_string=False):
 def unescape(text):
     """
     Unescape all HTML escape characters.
-    :param text: The text with HTML escaped characters.
-    :return: The text with escaped characters replaced.
     """
     return HTML_PARSER.unescape(text)
+
+
+def unicode_unescape(unicode_str):
+    """
+    Unescape escaped characters (\" --> ").
+    """
+    return codecs.decode(unicode_str, "unicode_escape")
 
 
 def unquote(url):

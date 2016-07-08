@@ -1,0 +1,15 @@
+# Cookies for domains related to coursera.org.
+# This content may be pasted into a cookies.txt file and used by wget
+# Example:  wget -x --load-cookies cookies.txt https://www.coursera.org/
+#
+.coursera.org	TRUE	/	FALSE	1468225517.124964	CSRF3-Token	1468225516.OAa37WanD6lRhlgt
+.coursera.org	TRUE	/	FALSE	1498897517.125082	__204u	4043326455-1467361516074
+.coursera.org	TRUE	/	FALSE	1498897518	__204r
+.coursera.org	TRUE	/	FALSE	1467363318	__400v	3bef529b-43ee-44da-a39f-407a55bf737b
+www.coursera.org	FALSE	/	TRUE	1467447918	ip_origin	US
+www.coursera.org	FALSE	/	TRUE	1467447918	ip_currency	USD
+.coursera.org	TRUE	/	FALSE	1467362120	_dc_gtm_UA-28377374-1	1
+.coursera.org	TRUE	/	TRUE	1471681526.785826	CAUTH	h9r20LzYK9RNNr1q-wtAP_Un4HquBJfqY5pmelQir45WTsPmT9aVf-NAIDk9Z00ts7ni13gZ65rClCCQLiC8CQ.P1_1-ZzmhShzxr2SBsJ-fw.v-WWxfhS7XtxAFRWgPP3FZEH0iI53ddCzEeHkH3W--Y-opEmGYxb_al5CEPT_8OZhEiJnDMkKXuNOx8rEv9lE7GJoU7hvHwnQrFzsnsDUW23JRx5WdpV1pOKu3ov4vflACGOlxDNWpu6zZhQc3XXXJCqIbMBo49LNYwZ2dda46U
+.coursera.org	TRUE	/	FALSE	1471681526.785929	maestro_login_flag	1
+.coursera.org	TRUE	/	FALSE	1530433528	_ga	GA1.2.2006610746.1467361521
+.coursera.org	TRUE	/	FALSE	1467363334	__400vt	1467361534412
