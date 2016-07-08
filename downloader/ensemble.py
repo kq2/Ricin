@@ -40,7 +40,11 @@ def upload(video, title, upload_access):
     response = 'temp.txt'
     video = video.replace('"', '\\"')
     title = title.replace('"', '\\"')
+
+    # 671efe2e-ae5b-4c63-954b-63e837d003d8
     upload_id = upload_access['Data'][0]['ID']
+
+    # https://mediacosmos.rice.edu/app/unprotected/uploads.ashx?publishContent=true
     submit_url = upload_access['Settings']['SubmitUrl']
 
     # -o is used for showing upload progress meter
@@ -50,6 +54,8 @@ def upload(video, title, upload_access):
 
 
 def run(library_id):
+    # Joe's library_id:
+    # 457006af-2dd9-4f5a-a310-8fcef3d02eeb
     upload_access = get_upload_access(library_id)
     videos = util.read_json('videos.json')
 

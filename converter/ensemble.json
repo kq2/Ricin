@@ -1,6 +1,16 @@
 {
   "Data": [
     {
+      "ID": "11a3a99d-1223-424c-bced-678d74f4fcb2",
+      "AddedOn": "2016-07-06T15:51:03",
+      "Description": "",
+      "Title": "Higher-order Functions (11:06)",
+      "Keywords": "",
+      "ThumbnailUrl": "https://mediacosmos.rice.edu/app/assets/47269726-be2f-44ad-91fe-58d1fd88ca47.jpg?Width=100",
+      "LibraryID": "457006af-2dd9-4f5a-a310-8fcef3d02eeb",
+      "LibraryName": "jwarren"
+    },
+    {
       "ID": "c1e2589a-3850-487b-8212-a8b3b4ee1899",
       "AddedOn": "2016-06-18T20:24:32",
       "Description": "",
