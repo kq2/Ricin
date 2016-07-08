@@ -16,4 +16,4 @@ def run(site, course_name, course_session):
     _course.end_conversion()
     # _course.pack()
 
-run('class.coursera.org', 'principlescomputing1', '005')
+run('class.coursera.org', 'principlescomputing2', '005')

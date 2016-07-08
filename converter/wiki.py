@@ -66,12 +66,13 @@ def convert_content(coursera_content, course):
     ans = replace_video_links(ans, course)
     ans = replace_wiki_links(ans, course)
     ans = replace_assets_links(ans)
+    ans = replace_quiz_links(ans)
     ans = remove_link_title(ans)
     return ans
 
 
 def remove_extra_spaces(text):
-    pattern = r'((href)|(title)|(target)|(src))[ \s]+=[ \s]+"'
+    pattern = r'((href)|(title)|(target)|(src))[ \s]?=[ \s]?"'
     return re.sub(pattern, r'\1="', text)
 
 
@@ -80,7 +81,7 @@ def remove_link_title(coursera_content):
 
 
 def replace_wiki_links(coursera_content, course):
-    coursera_link = r'href="(\.\./wiki/)?([\w-]+)(#[\w-]+)?"'
+    coursera_link = r'href="(\.\./wiki/)?([\w\-\(\)]+)(#[\w-]+)?"'
 
     def canvas_link(match):
         page = course.get_wiki_file_name(match.group(2))
@@ -93,7 +94,7 @@ def replace_wiki_links(coursera_content, course):
 
 
 def replace_video_links(coursera_content, course):
-    coursera_link = r'href=\.\./lecture/(\d+)"'
+    coursera_link = r'href="\.\./lecture/(\d+)"'
     canvas_link = 'href="$WIKI_REFERENCE$/pages/{}"'
     return re.sub(coursera_link,
                   lambda m: canvas_link.format(
@@ -104,6 +105,12 @@ def replace_video_links(coursera_content, course):
 def replace_assets_links(coursera_content):
     coursera_link = r'="\.\./\.\./\.\./.*?/assets/(.*?)"'
     canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
+    return re.sub(coursera_link, canvas_link, coursera_content)
+
+
+def replace_quiz_links(coursera_content):
+    coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
+    canvas_link = r'href="$CANVAS_OBJECT_REFERENCE$/quizzes/quiz_\1"'
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 

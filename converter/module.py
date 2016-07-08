@@ -74,20 +74,10 @@ def canvas_item(item, position):
 
 def clean_sections(section_file):
     sections = util.read_json(section_file)
-    idx = {
-        'quiz': 0,
-        'lecture': 0,
-        'coursepage': 0,
-        'assignment': 0,
-        'peergrading': 0,
-        'announcement': 0
-    }
     for section in sections:
         for item in section['items']:
             item_type = item['item_type']
-            idx[item_type] += 1
-            item['canvas_id'] = '{}_{}'.format(item_type, idx[item_type])
-            if item['item_type'] == 'coursepage':
+            if item_type == 'coursepage':
                 item['title'] = item['metadata']['title']
                 item['item_id'] = item['metadata']['canonicalName']
                 item['published'] = True
@@ -95,5 +85,6 @@ def clean_sections(section_file):
                 item['published'] = item['__published'] is 1
             elif 'published' in item:
                 item['published'] = item['published'] is 1
+            item['canvas_id'] = '{}_{}'.format(item_type, item['item_id'])
 
     return sections

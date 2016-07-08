@@ -60,6 +60,7 @@ def convert(course, item):
 
     title = item['title']
     assignment = util.read_file(coursera_file)
+    assignment = wiki.convert_content(assignment, course)
 
     main_file = make_main_file(assignment, canvas_folder, canvas_id, title)
     settings_file = make_settings_file(canvas_folder, canvas_id, title)

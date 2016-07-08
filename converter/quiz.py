@@ -60,7 +60,7 @@ DATA = u'''<?xml version="1.0" encoding="UTF-8"?>
   </assessment>
 </questestinterop>'''
 QUESTION_GROUP = u'''
-      <section ident="{group_id}" title="">
+      <section ident="{group_id}" title="Group {group_title}">
         <selection_ordering>
           <selection>
             <selection_number>{num_select}</selection_number>
@@ -71,7 +71,7 @@ QUESTION_GROUP = u'''
         </selection_ordering>{questions}
       </section>'''
 QUESTION = u'''
-        <item ident="{question_id}" title="{question_title}">
+        <item ident="{question_id}" title="Question {question_title}">
           <itemmetadata>
             <qtimetadata>
               <qtimetadatafield>
@@ -272,6 +272,7 @@ def canvas_question_group(question_group):
 
     args = {
         'group_id': question_group.get('id'),
+        'group_title': question_group.get('title'),
         'num_select': num_select,
         'points': question_points(questions[0]),
         'questions': canvas_questions(question_group, questions)
