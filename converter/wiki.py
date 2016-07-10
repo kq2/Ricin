@@ -116,25 +116,26 @@ def replace_quiz_links(coursera_content):
 
 def name_map(sections):
     ans = {}
-    canvas_names = {}
+    alias = {}
     for section in sections:
         for item in section['items']:
             item_type = item['item_type']
             if item_type in ('coursepage', 'lecture'):
                 coursera_name = item['item_id']
+                title = item['title']
 
                 # get an unique Canvas name
-                canvas_name = get_canvas_wiki_filename(item['title'])
+                canvas_name = get_canvas_wiki_filename(title)
                 if item_type is 'lecture':
                     canvas_name = '>-' + canvas_name
-                if canvas_name in canvas_names:
-                    canvas_names[canvas_name] += 1
+                if canvas_name in alias:
+                    alias[canvas_name] += 1
                 else:
-                    canvas_names[canvas_name] = 1
-                num = canvas_names[canvas_name]
+                    alias[canvas_name] = 1
+                num = alias[canvas_name]
                 if num >= 2:
                     canvas_name = '{}-{}'.format(canvas_name, num)
-                    canvas_title = '{} {}'.format(item['title'], num)
+                    canvas_title = '{} {}'.format(title, num)
                     item['title'] = canvas_title
 
                 ans[coursera_name] = canvas_name

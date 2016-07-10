@@ -32,11 +32,16 @@ class Course:
         self.coursera_folder = '../../{}/{}/{}'.format(self.site, self.name, self.session)
         self.canvas_folder = '../../canvas/{}-{}'.format(self.name, self.session)
 
+        print "clean sections..."
         self.section_file = (self.coursera_folder + '/session_info/section.json')
-        self.sections = module.clean_sections(self.section_file)
+        self.sections = module.clean_sections(self.section_file, 1)
 
+        print "generate canvas wiki names..."
         self.wiki_name_map = wiki.name_map(self.sections)
-        self.ensemble_id_map = video.ensemble_id_map()
+
+        print "get ensemble video ids..."
+        # self.ensemble_id_map = video.ensemble_id_map()
+        self.ensemble_id_map = util.read_json('videos.json')
         self.resources = ''
 
     def get_coursera_folder(self):

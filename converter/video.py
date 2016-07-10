@@ -55,10 +55,13 @@ def convert(course, item):
 
 def make_canvas_video_page(course, coursera_file, is_v2, canvas_file,
                            canvas_title, canvas_id, ensemble_id):
+    in_video_links = ''
     if util.exists(coursera_file):
-        content = VIDEO.format(ensemble_id, get_in_video_links(coursera_file, is_v2, course))
-        content = wiki.TEMPLATE.format(canvas_title, canvas_id, content)
-        util.write_file(canvas_file, content)
+        in_video_links = get_in_video_links(coursera_file, is_v2, course)
+
+    content = VIDEO.format(ensemble_id, in_video_links)
+    content = wiki.TEMPLATE.format(canvas_title, canvas_id, content)
+    util.write_file(canvas_file, content)
 
 
 def get_in_video_links(in_video_quiz_file, is_v2, course):
@@ -94,4 +97,5 @@ def ensemble_id_map():
         title = util.unescape(video['Title'])
         ensemble_id = video['ID']
         ans[title] = ensemble_id
+        util.write_json('videos.json', ans)
     return ans

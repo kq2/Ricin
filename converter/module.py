@@ -38,11 +38,11 @@ ITEM_TYPE = {
 
 def convert(course, sections):
     modules = ''
-    for idx, section in enumerate(sections):
+    for section in sections:
         args = {
             'title': section['title'],
-            'position': idx + 1,
-            'items': canvas_items(section)
+            'position': section['display_order'],
+            'items': canvas_items(section['items'])
         }
         modules += MODULE.format(**args)
 
@@ -50,9 +50,8 @@ def convert(course, sections):
     util.write_file(path, MODULES.format(modules))
 
 
-def canvas_items(section):
+def canvas_items(items):
     ans = ''
-    items = section['items']
     for idx, item in enumerate(items):
         position = idx + 1
         ans += canvas_item(item, position)
@@ -72,7 +71,7 @@ def canvas_item(item, position):
     return ''
 
 
-def clean_sections(section_file):
+def clean_sections(section_file, part):
     sections = util.read_json(section_file)
     for section in sections:
         for item in section['items']:
@@ -85,6 +84,9 @@ def clean_sections(section_file):
                 item['published'] = item['__published'] is 1
             elif 'published' in item:
                 item['published'] = item['published'] is 1
+
             item['canvas_id'] = '{}_{}'.format(item_type, item['item_id'])
+            if item_type != 'coursepage':
+                item['canvas_id'] = '{}_{}'.format(part, item['canvas_id'])
 
     return sections
