@@ -219,7 +219,7 @@ def make_canvas_metadata(metadata, preamble, canvas_folder):
         'preamble': preamble,
         'quiz_id': canvas_id,
         'assignment_id': 'a_' + canvas_id,
-        'position': canvas_id.rpartition('_')[2]
+        'position': 1
     }
     content = METADATA.format(**args)
     file_name = '{}/assessment_meta.xml'.format(canvas_id)

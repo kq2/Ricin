@@ -120,7 +120,7 @@ def make_settings_file(assignment, canvas_folder, canvas_id, title):
         'rubric_id': '{}_rubric'.format(canvas_id),
         'points': assignment['maxGrade'],
         'submit_type': 'online_url',
-        'position': canvas_id.rpartition('_')[2],
+        'position': 1,
         'num_peer': 5
     }
     util.write_file(path, SETTINGS.format(**args))
@@ -129,7 +129,7 @@ def make_settings_file(assignment, canvas_folder, canvas_id, title):
 
 def make_description_page(course, assignment, canvas_id, title, file_name):
     content = assignment['form'][0]['children'][0]['html']
-    canvas_id = 'page_{}'.format(canvas_id)
+    canvas_id = 'wiki_{}'.format(canvas_id)
     canvas_path = 'wiki_content/{}.html'.format(file_name)
     canvas_file = course.get_canvas_folder() + '/' + canvas_path
 

@@ -38,10 +38,10 @@ ITEM_TYPE = {
 
 def convert(course, sections):
     modules = ''
-    for section in sections:
+    for idx, section in enumerate(sections):
         args = {
             'title': section['title'],
-            'position': section['display_order'],
+            'position': idx + 1 + 29,
             'items': canvas_items(section['items'])
         }
         modules += MODULE.format(**args)

@@ -114,6 +114,12 @@ def replace_quiz_links(coursera_content, course):
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 
+def replace_assignment_links(coursera_content, course):
+    coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
+    canvas_link = r'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}_quiz_\1"'.format(course.get_part())
+    return re.sub(coursera_link, canvas_link, coursera_content)
+
+
 def name2name_map(sections):
     """
     coursera_wiki_name: canvas_wiki_name

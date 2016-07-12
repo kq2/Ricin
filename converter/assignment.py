@@ -95,7 +95,7 @@ def make_settings_file(canvas_folder, canvas_id, title):
         'title': title,
         'points': 100,
         'submit_type': 'online_url',
-        'position': canvas_id.rpartition('_')[2],
+        'position': 1,
     }
     util.write_file(path, SETTINGS.format(**args))
     return file_name
