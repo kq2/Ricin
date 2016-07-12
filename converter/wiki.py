@@ -66,7 +66,7 @@ def convert_content(coursera_content, course):
     ans = replace_video_links(ans, course)
     ans = replace_wiki_links(ans, course)
     ans = replace_assets_links(ans)
-    ans = replace_quiz_links(ans)
+    ans = replace_quiz_links(ans, course)
     ans = remove_link_title(ans)
     return ans
 
@@ -108,14 +108,18 @@ def replace_assets_links(coursera_content):
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 
-def replace_quiz_links(coursera_content):
+def replace_quiz_links(coursera_content, course):
     coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
-    canvas_link = r'href="$CANVAS_OBJECT_REFERENCE$/quizzes/quiz_\1"'
+    canvas_link = r'href="$CANVAS_OBJECT_REFERENCE$/quizzes/{}_quiz_\1"'.format(course.get_part())
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 
-def name_map(sections):
+def name2name_map(sections):
+    """
+    coursera_wiki_name: canvas_wiki_name
+    """
     ans = {}
+
     alias = {}
     for section in sections:
         for item in section['items']:
@@ -139,4 +143,16 @@ def name_map(sections):
                     item['title'] = canvas_title
 
                 ans[coursera_name] = canvas_name
+
+    return ans
+
+
+def id2title_map(sections):
+    """
+    canvas_id: item_title
+    """
+    ans = {}
+    for section in sections:
+        for item in section['items']:
+            ans['canvas_id'] = item['title']
     return ans

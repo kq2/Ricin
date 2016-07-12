@@ -1,8 +1,8 @@
 import course
 
 
-def run(site, course_name, course_session):
-    _course = course.Course(site, course_name, course_session)
+def run(site, course_name, course_session, part):
+    _course = course.Course(site, course_name, course_session, part)
 
     _course.convert_assets()
     _course.convert_wiki_pages()
@@ -16,10 +16,9 @@ def run(site, course_name, course_session):
     _course.end_conversion()
     # _course.pack()
 
-run('class.coursera.org', 'principlescomputing1', '005')
-# run('class.coursera.org', 'principlescomputing2', '005')
-# course1 = course.Course('class.coursera.org', 'principlescomputing1', '005')
-# course2 = course.Course('class.coursera.org', 'principlescomputing2', '005')
-# for name in course2.wiki_name_map:
-#     if name not in course1.wiki_name_map:
-#         print name, course2.wiki_name_map[name]
+run('class.coursera.org', 'interactivepython1', '010', 1)
+run('class.coursera.org', 'interactivepython2', '010', 2)
+run('class.coursera.org', 'principlescomputing1', '005', 1)
+run('class.coursera.org', 'principlescomputing2', '005', 2)
+run('class.coursera.org', 'algorithmicthink1', '004', 3)
+run('class.coursera.org', 'algorithmicthink2', '004', 4)

@@ -9,14 +9,17 @@ import resource
 def convert(course):
     coursera_assets_folder = course.get_coursera_folder().rpartition('/')[0] + '/assets'
     canvas_assets_folder = course.get_canvas_folder() + '/web_resources'
+
+    print "copy assets folder..."
     copy_folder(coursera_assets_folder, canvas_assets_folder)
-    add_resources(course, coursera_assets_folder)
+
+    add_resources(course, canvas_assets_folder)
 
 
 def add_resources(course, assets_folder):
-    for idx, path in enumerate(all_files(assets_folder)):
+    for idx, path in enumerate(all_file_paths(assets_folder)):
         canvas_id = '{}_{}'.format('asset', idx + 1)
-        canvas_path = 'web_resources/' + path
+        canvas_path = path.replace(assets_folder, 'web_resources')
         args = {
             'id': canvas_id,
             'type': 'webcontent',
@@ -30,14 +33,10 @@ def copy_folder(src_folder, dst_folder):
     shutil.copytree(src_folder, dst_folder)
 
 
-def all_files(folder, rel_path=True):
+def all_file_paths(folder):
     ans = []
     for root, _, files in os.walk(folder):
         for filename in files:
-            path = root
-            if rel_path:
-                path = os.path.relpath(root, folder)
-            full_path = os.path.join(path, filename)
-            full_path = full_path.replace('./', '')
-            ans.append(full_path)
+            path = '{}/{}'.format(root, filename)
+            ans.append(path)
     return ans

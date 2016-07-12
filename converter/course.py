@@ -23,25 +23,52 @@ CONVERTER = {
 }
 
 
+# helper functions
+def clean_sections(section_file, part):
+    sections = util.read_json(section_file)
+    for section in sections:
+        for item in section['items']:
+            set_canvas_id(item, part)
+            set_published(item)
+    return sections
+
+
+def set_canvas_id(item, part):
+    item_type = item['item_type']
+    if item_type == 'coursepage':
+        item['title'] = item['metadata']['title']
+        item['item_id'] = item['metadata']['canonicalName']
+        item['canvas_id'] = '{}_{}'.format('wiki', item['item_id'])
+    else:
+        item['canvas_id'] = '{}_{}_{}'.format(item_type, item['item_id'], part)
+
+
+def set_published(item):
+    if 'published' in item:
+        item['published'] = item['published'] == 1
+    elif '__published' in item:
+        item['published'] = item['__published'] == 1
+    else:
+        item['published'] = True
+
+
 class Course:
-    def __init__(self, course_site, course_name, course_session):
+    def __init__(self, course_site, course_name, course_session, part):
         self.site = course_site
         self.name = course_name
         self.session = course_session
+        self.part = part
 
         self.coursera_folder = '../../{}/{}/{}'.format(self.site, self.name, self.session)
         self.canvas_folder = '../../canvas/{}-{}'.format(self.name, self.session)
 
-        print "clean sections..."
         self.section_file = (self.coursera_folder + '/session_info/section.json')
-        self.sections = module.clean_sections(self.section_file, 1)
+        self.sections = clean_sections(self.section_file, self.part)
 
-        print "generate canvas wiki names..."
-        self.wiki_name_map = wiki.name_map(self.sections)
-
-        print "get ensemble video ids..."
+        self.name2name = wiki.name2name_map(self.sections)
         # self.ensemble_id_map = video.ensemble_id_map()
         self.ensemble_id_map = util.read_json('videos.json')
+
         self.resources = ''
 
     def get_coursera_folder(self):
@@ -51,10 +78,13 @@ class Course:
         return self.canvas_folder
 
     def get_wiki_file_name(self, coursera_name):
-        return self.wiki_name_map[coursera_name]
+        return self.name2name[coursera_name]
 
     def get_ensemble_id(self, video_title):
         return self.ensemble_id_map[video_title]
+
+    def get_part(self):
+        return self.part
 
     def convert(self, item_type=None):
         convert_queue = []

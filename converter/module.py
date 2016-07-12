@@ -69,24 +69,3 @@ def canvas_item(item, position):
         }
         return ITEM.format(**args)
     return ''
-
-
-def clean_sections(section_file, part):
-    sections = util.read_json(section_file)
-    for section in sections:
-        for item in section['items']:
-            item_type = item['item_type']
-            if item_type == 'coursepage':
-                item['title'] = item['metadata']['title']
-                item['item_id'] = item['metadata']['canonicalName']
-                item['published'] = True
-            elif '__published' in item:
-                item['published'] = item['__published'] is 1
-            elif 'published' in item:
-                item['published'] = item['published'] is 1
-
-            item['canvas_id'] = '{}_{}'.format(item_type, item['item_id'])
-            if item_type != 'coursepage':
-                item['canvas_id'] = '{}_{}'.format(part, item['canvas_id'])
-
-    return sections

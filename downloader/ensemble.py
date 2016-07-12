@@ -25,6 +25,7 @@ def get_library_list():
 
 
 def get_video_list(library_id):
+    # https://mediacosmos.rice.edu/api/content/457006af-2dd9-4f5a-a310-8fcef3d02eeb?PageSize=9999
     api = 'content/{}?PageSize=9999'
     api = api.format(library_id)
     return get_data(api)['Data']

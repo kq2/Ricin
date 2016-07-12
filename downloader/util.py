@@ -36,13 +36,6 @@ def download(url, path='', cookie='', resume=False,
              follow_redirect=True, show_progress_bar=True):
     """
     Use cURL to download an URL.
-    :param url: URL to download.
-    :param path: Path to save downloaded file.
-    :param cookie: Cookie for URL access.
-    :param resume: Resume previous download progress or not.
-    :param follow_redirect: Follow the redirect URL or not.
-    :param show_progress_bar: Show downloading progress bar or not.
-    :return: None.
     """
     url = urllib.quote(url, safe="%/:=&?~#+!$,;'@()*[]")
     print "downloading {}".format(url)
@@ -74,9 +67,6 @@ def download(url, path='', cookie='', resume=False,
 def make_folder(path, is_file=False):
     """
     Create a folder and return its name.
-    :param path: A path of folder or file.
-    :param is_file: True if path is a file.
-    :return: The name of the created folder.
     """
     if is_file:
         path = path.rpartition('/')[0]
@@ -87,10 +77,18 @@ def make_folder(path, is_file=False):
     return path
 
 
+def copy_folder(from_folder, to_folder):
+    """
+    Copy a folder to another place.
+    """
+    make_folder(to_folder)
+    cmd = 'cp -R {}/ {}/'.format(from_folder, to_folder)
+    os.system(cmd)
+
+
 def get_files(path):
     """
-    :param path: A given directory.
-    :return: A list of files and folders in this directory.
+    Return a list of folders/files in given path.
     """
     return os.listdir(path)
 
@@ -98,8 +96,6 @@ def get_files(path):
 def remove(path):
     """
     Remove a path.
-    :param path:
-    :return:
     """
     try:
         os.remove(path)
@@ -110,8 +106,6 @@ def remove(path):
 def exists(path):
     """
     Return True if path exist.
-    :param path:
-    :return:
     """
     return os.path.exists(path)
 
@@ -128,9 +122,7 @@ def make_zip(path):
 
 def read_file(path):
     """
-    Returns the content of file.
-    :param path: The path to file.
-    :return: The content of file.
+    Return the content of file.
     """
     with open(path, 'r') as f:
         return f.read().decode('utf-8')
@@ -139,10 +131,6 @@ def read_file(path):
 def write_file(path, text, append=False):
     """
     Re-write or append text to file.
-    :param path: The path to file.
-    :param text: The text to write.
-    :param append: Append the text to file content or not.
-    :return: None.
     """
     make_folder(path, True)
     with open(path, 'a' if append else 'w') as f:
@@ -162,9 +150,6 @@ def read_json(src, is_string=False):
 def write_json(json_file, json_obj):
     """
     Write pretty JSON to file.
-    :param json_file: The JSON file to write.
-    :param json_obj: The JSON object.
-    :return: None.
     """
     with open(json_file, 'w') as f:
         f.write(pretty_json(json_obj))
@@ -173,8 +158,6 @@ def write_json(json_file, json_obj):
 def pretty_json(json_obj):
     """
     Pretty print JSON to console.
-    :param json_obj: A JSON object.
-    :return: A pretty JSON string.
     """
     return json.dumps(json_obj, indent=4)
 
@@ -191,14 +174,14 @@ def read_xml(xml, is_string=False):
 
 def unescape(text):
     """
-    Unescape all HTML escape characters.
+    Un-escape all HTML escape characters.
     """
     return HTML_PARSER.unescape(text)
 
 
 def unicode_unescape(unicode_str):
     """
-    Unescape escaped characters (\" --> ").
+    Un-escape escaped characters (\" --> ").
     """
     return codecs.decode(unicode_str, "unicode_escape")
 
@@ -224,8 +207,6 @@ def change_asset_url(text):
 def remove_coursera_bad_formats(text):
     """
     Remove Coursera bad formats.
-    :param text: The Coursera content string.
-    :return: The content string with bad formats removed.
     """
     text = unescape(text)
     text = text.strip(' \n')
@@ -237,8 +218,6 @@ def remove_coursera_bad_formats(text):
 def make_coursera_new_formats(text):
     """
     Change the text to comply with Coursera's new system.
-    :param text: The content from old system.
-    :return: The content with new format.
     """
     text = text.replace('h4>', 'h3>')
     text = re.sub(r'<code>(.*?)</code>', r'$$\\color{red}{\\verb|\1|}$$', text)
