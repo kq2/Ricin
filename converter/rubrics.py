@@ -40,7 +40,6 @@ RATING = u'''
 
 
 def make_rubrics(course, peer_items):
-
     coursera_folder = course.get_coursera_folder()
     canvas_folder = course.get_canvas_folder()
 

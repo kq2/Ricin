@@ -21,20 +21,18 @@ TEMPLATE = u'''<html>
 
 
 def convert(course, item):
-    coursera_title = item['title']
+    title = item['title']
+    coursera_id = item['item_id']
     canvas_id = item['canvas_id']
 
-    coursera_file_name = item['item_id']
-    canvas_file_name = course.get_wiki_file_name(coursera_file_name)
-
-    coursera_path = 'wiki/{}.html'.format(coursera_file_name)
-    canvas_path = 'wiki_content/{}.html'.format(canvas_file_name)
+    coursera_path = 'wiki/{}.html'.format(coursera_id)
+    canvas_path = 'wiki_content/{}.html'.format(canvas_id.replace('wiki_', '', 1))
 
     coursera_wiki_file = course.get_coursera_folder() + '/' + coursera_path
     canvas_wiki_file = course.get_canvas_folder() + '/' + canvas_path
 
     wiki_content = util.read_file(coursera_wiki_file)
-    make_canvas_wiki(wiki_content, coursera_title, canvas_wiki_file, canvas_id, course)
+    make_canvas_wiki(wiki_content, title, canvas_wiki_file, canvas_id, course)
 
     args = {
         'id': canvas_id,
@@ -63,11 +61,11 @@ def get_canvas_wiki_filename(coursera_wiki_title):
 
 def convert_content(coursera_content, course):
     ans = remove_extra_spaces(coursera_content)
-    ans = replace_video_links(ans, course)
-    ans = replace_wiki_links(ans, course)
+    ans = remove_link_title(ans)
     ans = replace_assets_links(ans)
     ans = replace_quiz_links(ans, course)
-    ans = remove_link_title(ans)
+    ans = replace_wiki_links(ans, course)
+    ans = replace_video_links(ans, course)
     return ans
 
 
@@ -80,85 +78,54 @@ def remove_link_title(coursera_content):
     return re.sub(r'title=".*?"', '', coursera_content)
 
 
-def replace_wiki_links(coursera_content, course):
-    coursera_link = r'href="(\.\./wiki/)?([\w\-\(\)]+)(#[\w-]+)?"'
-
-    def canvas_link(match):
-        page = course.get_wiki_file_name(match.group(2))
-        pos = match.group(3)
-        if pos:
-            page += pos
-        return 'href="$WIKI_REFERENCE$/pages/{}"'.format(page)
-
-    return re.sub(coursera_link, canvas_link, coursera_content)
-
-
-def replace_video_links(coursera_content, course):
-    coursera_link = r'href="\.\./lecture/(\d+)"'
-    canvas_link = 'href="$WIKI_REFERENCE$/pages/{}"'
-    return re.sub(coursera_link,
-                  lambda m: canvas_link.format(
-                      course.get_wiki_file_name(m.group(1))),
-                  coursera_content)
-
-
 def replace_assets_links(coursera_content):
     coursera_link = r'="\.\./\.\./\.\./.*?/assets/(.*?)"'
     canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 
+def replace_wiki_links(coursera_content, course):
+    coursera_link = r'href="(\.\./wiki/)?([\w\-\(\)]+)(#[\w-]+)?"'
+
+    def _canvas_link(match):
+        coursera_id = match.group(2)
+        canvas_id = course.get_canvas_id(coursera_id)
+        anchor = match.group(3)
+        if anchor:
+            canvas_id += anchor
+        return 'href="$WIKI_REFERENCE$/pages/{}"'.format(canvas_id)
+
+    return re.sub(coursera_link, _canvas_link, coursera_content)
+
+
+def replace_video_links(coursera_content, course):
+    coursera_link = r'href="\.\./lecture/(\d+)"'
+
+    def _canvas_link(match):
+        coursera_id = match.group(1)
+        canvas_id = course.get_canvas_id(coursera_id)
+        return 'href="$WIKI_REFERENCE$/pages/{}"'.format(canvas_id)
+
+    return re.sub(coursera_link, _canvas_link, coursera_content)
+
+
 def replace_quiz_links(coursera_content, course):
     coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
-    canvas_link = r'href="$CANVAS_OBJECT_REFERENCE$/quizzes/{}_quiz_\1"'.format(course.get_part())
-    return re.sub(coursera_link, canvas_link, coursera_content)
+
+    def _canvas_link(match):
+        coursera_id = match.group(1)
+        canvas_id = course.get_canvas_id(coursera_id)
+        return 'href="$CANVAS_OBJECT_REFERENCE$/quizzes/{}"'.format(canvas_id)
+
+    return re.sub(coursera_link, _canvas_link, coursera_content)
 
 
 def replace_assignment_links(coursera_content, course):
     coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
-    canvas_link = r'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}_quiz_\1"'.format(course.get_part())
-    return re.sub(coursera_link, canvas_link, coursera_content)
 
+    def _canvas_link(match):
+        coursera_id = match.group(1)
+        canvas_id = course.get_canvas_id(coursera_id)
+        return 'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}"'.format(canvas_id)
 
-def name2name_map(sections):
-    """
-    coursera_wiki_name: canvas_wiki_name
-    """
-    ans = {}
-
-    alias = {}
-    for section in sections:
-        for item in section['items']:
-            item_type = item['item_type']
-            if item_type in ('coursepage', 'lecture'):
-                coursera_name = item['item_id']
-                title = item['title']
-
-                # get an unique Canvas name
-                canvas_name = get_canvas_wiki_filename(title)
-                if item_type is 'lecture':
-                    canvas_name = '>-' + canvas_name
-                if canvas_name in alias:
-                    alias[canvas_name] += 1
-                else:
-                    alias[canvas_name] = 1
-                num = alias[canvas_name]
-                if num >= 2:
-                    canvas_name = '{}-{}'.format(canvas_name, num)
-                    canvas_title = '{} {}'.format(title, num)
-                    item['title'] = canvas_title
-
-                ans[coursera_name] = canvas_name
-
-    return ans
-
-
-def id2title_map(sections):
-    """
-    canvas_id: item_title
-    """
-    ans = {}
-    for section in sections:
-        for item in section['items']:
-            ans['canvas_id'] = item['title']
-    return ans
+    return re.sub(coursera_link, _canvas_link, coursera_content)

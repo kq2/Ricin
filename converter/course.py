@@ -23,35 +23,6 @@ CONVERTER = {
 }
 
 
-# helper functions
-def clean_sections(section_file, part):
-    sections = util.read_json(section_file)
-    for section in sections:
-        for item in section['items']:
-            set_canvas_id(item, part)
-            set_published(item)
-    return sections
-
-
-def set_canvas_id(item, part):
-    item_type = item['item_type']
-    if item_type == 'coursepage':
-        item['title'] = item['metadata']['title']
-        item['item_id'] = item['metadata']['canonicalName']
-        item['canvas_id'] = '{}_{}'.format('wiki', item['item_id'])
-    else:
-        item['canvas_id'] = '{}_{}_{}'.format(item_type, item['item_id'], part)
-
-
-def set_published(item):
-    if 'published' in item:
-        item['published'] = item['published'] == 1
-    elif '__published' in item:
-        item['published'] = item['__published'] == 1
-    else:
-        item['published'] = True
-
-
 class Course:
     def __init__(self, course_site, course_name, course_session, part):
         self.site = course_site
@@ -63,13 +34,69 @@ class Course:
         self.canvas_folder = '../../canvas/{}-{}'.format(self.name, self.session)
 
         self.section_file = (self.coursera_folder + '/session_info/section.json')
-        self.sections = clean_sections(self.section_file, self.part)
+        self.sections = self.clean_sections()
 
-        self.name2name = wiki.name2name_map(self.sections)
-        # self.ensemble_id_map = video.ensemble_id_map()
-        self.ensemble_id_map = util.read_json('videos.json')
+        self.id2id = {}
+        self.set_canvas_id()
 
+        self.ensemble_title2id = util.read_json('videos.json')
         self.resources = ''
+
+    def clean_sections(self):
+        sections = util.read_json(self.section_file)
+        for section in sections:
+            for item in section['items']:
+
+                # unify format for wiki pages
+                if item['item_type'] is 'coursepage':
+                    item['title'] = item['metadata']['title']
+                    item['item_id'] = item['metadata']['canonicalName']
+
+                # unify format for published attribute
+                if 'published' in item:
+                    item['published'] = item['published'] == 1
+                elif '__published' in item:
+                    item['published'] = item['__published'] == 1
+                else:
+                    item['published'] = True
+
+        return sections
+
+    def set_canvas_id(self):
+        canvas_id_alias = {}
+        for section in self.sections:
+            for item in section['items']:
+                coursera_id = item['item_id']
+                if coursera_id not in self.id2id:
+                    canvas_id = self.make_canvas_id(item, canvas_id_alias)
+                    item['canvas_id'] = canvas_id
+                    self.id2id[coursera_id] = canvas_id
+
+    def make_canvas_id(self, item, canvas_id_alias):
+        item_type = item['item_type']
+        if item_type in ('coursepage', 'lecture'):
+            title = item['title']
+            canvas_id = wiki.get_canvas_wiki_filename(title)
+
+            # handle duplicates (same title)
+            if canvas_id in canvas_id_alias:
+                repeat = canvas_id_alias[canvas_id] + 1
+                canvas_id_alias[canvas_id] = repeat
+                canvas_id += '_{}'.format(repeat)
+                if repeat == 2:
+                    item['title'] = '{} {}'.format(title, 2)
+                elif repeat > 2:
+                    item['title'] = '{} {}'.format(title[:-2], repeat)
+            else:
+                canvas_id_alias[canvas_id] = 1
+
+            # return the real canvas_id
+            if item_type is 'coursepage':
+                return 'wiki_' + canvas_id
+            else:
+                return '>_' + canvas_id
+        else:
+            return '{}_{}_{}'.format(item_type, item['item_id'], self.part)
 
     def get_coursera_folder(self):
         return self.coursera_folder
@@ -77,11 +104,11 @@ class Course:
     def get_canvas_folder(self):
         return self.canvas_folder
 
-    def get_wiki_file_name(self, coursera_name):
-        return self.name2name[coursera_name]
+    def get_canvas_id(self, coursera_id):
+        return self.id2id[coursera_id]
 
     def get_ensemble_id(self, video_title):
-        return self.ensemble_id_map[video_title]
+        return self.ensemble_title2id[video_title]
 
     def get_part(self):
         return self.part
@@ -131,11 +158,11 @@ class Course:
         peer_items = []
         for section in self.sections:
             for item in section['items']:
-                if item['item_type'] == 'peergrading' and item['published']:
+                if item['item_type'] is 'peergrading' and item['published']:
                     peer_items.append(item)
         rubrics.make_rubrics(self, peer_items)
 
-    def convert_modules(self):
+    def convert_modules(self, start_position=1):
         published_sections = []
 
         # find all published sections (with at least one published item)
@@ -145,4 +172,4 @@ class Course:
                 section['items'] = items
                 published_sections.append(section)
 
-        module.convert(self, published_sections)
+        module.convert(self, published_sections, start_position)

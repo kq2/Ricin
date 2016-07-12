@@ -28,11 +28,8 @@ def convert(course, item):
     coursera_id = item['item_id']
     canvas_id = item['canvas_id']
 
-    ensemble_id = course.get_ensemble_id(coursera_title)
-    canvas_file_name = course.get_wiki_file_name(coursera_id)
-
     coursera_path = 'video/quizzes/{}.json'.format(coursera_id)
-    canvas_path = 'wiki_content/{}.html'.format(canvas_file_name)
+    canvas_path = 'wiki_content/{}.html'.format(canvas_id)
 
     coursera_file = course.get_coursera_folder() + '/' + coursera_path
     canvas_file = course.get_canvas_folder() + '/' + canvas_path
@@ -41,6 +38,7 @@ def convert(course, item):
     if item['__in_video_quiz_v2']:
         is_v2 = True
 
+    ensemble_id = course.get_ensemble_id(coursera_title)
     make_canvas_video_page(course, coursera_file, is_v2, canvas_file,
                            canvas_title, canvas_id, ensemble_id)
 
