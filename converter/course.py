@@ -46,11 +46,15 @@ class Course:
         sections = util.read_json(self.section_file)
         for section in sections:
             for item in section['items']:
+                item_type = item['item_type']
 
                 # unify format for wiki pages
-                if item['item_type'] is 'coursepage':
+                if item_type == 'coursepage':
                     item['title'] = item['metadata']['title']
                     item['item_id'] = item['metadata']['canonicalName']
+
+                # set coursera_id
+                item['coursera_id'] = '{}_{}'.format(item_type, item['item_id'])
 
                 # unify format for published attribute
                 if 'published' in item:
@@ -66,7 +70,7 @@ class Course:
         canvas_id_alias = {}
         for section in self.sections:
             for item in section['items']:
-                coursera_id = item['item_id']
+                coursera_id = item['coursera_id']
                 if coursera_id not in self.id2id:
                     canvas_id = self.make_canvas_id(item, canvas_id_alias)
                     item['canvas_id'] = canvas_id
@@ -91,12 +95,12 @@ class Course:
                 canvas_id_alias[canvas_id] = 1
 
             # return the real canvas_id
-            if item_type is 'coursepage':
+            if item_type == 'coursepage':
                 return 'wiki_' + canvas_id
             else:
                 return '>_' + canvas_id
         else:
-            return '{}_{}_{}'.format(item_type, item['item_id'], self.part)
+            return '{}_{}'.format(item['coursera_id'], self.part)
 
     def get_coursera_folder(self):
         return self.coursera_folder
@@ -158,7 +162,7 @@ class Course:
         peer_items = []
         for section in self.sections:
             for item in section['items']:
-                if item['item_type'] is 'peergrading' and item['published']:
+                if item['item_type'] == 'peergrading' and item['published']:
                     peer_items.append(item)
         rubrics.make_rubrics(self, peer_items)
 

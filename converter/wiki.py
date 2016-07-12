@@ -88,7 +88,7 @@ def replace_wiki_links(coursera_content, course):
     coursera_link = r'href="(\.\./wiki/)?([\w\-\(\)]+)(#[\w-]+)?"'
 
     def _canvas_link(match):
-        coursera_id = match.group(2)
+        coursera_id = 'coursepage_' + match.group(2)
         canvas_id = course.get_canvas_id(coursera_id)
         anchor = match.group(3)
         if anchor:
@@ -102,7 +102,7 @@ def replace_video_links(coursera_content, course):
     coursera_link = r'href="\.\./lecture/(\d+)"'
 
     def _canvas_link(match):
-        coursera_id = match.group(1)
+        coursera_id = 'lecture_' + match.group(1)
         canvas_id = course.get_canvas_id(coursera_id)
         return 'href="$WIKI_REFERENCE$/pages/{}"'.format(canvas_id)
 
@@ -113,7 +113,7 @@ def replace_quiz_links(coursera_content, course):
     coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
 
     def _canvas_link(match):
-        coursera_id = match.group(1)
+        coursera_id = 'quiz_' + match.group(1)
         canvas_id = course.get_canvas_id(coursera_id)
         return 'href="$CANVAS_OBJECT_REFERENCE$/quizzes/{}"'.format(canvas_id)
 
@@ -124,7 +124,7 @@ def replace_assignment_links(coursera_content, course):
     coursera_link = r'href="\.\./quiz/start\?quiz_id=(\d+)"'
 
     def _canvas_link(match):
-        coursera_id = match.group(1)
+        coursera_id = 'peergrading_' + match.group(1)
         canvas_id = course.get_canvas_id(coursera_id)
         return 'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}"'.format(canvas_id)
 
