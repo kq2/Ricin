@@ -81,9 +81,9 @@ def get(course_url, name='', session=''):
     # _course.download_assets()
     # _course.download_original_videos()
     # _course.download_stories()
-    _course.download_info()
+    # _course.download_info()
 
-    # _course.upload()
+    _course.upload()
 
 
 def get_all():

@@ -140,8 +140,8 @@ class Course:
     def pack(self):
         util.make_zip(self.canvas_folder)
 
-    def convert_assets(self):
-        assets.convert(self)
+    def convert_assets(self, start_idx=1):
+        assets.convert(self, start_idx)
 
     def convert_wiki_pages(self):
         self.convert('coursepage')
