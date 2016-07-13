@@ -9,18 +9,18 @@ from downloader import util
 ASSIGNMENT = u'''<?xml version="1.0" encoding="UTF-8"?>
 <assignmentGroups>
   <assignmentGroup identifier="quiz">
-    <title>Quiz</title>
+    <title>Quizzes</title>
     <position>1</position>
     <group_weight>20.0</group_weight>
   </assignmentGroup>
   <assignmentGroup identifier="peer">
-    <title>Peer-review</title>
+    <title>Peer-reviews</title>
     <position>2</position>
     <group_weight>30.0</group_weight>
   </assignmentGroup>
   <assignmentGroup identifier="assignment">
-    <title>Assignment</title>
-    <position>2</position>
+    <title>Assignments</title>
+    <position>3</position>
     <group_weight>50.0</group_weight>
   </assignmentGroup>
 </assignmentGroups>'''
