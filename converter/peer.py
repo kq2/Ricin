@@ -131,12 +131,21 @@ def make_settings_file(course, assignment, canvas_folder, canvas_id, title):
 
 
 def make_description_page(course, assignment, canvas_id, title, file_name):
-    content = assignment['form'][0]['children'][0]['html']
+    page = ''
+
+    intros = assignment['form'][0]['children']
+    for intro in intros:
+        page += wiki.convert_content(intro['html'], course)
+
+    questions = assignment['form'][1]['children']
+    for question in questions:
+        page += wiki.convert_content(question['html'], course)
+
     canvas_id = 'wiki_{}'.format(canvas_id)
     canvas_path = 'wiki_content/{}.html'.format(file_name)
     canvas_file = course.get_canvas_folder() + '/' + canvas_path
 
-    wiki.make_canvas_wiki(content, title, canvas_file, canvas_id, course)
+    wiki.make_canvas_wiki(page, title, canvas_file, canvas_id, course)
 
     args = {
         'id': canvas_id,

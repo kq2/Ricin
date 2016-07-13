@@ -124,6 +124,9 @@ class Course:
     def get_part(self):
         return self.part
 
+    def get_name(self):
+        return self.name[:-1]
+
     def get_topic_pos(self):
         return self.topic_pos
 

@@ -68,10 +68,11 @@ def make_rubric(coursera_file, canvas_id):
 def make_criteria(rubric):
     # footer = rubric['evaluation']['children'][0]
     # header = rubric['children'][0]
-    items = rubric['children'][0]['evaluation']['children']
     ans = ''
-    for item in items:
-        ans += make_criterion(item)
+    questions = rubric['children']
+    for question in questions:
+        for evaluation in question['evaluation']['children']:
+            ans += make_criterion(evaluation)
     return ans
 
 
