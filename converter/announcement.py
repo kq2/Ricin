@@ -30,6 +30,7 @@ META = u'''<?xml version="1.0" encoding="UTF-8"?>
 
 
 def convert(course, item):
+    coursera_folder = course.get_coursera_folder()
     canvas_folder = course.get_canvas_folder()
 
     data_canvas_id = item['canvas_id']
@@ -44,11 +45,13 @@ def convert(course, item):
     pos = course.get_topic_pos()
     course.set_topic_pos(pos + 1)
 
+    coursera_file = '{}/announcement/{}.json'.format(coursera_folder, item['item_id'])
+    announcement = util.read_json(coursera_file)
     args = {
         'topic_id': item['canvas_id'],
         'title': item['title'],
         'position': pos,
-        'content': wiki.convert_content(item['message'], course)
+        'content': wiki.convert_content(announcement['message'], course)
     }
 
     meta = META.format(**args)

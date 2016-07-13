@@ -87,8 +87,7 @@ def remove_bad_formats(coursera_content):
 
 def replace_assets_links(coursera_content):
     coursera_link = r'="\.\./\.\./\.\./.*?/assets/(.*?)"'
-    # canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
-    canvas_link = '=""'
+    canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 
