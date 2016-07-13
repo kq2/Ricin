@@ -35,7 +35,7 @@ def run():
     url = 'class.coursera.org'
     courses = [
         course.Course(url, downloader.IIPP + '1', '010', 1),
-        # course.Course(url, downloader.IIPP + '2', '010', 2),
+        course.Course(url, downloader.IIPP + '2', '010', 2),
         # course.Course(url, downloader.POC + '1', '005', 1),
         # course.Course(url, downloader.POC + '2', '005', 2),
         # course.Course(url, downloader.ALG + '1', '004', 1),

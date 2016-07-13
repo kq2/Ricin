@@ -39,10 +39,10 @@ ITEM_TYPE = {
 def convert(course, sections):
     modules = ''
 
-    pos = course.get_module_pos()
-    course.set_module_pos(pos + 1)
-
     for section in sections:
+        pos = course.get_module_pos()
+        course.set_module_pos(pos + 1)
+
         args = {
             'title': section['title'],
             'position': pos,

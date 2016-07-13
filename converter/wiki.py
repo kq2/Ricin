@@ -120,7 +120,7 @@ def replace_video_links(coursera_content, course):
 
 
 def replace_quiz_links(coursera_content, course):
-    coursera_link = r'href="\.\./quiz(/start\?quiz_id=(\d+))?"'
+    coursera_link = r'href="\.\./quiz(/\w+\?quiz_id=(\d+))?"'
 
     def _canvas_link(match):
         if match.group(2):
