@@ -8,13 +8,18 @@ from downloader import util
 
 ASSIGNMENT = u'''<?xml version="1.0" encoding="UTF-8"?>
 <assignmentGroups>
-  <assignmentGroup identifier="quizzes">
-    <title>Quizzes</title>
+  <assignmentGroup identifier="quiz">
+    <title>Quiz</title>
     <position>1</position>
-    <group_weight>50.0</group_weight>
+    <group_weight>20.0</group_weight>
   </assignmentGroup>
-  <assignmentGroup identifier="projects">
-    <title>Mini-projects</title>
+  <assignmentGroup identifier="peer">
+    <title>Peer-review</title>
+    <position>2</position>
+    <group_weight>30.0</group_weight>
+  </assignmentGroup>
+  <assignmentGroup identifier="assignment">
+    <title>Assignment</title>
     <position>2</position>
     <group_weight>50.0</group_weight>
   </assignmentGroup>
@@ -29,7 +34,7 @@ SETTINGS = u'''<?xml version="1.0" encoding="UTF-8"?>
   <module_locked>false</module_locked>
   <all_day_date/>
   <peer_reviews_due_at/>
-  <assignment_group_identifierref>projects</assignment_group_identifierref>
+  <assignment_group_identifierref>assignment</assignment_group_identifierref>
   <workflow_state>unpublished</workflow_state>
   <rubric_identifierref/>
   <rubric_use_for_grading>false</rubric_use_for_grading>
@@ -63,7 +68,7 @@ def convert(course, item):
     assignment = wiki.convert_content(assignment, course)
 
     main_file = make_main_file(assignment, canvas_folder, canvas_id, title)
-    settings_file = make_settings_file(canvas_folder, canvas_id, title)
+    settings_file = make_settings_file(course, canvas_folder, canvas_id, title)
 
     args = {
         'id': canvas_id,
@@ -86,16 +91,19 @@ def make_main_file(assignment, canvas_folder, canvas_id, title):
     return file_path
 
 
-def make_settings_file(canvas_folder, canvas_id, title):
+def make_settings_file(course, canvas_folder, canvas_id, title):
     file_name = '{}/assignment_settings.xml'.format(canvas_id)
     path = '{}/{}'.format(canvas_folder, file_name)
+
+    pos = course.get_assignment_pos()
+    course.set_assignment_pos(pos + 1)
 
     args = {
         'canvas_id': canvas_id,
         'title': title,
         'points': 100,
         'submit_type': 'online_url',
-        'position': 1,
+        'position': pos,
     }
     util.write_file(path, SETTINGS.format(**args))
     return file_name

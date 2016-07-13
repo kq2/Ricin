@@ -87,7 +87,8 @@ def remove_bad_formats(coursera_content):
 
 def replace_assets_links(coursera_content):
     coursera_link = r'="\.\./\.\./\.\./.*?/assets/(.*?)"'
-    canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
+    # canvas_link = r'="$IMS-CC-FILEBASE$/\1"'
+    canvas_link = '=""'
     return re.sub(coursera_link, canvas_link, coursera_content)
 
 
@@ -106,12 +107,14 @@ def replace_wiki_links(coursera_content, course):
 
 
 def replace_video_links(coursera_content, course):
-    coursera_link = r'href="\.\./lecture/(\d+)"'
+    coursera_link = r'href="\.\./lecture(/(\d+))?"'
 
     def _canvas_link(match):
-        coursera_id = 'lecture_' + match.group(1)
-        canvas_id = course.get_canvas_id(coursera_id)
-        return 'href="$WIKI_REFERENCE$/pages/{}"'.format(canvas_id)
+        if match.group(2):
+            coursera_id = 'lecture_' + match.group(2)
+            canvas_id = course.get_canvas_id(coursera_id)
+            return 'href="$WIKI_REFERENCE$/pages/{}"'.format(canvas_id)
+        return 'href="$WIKI_REFERENCE$/pages/"'
 
     return re.sub(coursera_link, _canvas_link, coursera_content)
 
@@ -120,11 +123,11 @@ def replace_quiz_links(coursera_content, course):
     coursera_link = r'href="\.\./quiz(/start\?quiz_id=(\d+))?"'
 
     def _canvas_link(match):
-        canvas_id = ''
         if match.group(2):
             coursera_id = 'quiz_' + match.group(2)
             canvas_id = course.get_canvas_id(coursera_id)
-        return 'href="$CANVAS_OBJECT_REFERENCE$/quizzes/{}"'.format(canvas_id)
+            return 'href="$CANVAS_OBJECT_REFERENCE$/quizzes/{}"'.format(canvas_id)
+        return 'href="$CANVAS_COURSE_REFERENCE$/quizzes"'
 
     return re.sub(coursera_link, _canvas_link, coursera_content)
 
@@ -133,11 +136,11 @@ def replace_peer_links(coursera_content, course):
     coursera_link = r'href="\.\./human_grading(/view\?assessment_id=(\d+))?"'
 
     def _canvas_link(match):
-        canvas_id = ''
         if match.group(2):
             coursera_id = 'peergrading_' + match.group(2)
             canvas_id = course.get_canvas_id(coursera_id)
-        return 'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}"'.format(canvas_id)
+            return 'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}"'.format(canvas_id)
+        return 'href="$CANVAS_COURSE_REFERENCE$/assignments"'
 
     return re.sub(coursera_link, _canvas_link, coursera_content)
 
@@ -146,10 +149,10 @@ def replace_assignment_links(coursera_content, course):
     coursera_link = r'href="\.\./assignment(/start\?assignment_id=(\d+))?"'
 
     def _canvas_link(match):
-        canvas_id = ''
         if match.group(2):
             coursera_id = 'assignment_' + match.group(2)
             canvas_id = course.get_canvas_id(coursera_id)
-        return 'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}"'.format(canvas_id)
+            return 'href="$CANVAS_OBJECT_REFERENCE$/assignments/{}"'.format(canvas_id)
+        return 'href="$CANVAS_COURSE_REFERENCE$/assignments"'
 
     return re.sub(coursera_link, _canvas_link, coursera_content)

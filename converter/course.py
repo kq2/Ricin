@@ -42,6 +42,13 @@ class Course:
         self.ensemble_title2id = util.read_json('videos.json')
         self.resources = ''
 
+        self.topic_pos = 1
+        self.quiz_pos = 1
+        self.peer_pos = 1
+        self.assignment_pos = 1
+        self.module_pos = 1
+        self.asset_pos = 1
+
     def clean_sections(self):
         sections = util.read_json(self.section_file)
         for section in sections:
@@ -117,6 +124,42 @@ class Course:
     def get_part(self):
         return self.part
 
+    def get_topic_pos(self):
+        return self.topic_pos
+
+    def set_topic_pos(self, pos):
+        self.topic_pos = pos
+
+    def get_quiz_pos(self):
+        return self.quiz_pos
+
+    def set_quiz_pos(self, pos):
+        self.quiz_pos = pos
+
+    def get_peer_pos(self):
+        return self.peer_pos
+
+    def set_peer_pos(self, pos):
+        self.peer_pos = pos
+
+    def get_assignment_pos(self):
+        return self.assignment_pos
+
+    def set_assignment_pos(self, pos):
+        self.assignment_pos = pos
+
+    def get_module_pos(self):
+        return self.module_pos
+
+    def set_module_pos(self, pos):
+        self.module_pos = pos
+
+    def get_asset_pos(self):
+        return self.asset_pos
+
+    def set_asset_pos(self, pos):
+        self.asset_pos = pos
+
     def convert(self, item_type=None):
         convert_queue = []
         for section in self.sections:
@@ -140,8 +183,11 @@ class Course:
     def pack(self):
         util.make_zip(self.canvas_folder)
 
-    def convert_assets(self, start_idx=1):
-        assets.convert(self, start_idx)
+    def convert_assets(self):
+        assets.convert(self)
+
+    def convert_announcement(self):
+        self.convert('announcement')
 
     def convert_wiki_pages(self):
         self.convert('coursepage')
@@ -166,14 +212,15 @@ class Course:
                     peer_items.append(item)
         rubrics.make_rubrics(self, peer_items)
 
-    def convert_modules(self, start_position=1):
+    def convert_modules(self):
         published_sections = []
 
         # find all published sections (with at least one published item)
         for section in self.sections:
-            items = [item for item in section['items'] if item['published']]
+            items = [item for item in section['items']
+                     if item['published'] and item['item_type'] != 'announcement']
             if items:
                 section['items'] = items
                 published_sections.append(section)
 
-        module.convert(self, published_sections, start_position)
+        module.convert(self, published_sections)

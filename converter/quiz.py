@@ -37,7 +37,7 @@ METADATA = u'''<?xml version="1.0" encoding="UTF-8"?>
   <assignment identifier="{assignment_id}">
     <title><![CDATA[{title}]]></title>
     <module_locked>false</module_locked>
-    <assignment_group_identifierref>quizzes</assignment_group_identifierref>
+    <assignment_group_identifierref>quiz</assignment_group_identifierref>
     <workflow_state>unpublished</workflow_state>
     <quiz_identifierref>{quiz_id}</quiz_identifierref>
     <has_group_category>false</has_group_category>
@@ -191,7 +191,7 @@ def make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
     metadata.set('canvas_id', canvas_id)
     metadata.set('is_survey', is_survey)
 
-    metadata_file = make_canvas_metadata(metadata, preamble, canvas_folder)
+    metadata_file = make_canvas_metadata(course, metadata, preamble, canvas_folder)
     data_file = make_canvas_data(data, metadata, canvas_folder)
 
     args = {
@@ -203,12 +203,16 @@ def make_canvas_quiz(coursera_file, is_survey, canvas_id, canvas_folder, course)
     course.add_resources(args)
 
 
-def make_canvas_metadata(metadata, preamble, canvas_folder):
+def make_canvas_metadata(course, metadata, preamble, canvas_folder):
     """
     Create an XML file for metadata.
     """
     canvas_id = metadata.get('canvas_id')
     is_survey = metadata.get('is_survey')
+
+    pos = course.get_quiz_pos()
+    course.set_quiz_pos(pos + 1)
+
     args = {
         'title': metadata.findtext('title'),
         'points': metadata.findtext('maximum_score'),
@@ -219,7 +223,7 @@ def make_canvas_metadata(metadata, preamble, canvas_folder):
         'preamble': preamble,
         'quiz_id': canvas_id,
         'assignment_id': 'a_' + canvas_id,
-        'position': 1
+        'position': pos
     }
     content = METADATA.format(**args)
     file_name = '{}/assessment_meta.xml'.format(canvas_id)

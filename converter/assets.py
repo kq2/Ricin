@@ -6,20 +6,24 @@ import shutil
 import resource
 
 
-def convert(course, start_idx):
+def convert(course):
     coursera_assets_folder = course.get_coursera_folder().rpartition('/')[0] + '/assets'
     canvas_assets_folder = course.get_canvas_folder() + '/web_resources'
 
     # print "copy assets folder..."
     # copy_folder(coursera_assets_folder, canvas_assets_folder)
 
-    add_resources(course, canvas_assets_folder, start_idx)
+    add_resources(course, canvas_assets_folder)
 
 
-def add_resources(course, assets_folder, start_idx):
-    for idx, path in enumerate(all_file_paths(assets_folder)):
-        canvas_id = '{}_{}'.format('asset', idx + start_idx)
+def add_resources(course, assets_folder):
+    for path in all_file_paths(assets_folder):
+        pos = course.get_asset_pos()
+        course.set_asset_pos(pos + 1)
+
+        canvas_id = '{}_{}'.format('asset', pos)
         canvas_path = path.replace(assets_folder, 'web_resources')
+
         args = {
             'id': canvas_id,
             'type': 'webcontent',

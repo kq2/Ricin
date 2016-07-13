@@ -27,6 +27,9 @@ TEMPLATE = u'''
 FILE = u'''
       <file href="{}"/>'''
 
+DEPENDENCY = u'''
+      <dependency identifierref="{}"/>'''
+
 
 def make_manifest(course, resources):
     path = course.get_canvas_folder() + '/imsmanifest.xml'

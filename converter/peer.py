@@ -51,7 +51,7 @@ SETTINGS = u'''<?xml version="1.0" encoding="UTF-8"?>
   <module_locked>false</module_locked>
   <all_day_date/>
   <peer_reviews_due_at/>
-  <assignment_group_identifierref>projects</assignment_group_identifierref>
+  <assignment_group_identifierref>peer</assignment_group_identifierref>
   <workflow_state>unpublished</workflow_state>
   <rubric_identifierref>{rubric_id}</rubric_identifierref>
   <rubric_use_for_grading>true</rubric_use_for_grading>
@@ -84,7 +84,7 @@ def convert(course, item):
     assignment = util.read_json(coursera_file)
 
     main_file = make_main_file(course, assignment, canvas_folder, canvas_id, title)
-    settings_file = make_settings_file(assignment, canvas_folder, canvas_id, title)
+    settings_file = make_settings_file(course, assignment, canvas_folder, canvas_id, title)
 
     args = {
         'id': canvas_id,
@@ -110,9 +110,12 @@ def make_main_file(course, assignment, canvas_folder, canvas_id, title):
     return file_path
 
 
-def make_settings_file(assignment, canvas_folder, canvas_id, title):
+def make_settings_file(course, assignment, canvas_folder, canvas_id, title):
     file_name = '{}/assignment_settings.xml'.format(canvas_id)
     path = '{}/{}'.format(canvas_folder, file_name)
+
+    pos = course.get_peer_pos()
+    course.set_peer_pos(pos + 1)
 
     args = {
         'canvas_id': canvas_id,
@@ -120,7 +123,7 @@ def make_settings_file(assignment, canvas_folder, canvas_id, title):
         'rubric_id': '{}_rubric'.format(canvas_id),
         'points': assignment['maxGrade'],
         'submit_type': 'online_url',
-        'position': 1,
+        'position': pos,
         'num_peer': 5
     }
     util.write_file(path, SETTINGS.format(**args))
