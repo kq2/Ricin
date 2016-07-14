@@ -162,7 +162,7 @@ def make_solution_page(course, assignment, canvas_id, title, file_name):
     questions = assignment['form'][1]['children']
     for question in questions:
         html = wiki.convert_content(question['html'], course)
-        page += u'<div>{}</div>'.format(html)
+        page += html
         for evaluation in question['evaluation']['children']:
             if evaluation['children'][0]['type'] == 'gradingNumber':
                 html = wiki.convert_content(evaluation['html'], course)
