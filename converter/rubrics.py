@@ -2,6 +2,7 @@
 Convert a Coursera peer-assessment rubrics in Canvas format.
 """
 
+import re
 from downloader import util
 
 RUBRICS = u'''<?xml version="1.0" encoding="UTF-8"?>
@@ -26,6 +27,7 @@ CRITERION = u'''
         <criterion_id>{criterion_id}</criterion_id>
         <points>{points}</points>
         <description><![CDATA[{description}]]></description>
+        <long_description><![CDATA[{long_description}]]></long_description>
         <ratings>{ratings}
         </ratings>
       </criterion>'''
@@ -76,17 +78,26 @@ def make_criteria(rubric):
     return ans
 
 
-def make_criterion(criterion):
-    criterion_id = criterion['id']
-    op_type = criterion['children'][0]['type']
-    options = criterion['children'][0]['parameters']['options']
+def make_criterion(evaluation):
+    criterion_id = evaluation['id']
+    op_type = evaluation['children'][0]['type']
+    options = evaluation['children'][0]['parameters']['options']
 
     if op_type == 'gradingNumber':
         ratings, points = make_ratings(options, criterion_id)
+
+        description = evaluation['html']
+        details = ''
+        match = re.match(r'<b>(.*?)</b>', description)
+        if match:
+            details = description
+            description = match.group(1)
+
         args = {
             'criterion_id': criterion_id,
             'points': points,
-            'description': criterion['html'],
+            'description': description,
+            'long_description': details,
             'ratings': ratings
         }
         return CRITERION.format(**args)

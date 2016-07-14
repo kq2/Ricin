@@ -24,9 +24,7 @@ Please use the "View the Original Page" link that appears in the upper right of 
 that you submitted a working CodeSkulptor URL for the final version of your program.</p>
 
 <ul>
-    <li><a href="$WIKI_REFERENCE$/pages/" target="_blank">Mini-project Video</a></li>
-    <li><a href="$WIKI_REFERENCE$/pages/{}" target="_blank">Mini-project Description</a></li>
-    <li><a href="$WIKI_REFERENCE$/pages/" target="_blank">Code Clinic Tips</a></li>
+    <li><a href="$WIKI_REFERENCE$/pages/{}" target="_blank">Project Description</a></li>
 </ul>
 
 <p><strong>Peer review: </strong> After you have submitted your program, Canvas will assign you five of your
@@ -98,6 +96,7 @@ def convert(course, item):
 def make_main_file(course, assignment, canvas_folder, canvas_id, title):
     file_name = wiki.get_canvas_wiki_filename(title)
     make_description_page(course, assignment, canvas_id, title, file_name)
+    make_solution_page(course, assignment, canvas_id, title, file_name)
 
     file_path = '{}/{}.html'.format(canvas_id, file_name)
     path = '{}/{}'.format(canvas_folder, file_path)
@@ -122,7 +121,7 @@ def make_settings_file(course, assignment, canvas_folder, canvas_id, title):
         'title': title,
         'rubric_id': '{}_rubric'.format(canvas_id),
         'points': assignment['maxGrade'],
-        'submit_type': 'online_url',
+        'submit_type': 'online_text_entry',  # online_url
         'position': pos,
         'num_peer': 5
     }
@@ -135,11 +134,13 @@ def make_description_page(course, assignment, canvas_id, title, file_name):
 
     intros = assignment['form'][0]['children']
     for intro in intros:
-        page += wiki.convert_content(intro['html'], course)
+        html = wiki.convert_content(intro['html'], course)
+        page += u'<div>{}</div>'.format(html)
 
     questions = assignment['form'][1]['children']
     for question in questions:
-        page += wiki.convert_content(question['html'], course)
+        html = wiki.convert_content(question['html'], course)
+        page += u'<div>{}</div>'.format(html)
 
     canvas_id = 'wiki_{}'.format(canvas_id)
     canvas_path = 'wiki_content/{}.html'.format(file_name)
@@ -147,6 +148,32 @@ def make_description_page(course, assignment, canvas_id, title, file_name):
 
     wiki.make_canvas_wiki(page, title, canvas_file, canvas_id, course)
 
+    args = {
+        'id': canvas_id,
+        'type': 'webcontent',
+        'path': canvas_path,
+        'files': resource.FILE.format(canvas_path)
+    }
+    course.add_resources(args)
+
+
+def make_solution_page(course, assignment, canvas_id, title, file_name):
+    page = ''
+    questions = assignment['form'][1]['children']
+    for question in questions:
+        html = wiki.convert_content(question['html'], course)
+        page += u'<div>{}</div>'.format(html)
+        for evaluation in question['evaluation']['children']:
+            if evaluation['children'][0]['type'] == 'gradingNumber':
+                html = wiki.convert_content(evaluation['html'], course)
+                page += u'<div>{}</div>'.format(html)
+
+    canvas_id = 'wiki_{}_solution'.format(canvas_id)
+    canvas_path = 'wiki_content/{}-solution.html'.format(file_name)
+    canvas_file = '{}/{}'.format(course.get_canvas_folder(), canvas_path)
+    title = '{} solution'.format(title)
+
+    wiki.make_canvas_wiki(page, title, canvas_file, canvas_id, course)
     args = {
         'id': canvas_id,
         'type': 'webcontent',
