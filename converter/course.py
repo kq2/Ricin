@@ -69,7 +69,7 @@ class Course:
                 elif '__published' in item:
                     item['published'] = item['__published'] == 1
                 else:
-                    item['published'] = True
+                    item['published'] = item['metadata']['visible']
 
         return sections
 
@@ -105,7 +105,7 @@ class Course:
             if item_type == 'coursepage':
                 return 'wiki_' + canvas_id
             else:
-                return '>_' + canvas_id
+                return '>-' + canvas_id
         else:
             return '{}_{}'.format(item['coursera_id'], self.part)
 

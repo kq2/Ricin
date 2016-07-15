@@ -135,12 +135,12 @@ def make_description_page(course, assignment, canvas_id, title, file_name):
     intros = assignment['form'][0]['children']
     for intro in intros:
         html = wiki.convert_content(intro['html'], course)
-        page += u'<div>{}</div>'.format(html)
+        page += u'<p>{}</p>'.format(html)
 
     questions = assignment['form'][1]['children']
     for question in questions:
         html = wiki.convert_content(question['html'], course)
-        page += u'<div>{}</div>'.format(html)
+        page += u'<p>{}</p>'.format(html)
 
     canvas_id = 'wiki_{}'.format(canvas_id)
     canvas_path = 'wiki_content/{}.html'.format(file_name)
@@ -166,7 +166,7 @@ def make_solution_page(course, assignment, canvas_id, title, file_name):
         for evaluation in question['evaluation']['children']:
             if evaluation['children'][0]['type'] == 'gradingNumber':
                 html = wiki.convert_content(evaluation['html'], course)
-                page += u'<div>{}</div>'.format(html)
+                page += u'<p>{}</p>'.format(html)
 
     canvas_id = 'wiki_{}_solution'.format(canvas_id)
     canvas_path = 'wiki_content/{}-solution.html'.format(file_name)

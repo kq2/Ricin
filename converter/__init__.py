@@ -1,3 +1,4 @@
+import filecmp
 import course
 import downloader
 
@@ -47,6 +48,20 @@ def run():
         course.Course(url, downloader.ALG + '2', '004', 4)
     ]
     convert_all(courses)
+    compare(courses[0], courses[1], 'web_resources', True)
+    compare(courses[0], courses[1], 'wiki_content')
+    compare(courses[2], courses[3], 'web_resources', True)
+    compare(courses[2], courses[3], 'wiki_content')
+
+
+def compare(prev_course, cur_course, folder, deep=False):
+    dir1 = '{}/{}'.format(prev_course.get_canvas_folder(), folder)
+    dir2 = '{}/{}'.format(cur_course.get_canvas_folder(), folder)
+    if deep:
+        filecmp.dircmp(dir1, dir2).report_full_closure()
+    else:
+        filecmp.dircmp(dir1, dir2).report()
+    print "\n========================================\n"
 
 
 run()
